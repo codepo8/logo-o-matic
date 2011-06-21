@@ -48,9 +48,11 @@
         rep = /[^a-z|\s|\$]+/g,
         url = document.location.href.split('?text=')[1];
 
-    if(url){
-      sanitise(url);
-    }; 
+    window.addEventListener('load',function(e){
+      if(url){
+        sanitise(url.replace(/%20/g,' '));
+      }
+    },false); 
 
     n.addEventListener('click',function(e){
       var t = e.target;
@@ -71,7 +73,9 @@
 
     function sanitise(s){
       s = s.toLowerCase();
-      if(!valid.test(s)){ s = s.replace(rep,''); }
+      if(!valid.test(s)){ 
+        s = s.replace(rep,''); 
+      }
       input.value = s;
       s = s.replace(/\s/g,'$');
       if(s){
@@ -101,6 +105,7 @@
       save.innerHTML = '';
       save.appendChild(img);
       img.src = ctx.canvas.toDataURL('image/png');
-    };    
+    };
+
   }
 })();
