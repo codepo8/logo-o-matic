@@ -68,7 +68,7 @@
   space encoding and call sanitise()
 */
     window.addEventListener('load',function(e){
-      var url = document.location.href.split('?text=')[1];
+      var url = document.location.search.split('?text=')[1];
       if(url){
         sanitise(url.replace(/%20/g,' '));
       }
@@ -94,7 +94,7 @@
 /*
   Every time the key is released inside the input element, sanitise the value
 */
-    input.addEventListener('keyup',function(e){
+    input.addEventListener('input',function(e){
       sanitise(input.value);
       e.preventDefault();
     },false);
