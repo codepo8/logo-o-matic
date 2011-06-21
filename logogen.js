@@ -73,7 +73,7 @@
       s = s.toLowerCase();
       if(!valid.test(s)){ s = s.replace(rep,''); }
       input.value = s;
-      s = s.replace(' ','$');
+      s = s.replace(/\s/g,'$');
       if(s){
         draw(s);
       }
