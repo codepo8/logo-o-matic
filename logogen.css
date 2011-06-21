@@ -32,6 +32,7 @@ li,p,input{
   font-size:20px;
 }
 span{
+  font-weight:bold;
   text-align:center;
   background:lime;
   color:#000;
