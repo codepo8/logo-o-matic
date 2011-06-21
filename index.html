@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C-64 charset logo generator</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="logogen.css" type="text/css" charset="utf-8">
+</head>
+<body>
+  <header><h1>C-64 charset logo generator</h1></header>
+  <section>
+  <div id="container">
+  <ul id="nav">
+    <li><span>1:</span> Choose your font:</li>
+    <li><img src="qpd3c.png" alt="Cupid/Padua/Hitmen" id="qpd"></li>
+    <li><img class="current" src="rrr1.png" alt="RRR/Oxyron #1" id="rrr1"></li>
+    <li><img src="rrr2.png" alt="RRR/Oxyron #2" id="rrr2"></li>
+    <li><img src="ollie.png" alt="Ollie/Pride" id="ollie"></li>
+  </ul>
+  <form>
+    <p><span>2:</span> Type your text (lower case a-z only)</p>  
+  <div class="inputs"><input type="text" name="text" id="text"></div>
+  <div id="save"></div>
+  </form>
+  <canvas></canvas>
+  <div id="out"></div>
+</div>
+</section>
+<footer><p>Written by <a href="http://wait-till-i.com">Chris Heilmann</a> - <a href="http://twitter.com/codepo8">@codepo8</a></p></footer>
+<img src="allfonts.png" alt="" id="fonts">
+<script src="logogen.js"></script>
+</body>
+</html>
