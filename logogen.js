@@ -1,3 +1,10 @@
+/*
+  Logo-o-Matic Canvas version
+  Homepage: http://github.com/codepo8/logo-o-matic
+  Copyright (c) 2011 Christian Heilmann
+  Code licensed under the BSD License:
+  http://wait-till-i.com/license.txt
+*/
 (function(){
   if(document.querySelector){
     var fonts = {
