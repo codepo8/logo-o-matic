@@ -91,6 +91,7 @@ span{
 form{
   padding:5px 0 5px 20px;
   float:left;
+  width:300px;
 }
 #container{
   width:700px;
@@ -101,6 +102,7 @@ form{
 }
 section,header,footer{
   width:700px;
+  display:block;
   margin:10px auto;
 }
 h1{
