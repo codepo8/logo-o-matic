@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>C-64 charset logo generator</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <link rel="stylesheet" href="logogen.css" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="logogen.css">
 </head>
 <body>
   <header><h1>C-64 charset logo generator</h1></header>
@@ -19,14 +19,14 @@
   </ul>
   <form>
     <p><span>2</span> Type your text (lower case a-z and space only)</p>  
-  <div class="inputs"><input type="text" name="text" id="text"></div>
-  <div id="save"></div>
+    <div class="inputs"><input id="text" pattern="[a-z ]*"></div>
+    <div id="save"></div>
   </form>
   <canvas></canvas>
   <div id="out"></div>
 </div>
 </section>
-<footer><p>Written by <a href="http://wait-till-i.com">Chris Heilmann</a> - <a href="http://twitter.com/codepo8">@codepo8</a></p></footer>
+<footer><p>Written by <a href="http://wait-till-i.com/">Chris Heilmann</a> - <a href="http://twitter.com/codepo8">@codepo8</a></p></footer>
 <img src="allfonts.png" alt="" id="fonts">
 <script src="logogen.js"></script>
 </body>
