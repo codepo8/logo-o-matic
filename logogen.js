@@ -7,6 +7,11 @@
 */
 (function(){
   if(document.querySelector){
+  
+/* 
+  Font definitions - these are the x coordinates and widths of all chars 
+  in a certain font cropped from allfonts.png
+*/    
     var fonts = {
           ollie:{
             height:52,a:[4,40],b:[45,38],c:[86,37],d:[123,40],e:[163,40],
@@ -37,6 +42,12 @@
             x:[755,32],y:[789,32],z:[820,32],$:[870,32],offset:120
           }
         },
+
+/* 
+  Grabbing the canvas and all the neccesary elements from the DOM. 
+  The image with the .current class defines which font is preset by
+  reading out its ID
+*/ 
         n = document.querySelector('#nav'),
         ctx = document.querySelector('canvas').getContext('2d'),
         srcimg = document.querySelector('#fonts'),
@@ -44,19 +55,33 @@
         input = document.querySelector('#text'),
         old = document.querySelector('.current'),
         set = fonts[old.id],
-        valid = /^[a-z|\s|\$]+$/,
-        rep = /[^a-z|\s|\$]+/g,
-        url = document.location.href.split('?text=')[1];
 
+/*
+  Only allow characters a-z, space and the dollar sign. I use dollar to
+  define a space in the coordinates above
+*/
+        valid = /^[a-z|\s|\$]+$/,
+        rep = /[^a-z|\s|\$]+/g;
+
+/*
+  If there is a ?text=moo parameter on the URL, grab the text, remove the 
+  space encoding and call sanitise()
+*/
     window.addEventListener('load',function(e){
+      var url = document.location.href.split('?text=')[1];
       if(url){
         sanitise(url.replace(/%20/g,' '));
       }
     },false); 
 
+/*
+  Using event delegation, set the font by clicking on the images in the 
+  nav list. Call sanitise to immediately show changes and shift the current
+  class in the HTML to the clicked element
+*/
     n.addEventListener('click',function(e){
       var t = e.target;
-      if(t.tagName==='IMG'){
+      if(t.tagName === 'IMG'){
         set = fonts[t.id];
         old.className = '';
         t.className = 'current';
@@ -66,11 +91,18 @@
       e.preventDefault();
     },false);
 
+/*
+  Every time the key is released inside the input element, sanitise the value
+*/
     input.addEventListener('keyup',function(e){
       sanitise(input.value);
       e.preventDefault();
     },false);
 
+/*
+  Replace all invalid characters, set $ instead of space (to get a valid
+  label in the charmap) and call the draw function() when things went well
+*/
     function sanitise(s){
       s = s.toLowerCase();
       if(!valid.test(s)){ 
@@ -84,16 +116,37 @@
     };
 
     function draw(s){
+/* 
+  Split the string into the different characters
+*/
       var str = s.split(''), w = 0, h = 0, i = 0, j = str.length;
+
+/*
+  Offset the output by five pixels top and left
+*/
       var destX = 5;
       var destY = 5;
+
+/* 
+  Calculate the dimensions of the canvas by adding the char widths and 
+  reading the height
+*/
       for(i=0;i<j;i++){ 
         w += set[str[i]][1]; 
       }
       ctx.canvas.width = w + 10;
       ctx.canvas.height = set.height + 10;
+
+/*
+  Fill the canvas with black (this is so Rolling Stones...)
+*/
       ctx.fillStyle = 'rgb(0, 0, 0)';
       ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+/*
+  Crop the characters one by one from the image and copy them into the 
+  Canvas - add to the destX to copy them in one after the other
+*/
       for(i=0;i<j;i++){
         ctx.drawImage(
           srcimg, set[str[i]][0], set.offset, set[str[i]][1], 
@@ -101,6 +154,11 @@
         );
         destX += set[str[i]][1];
       }
+
+/*
+  Create a new image from the Canvas data and add it to the document for 
+  saving.
+*/
       var img = document.createElement('img');
       save.innerHTML = '';
       save.appendChild(img);
