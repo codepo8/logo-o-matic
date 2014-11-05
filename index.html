@@ -4,33 +4,76 @@
   <meta charset="UTF-8">
   <title>C-64 charset logo generator</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <link rel="stylesheet" href="logogen.css">
+  <link rel="stylesheet" href="styles/logogen.css">
 </head>
 <body>
-  <header><h1>C-64 charset logo generator</h1></header>
+  <header>
+    <h1>C-64 charset logo generator</h1>
+  </header>
   <section>
   <div id="container">
-  <ul id="nav">
-    <li><span>1</span> Choose your font:</li>
-    <li><img  class="current" src="qpd3c.png" alt="Cupid/Padua/Hitmen" id="qpd"></li>
-    <li><img src="ollie.png" alt="Ollie/Pride" id="ollie"></li>
-    <li><img src="deekay.png" alt="Deekay/Crest - Don't meet crest" id="deekaydontmeetcrestfli"></li>
-    <li><img src="deekay2.png" alt="Deekay/Crest" id="deekaycomalandspriteschains"></li>
-    <li><img src="deekay3.png" alt="Deekay/Crest" id="deekaycomalandspritesnochains"></li>
-    <li><img src="orc.png" alt="Orc/Black Mail" id="orcdutchbreezeflielite"></li>
-    <li><img src="compyx.png" alt="Compyx/Focus" id="compyxvisualdelight2multicolor1995"></li>
-  </ul>
+  <h2><span>1</span> Type your text (lower case a-z and space only) and select a colour</h2>  
   <form>
-    <p><span>2</span> Type your text (lower case a-z and space only)</p>  
-    <div class="inputs"><input id="text" pattern="[a-z ]*"></div>
+    <div class="inputs">
+      <label>Logo text: <input id="text" pattern="[a-z|\.|,|!]*"></label>
+    </div>
+    <div class="inputs">
+      <label>Colour: <input type="color" id="colour" value="#000000"></label>
+      <label> Opacity: <input type="range" value="1" min="0" max="1" step="0.01" id="opacity"></label>
+    </div>
     <div id="save"></div>
   </form>
   <canvas></canvas>
   <div id="out"></div>
 </div>
+  <h2><span>2</span> Choose your font: <output></output></h2>
+  <ul id="nav">
+    <li>
+      <img class="current" 
+           src="img/qpd3c.png" 
+           alt="3 colour font by Cupid/Padua/Hitmen" 
+           id="qpd">
+    </li>
+    <li>
+      <img src="img/ollie.png" 
+           alt="Ollie/Pride" 
+           id="ollie">
+    </li>
+    <li>
+      <img src="img/deekay.png" 
+           alt="Deekay/Crest - Don't meet crest" 
+           id="deekaydontmeetcrestfli">
+    </li>
+    <li>
+      <img src="img/deekay2.png" 
+           alt="Deekay/Crest - Comaland (with chains) - 2014" 
+           id="deekaycomalandspriteschains">
+    </li>
+    <li>
+      <img src="img/deekay3.png" 
+           alt="Deekay/Crest - Comaland - 2014" 
+           id="deekaycomalandspritesnochains">
+    </li>
+    <li>
+      <img src="img/orc.png" 
+           alt="Orc/Black Mail - Dutch Breeze" 
+           id="orcdutchbreezeflielite">
+    </li>
+    <li>
+      <img src="img/compyx.png" 
+           alt="Compyx/Focus - Visual Delight 2 - 1995" 
+           id="compyxvisualdelight2multicolor1995">
+    </li>
+  </ul>
 </section>
-<footer><p>Written by <a href="http://wait-till-i.com/">Chris Heilmann</a> - <a href="http://twitter.com/codepo8">@codepo8</a> - RRR fonts removed as he asked me to :(</p></footer>
-<img src="allfonts.png" alt="" id="fonts">
-<script src="logogen.js"></script>
+<footer>
+  <p>
+    Written by <a href="http://wait-till-i.com/">Chris Heilmann</a> - 
+    <a href="http://twitter.com/codepo8">@codepo8</a>
+  </p>
+</footer>
+<img src="img/allfonts-trans.png" alt="" id="fonts">
+<script src="js/fonts.js"></script>
+<script src="js/logogen.js"></script>
 </body>
 </html>

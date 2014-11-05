@@ -1,0 +1,131 @@
+/*
+  Logo-o-Matic Canvas version
+  Homepage: http://github.com/codepo8/logo-o-matic
+  Copyright (c) 2011 Christian Heilmann
+  Code licensed under the BSD License:
+  http://wait-till-i.com/license.txt
+*/
+* {
+  margin: 0;
+  padding: 0;
+  font-family: helvetica, arial, sans-serif;
+}
+html, body {
+  background: #666;
+}
+canvas, #fonts{
+  left: -9999px;
+  display: block;
+  opacity: 0;
+  position: absolute;
+}
+#nav {
+  background: #000;
+  overflow: auto;
+  padding: 10px 0;
+}
+#nav ul {
+  overflow: auto;
+}
+#nav li {
+  float: left;
+  list-style: none;
+  text-align: center;
+  background: #000;
+  padding: 5px;
+  color: #fff;
+  height: 140px;
+}
+li, p, input {
+  font-size: 20px;
+}
+input[type="range"] {
+  width: 120px;
+}
+input[type=text] {
+  display: block;
+  padding: 5px;
+  margin: 10px 0;
+  width: 400px;
+}
+#nav img {
+  border: 2px solid #000;
+  transition: all .2s;
+  display: block;
+  transform: scale(.8);
+}
+#nav img:hover {
+  transform: scale(1);
+}
+#nav img.current {
+  border: 2px solid #999;
+  border-radius: 10px;
+  transform:scale(1);
+}
+#save {
+  overflow: auto;
+}
+#save img {
+  display: block;
+  margin: 10px 0;
+}
+.inputs {
+  padding: 10px 0;
+}
+form {
+  padding: 5px 0 5px 20px;
+}
+output {
+  color: yellow;
+}
+#container {
+  background: #999;
+  overflow: hidden;
+  min-height: 300px;
+}
+section, header, footer{
+  display: block;
+}
+h2 {
+  line-height: 30px;
+  overflow: auto;
+  font-weight: normal;
+  padding: 5px 10px;
+  font-size: 18px;
+}
+div ~ h2 {
+  background: #000;
+  color: #fff;
+}
+span {
+  font-weight: bold;
+  text-align: center;
+  background: lime;
+  color: #000;
+  line-height: 30px;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  display: block;
+  float: left;
+}
+h1 {
+  background: #333;
+  text-align: right;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: normal;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+footer a {
+  color: #fff;
+}
+footer p{
+  font-size: 10px;
+  text-align: right;
+  color: #ccc;
+  padding: 5px 10px;
+  background: #333;
+}
