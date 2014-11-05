@@ -10,6 +10,9 @@
   padding:0;
   font-family:calibri,sans-serif;
 } 
+body {
+  padding: 2em;
+}
 canvas,#fonts{
   left:-9999px;
   display: block;
@@ -18,8 +21,10 @@ canvas,#fonts{
 }
 #nav{
   float:left;
-  height:370px;
+  width: 20%;
+  height:100%;
   background:#000;
+  min-width: 290px;
 }
 #nav li{
  list-style:none;
@@ -78,8 +83,6 @@ span{
 }
 #save{
   overflow:auto;
-  height:150px;
-  width:450px;
 }
 #save img{
   display:block;
@@ -91,17 +94,14 @@ span{
 form{
   padding:5px 0 5px 20px;
   float:left;
-  width:300px;
+  width: 70%;
 }
 #container{
-  width:700px;
-  height:370px;
   background:#999;
   margin:10px auto;
   overflow:hidden;
 }
 section,header,footer{
-  width:700px;
   display:block;
   margin:10px auto;
 }
