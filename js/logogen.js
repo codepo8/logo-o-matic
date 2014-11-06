@@ -43,6 +43,7 @@
     if(url){
       sanitise(url.replace(/%20/g,' '));
     }
+    givecredit(fonts['qpd']);
   },false);
 
 /*
@@ -53,8 +54,8 @@
   n.addEventListener('click',function(e){
     var t = e.target;
     if(t.tagName === 'IMG'){
-      output.innerHTML = t.alt;
       set = fonts[t.id];
+      givecredit(set);
       old.className = '';
       t.className = 'current';
       old = t;
@@ -85,6 +86,31 @@
     sanitise(input.value);
   },false);
 
+
+/*
+  Assemble the credit string and show it.
+*/
+  function givecredit(set) {
+    var credits = 'Font by ';
+    if (set.makerlink) {
+      credits += '<a href="' + set.makerlink + '">' + set.maker + '</a>';
+    } else {
+      credits += set.maker;
+    }
+    if (set.product) {
+      credits += ' used in <a href="' + set.productlink + '">' +
+                  set.product + '</a>';
+    } else {
+      credits += set.product;
+    }
+    if (set.year) {
+      credits += ' (' + set.year + ')';
+    }
+    output.innerHTML = credits;
+  }
+/*
+  Assemble the current colour string
+*/
   function getcurrentcolour() {
     var col = colour.value;
     return 'rgba(' + parseInt(col.substr(1,2), 16) + ',' +

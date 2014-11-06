@@ -78,6 +78,9 @@ form {
 output {
   color: yellow;
 }
+output a {
+  color: #F6F6A9;
+}
 #container {
   background: #999;
   overflow: hidden;
