@@ -106,6 +106,9 @@
     if (set.year) {
       credits += ' (' + set.year + ')';
     }
+    if (set.format) {
+      credits += ' format: ' + set.format + '';
+    }
     output.innerHTML = credits;
   }
 /*
