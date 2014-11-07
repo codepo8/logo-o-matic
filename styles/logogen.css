@@ -26,6 +26,10 @@ canvas, #fonts{
 }
 #nav ul {
 }
+label.disabled {
+  opacity: 0.3;
+}
+
 #nav li {
   float: left;
   list-style: none;

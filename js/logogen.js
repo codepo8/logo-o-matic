@@ -70,6 +70,8 @@ nav.innerHTML = out;
     if(t.tagName === 'IMG'){
       set = fonts[t.id];
       givecredit(set);
+      spacing.disabled = ('$' in set);
+      spacing.parentNode.className = ('$' in set) ? 'disabled' : '';
       old.className = '';
       t.className = 'current';
       old = t;
