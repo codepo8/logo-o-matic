@@ -175,14 +175,18 @@ nav.innerHTML = out;
     var destY = 5;
     for(i = 0; i < j; i++) {
       if (str[i] === ' ') {
-        w += +spacing.value;
-        continue;
+        if ('$' in set) {
+          str[i] = '$';
+        } else {
+          w += +spacing.value;
+          continue;
+        }
       }
       if (str[i] in set) {
         w += set[str[i]][1] + parseInt(kerning.value, 10);
       }
     }
-    ctx.canvas.width = w + 5;
+    ctx.canvas.width = w + 10;
     ctx.canvas.height = set.height + 10;
     ctx.fillStyle = getcurrentcolour();
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -193,8 +197,12 @@ nav.innerHTML = out;
 */
     for(i = 0; i < j; i++) {
       if (str[i] === ' ') {
-        destX += parseInt(spacing.value, 10);
-        continue;
+        if ('$' in set) {
+          str[i] = '$';
+        } else {
+          destX += parseInt(spacing.value, 10);
+          continue;
+        }
       }
       if (str[i] in set) {
         ctx.drawImage(
