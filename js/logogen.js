@@ -17,9 +17,16 @@
 */
   var n = document.querySelector('#nav');
   var ctx = document.querySelector('canvas').getContext('2d');
+  var ec = document.querySelectorAll('canvas')[1];
+  var ecx = ec.getContext('2d');
   var srcimg = document.querySelector('#fonts');
   var save = document.querySelector('#save');
   var input = document.querySelector('#text');
+  var editor = document.querySelector('#editor');
+  var closeeditor = document.querySelector('#editor button');
+  var swab = document.querySelector('#swab');
+  var savenewcolour = document.querySelector('#savenewcolour');
+  var c64palette = document.querySelector('#c64colours');
   var output = document.querySelector('output');
   var colour = document.querySelector('#colour');
   var kerning = document.querySelector('#kerning');
@@ -28,6 +35,28 @@
   var old = document.querySelector('.current');
   var set = fonts[old.id];
   var currentcolour = 'rgba(0,0,0,1)';
+  var oldpixelcolour;
+  var newpixelcolour;
+
+
+var c64cols = {
+  black: [0,0,0],
+  white: [255,255,255],
+  red: [104,55,43],
+  cyan: [112,164,178],
+  purple: [111,61,134],
+  green: [77,141,67],
+  blue: [53,40,121],
+  yellow: [184,199,111],
+  orange: [111,79,37],
+  brown: [67,57,0],
+  lightred: [154,103,89],
+  darkgrey: [68,68,68],
+  grey: [108,108,108],
+  lightgreen: [154,210,132],
+  lightblue: [108,94,181],
+  lightgrey: [149,149,149]
+};
 
 /*
   Seed navigation 
@@ -87,6 +116,96 @@ nav.innerHTML = out;
     sanitise(input.value);
     e.preventDefault();
   },false);
+
+/*
+  Show editor, copy canvas
+*/
+  save.addEventListener('click',function(e){
+    if (e.target.tagName === "BUTTON") {
+      editor.className = 'active';
+      var img = document.querySelector('#save img');
+      ecx.canvas.width = img.naturalWidth;
+      ecx.canvas.height = img.naturalHeight;
+      ecx.drawImage(img, 0, 0);
+      pixels = ecx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
+      e.preventDefault();
+    }
+  },false);
+
+/*
+  Close editor
+*/
+  closeeditor.addEventListener('click',function(e){
+    editor.className = '';
+    e.preventDefault();
+  },false);
+
+/* 
+  Pick C64 colour
+*/
+  c64palette.addEventListener('click',function(e){
+    var t = e.target;
+    if (t.tagName === 'LI') {
+      var col = t.dataset.col;
+      if (oldpixelcolour && oldpixelcolour.a) {
+        replacecolour(
+          ecx.getImageData(0,0,ecx.canvas.width,ecx.canvas.height),
+          [
+            oldpixelcolour.r,
+            oldpixelcolour.g,
+            oldpixelcolour.b
+          ],
+          c64cols[t.className]
+        );
+
+      }
+    }
+    e.preventDefault();
+  },false);
+  
+  function replacecolour(pixels, oldcolour, newcolour) {
+    var all = pixels.data.length;
+    for(var i = 0; i < all; i+=4) {
+      if (pixels.data[i] === oldcolour[0] &&
+          pixels.data[i+1] === oldcolour[1] &&
+          pixels.data[i+2] === oldcolour[2]) {
+        pixels.data[i] = newcolour[0];
+        pixels.data[i+1] = newcolour[1];
+        pixels.data[i+2] = newcolour[2];
+        pixels.data[i+3] = 255;
+      }
+    }
+    ecx.putImageData(pixels, 0, 0);
+    savenewcolour.innerHTML = '' +
+      '<a href="' + ecx.canvas.toDataURL('image/png') +
+      '" download="' + input.value + '.png">Download this image</a>';
+  }
+
+/*
+  Pick colour from canvas
+*/
+  ec.addEventListener('click', function(ev) {
+    readcolour(ev);
+  }, false);
+  function readcolour(ev) {
+    var x = ev.pageX - ec.offsetLeft;
+    var y = ev.pageY - ec.offsetTop;
+    swab.style.background = 'rgba('+
+      pixelcolour(x, y).r + ',' +
+      pixelcolour(x, y).g + ',' +
+      pixelcolour(x, y).b + ',' +
+      pixelcolour(x, y).a + ')';
+    oldpixelcolour = pixelcolour(x,y);
+  }
+  function pixelcolour(x, y) {
+    var pixels = ecx.getImageData(0,0,ecx.canvas.width,ecx.canvas.height);
+    var index = ((y*(pixels.width*4)) + (x*4)),
+        red = pixels.data[index],
+        green = pixels.data[index + 1],
+        blue = pixels.data[index + 2],
+        a = pixels.data[index + 3];
+    return {r:red, g:green, b:blue, a:a};
+  }
 
 /* 
   Every time a new background colour is chosen, draw a new logo 
@@ -220,9 +339,9 @@ nav.innerHTML = out;
   saving.
 */
   save.innerHTML = '' +
-   '<a href="' + ctx.canvas.toDataURL('image/png') + '" download="' +
+   '<p>Click logo to download or <button>Edit the colours</button></p><a href="' + ctx.canvas.toDataURL('image/png') + '" download="' +
     input.value + '.png"><img src="' + ctx.canvas.toDataURL('image/png') +
-    '"></a><br><small>Click logo to download</small>';
+    '"></a>';
   }
 
 })();
