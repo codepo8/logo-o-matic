@@ -27,6 +27,18 @@
   var set = fonts[old.id];
   var currentcolour = 'rgba(0,0,0,1)';
 
+/*
+  Seed navigation 
+*/
+nav.innerHTML = '';
+var out = '';
+for (var i in fonts) {
+  out += '<li><img src="img/'+i+'.png" alt="'+i+' '+fonts[i].maker+' - '+fonts[i].product+'" id="'+i+'"></li>';
+}
+nav.innerHTML = out;
+
+
+
 /* 
   only allow characters a-z, space and the dollar sign. I use dollar to
   define a space in the coordinates above
