@@ -188,8 +188,9 @@ nav.innerHTML = out;
     readcolour(ev);
   }, false);
   function readcolour(ev) {
-    var x = ev.pageX - ec.offsetLeft;
-    var y = ev.pageY - ec.offsetTop;
+    var x = ev.layerX;
+    var y = ev.layerY;
+    console.log(x,y);
     swab.style.background = 'rgba('+
       pixelcolour(x, y).r + ',' +
       pixelcolour(x, y).g + ',' +
