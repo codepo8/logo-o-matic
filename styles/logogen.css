@@ -41,6 +41,9 @@ li, p, input {
 input[type="range"] {
   width: 120px;
 }
+input[type=number] {
+  width: 3em;
+}
 input[type=text] {
   display: block;
   padding: 5px;
@@ -84,10 +87,9 @@ output a {
   z-index: 10;
   top: 30px;
   background: #999;
-  overflow: hidden;
-  min-height: 300px;
   position: fixed;
   width: 100%;
+  padding-bottom: 50px;
 }
 section, header, footer{
   display: block;
@@ -99,12 +101,12 @@ h2 {
   padding: 5px 10px;
   font-size: 18px;
 }
-div ~ h2 {
+#container h2:last-child {
   z-index: 10;
   background: #000;
   color: #fff;
-  position: fixed;
-  top: 330px;
+  position: absolute;
+  bottom: 0;
   height: 40px;
   width: 100%;
 }

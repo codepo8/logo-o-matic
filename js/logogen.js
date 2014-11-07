@@ -22,6 +22,8 @@
   var input = document.querySelector('#text');
   var output = document.querySelector('output');
   var colour = document.querySelector('#colour');
+  var kerning = document.querySelector('#kerning');
+  var spacing = document.querySelector('#spacing');
   var opacity = document.querySelector('#opacity');
   var old = document.querySelector('.current');
   var set = fonts[old.id];
@@ -55,7 +57,7 @@ nav.innerHTML = out;
     if(url){
       sanitise(url.replace(/%20/g,' '));
     }
-    givecredit(fonts['qpd']);
+    document.querySelector('#orc').click();
   },false);
 
 /*
@@ -88,6 +90,20 @@ nav.innerHTML = out;
   Every time a new background colour is chosen, draw a new logo 
 */
   colour.addEventListener('change',function(e){
+    sanitise(input.value);
+  },false);
+
+/* 
+  Every time the kerning changes, draw a new logo
+*/
+  kerning.addEventListener('change',function(e){
+    sanitise(input.value);
+  },false);
+
+/* 
+  Every time the spacing changes, draw a new logo
+*/
+  spacing.addEventListener('change',function(e){
     sanitise(input.value);
   },false);
 
@@ -136,8 +152,7 @@ nav.innerHTML = out;
 
 
 /*
-  Replace all invalid characters, set $ instead of space (to get a valid
-  label in the charmap) and call the draw function() when things went well
+  Replace all invalid characters and call draw 
 */
   function sanitise(s){
     s = s.toLowerCase();
@@ -145,7 +160,6 @@ nav.innerHTML = out;
       s = s.replace(rep,'');
     }
     input.value = s;
-    s = s.replace(/\s/g,'$');
     if(s){
       draw(s);
     }
@@ -160,11 +174,15 @@ nav.innerHTML = out;
     var destX = 5;
     var destY = 5;
     for(i = 0; i < j; i++) {
+      if (str[i] === ' ') {
+        w += +spacing.value;
+        continue;
+      }
       if (str[i] in set) {
-        w += set[str[i]][1];
+        w += set[str[i]][1] + parseInt(kerning.value, 10);
       }
     }
-    ctx.canvas.width = w + 10;
+    ctx.canvas.width = w + 5;
     ctx.canvas.height = set.height + 10;
     ctx.fillStyle = getcurrentcolour();
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -174,12 +192,16 @@ nav.innerHTML = out;
   Canvas - add to the destX to copy them in one after the other
 */
     for(i = 0; i < j; i++) {
+      if (str[i] === ' ') {
+        destX += parseInt(spacing.value, 10);
+        continue;
+      }
       if (str[i] in set) {
         ctx.drawImage(
           srcimg, set[str[i]][0], set.offset, set[str[i]][1],
           set.height, destX, destY, set[str[i]][1], set.height
         );
-        destX += set[str[i]][1];
+        destX += set[str[i]][1] + parseInt(kerning.value, 10);
       }
     }
 
@@ -190,7 +212,7 @@ nav.innerHTML = out;
   save.innerHTML = '' +
    '<a href="' + ctx.canvas.toDataURL('image/png') + '" download="' +
     input.value + '.png"><img src="' + ctx.canvas.toDataURL('image/png') +
-    '"></a><br><small>Click to download</small>';
+    '"></a><br><small>Click logo to download</small>';
   }
 
 })();
