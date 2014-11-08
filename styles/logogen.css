@@ -213,9 +213,14 @@ footer p{
   color: #fff;
   padding: 2px 5px;
 }
+.inactive {
+  opacity: 0.1;
+  transition: 0.5s;
+}
 .palette {
   overflow: hidden;
   margin: 10px;
+  transition: 0.5s;
 }
 .black { background: #000000 }
 .white { background: #FFFFFF; }

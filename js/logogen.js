@@ -37,26 +37,24 @@
   var currentcolour = 'rgba(0,0,0,1)';
   var oldpixelcolour;
   var newpixelcolour;
-
-
-var c64cols = {
-  black: [0,0,0],
-  white: [255,255,255],
-  red: [104,55,43],
-  cyan: [112,164,178],
-  purple: [111,61,134],
-  green: [77,141,67],
-  blue: [53,40,121],
-  yellow: [184,199,111],
-  orange: [111,79,37],
-  brown: [67,57,0],
-  lightred: [154,103,89],
-  darkgrey: [68,68,68],
-  grey: [108,108,108],
-  lightgreen: [154,210,132],
-  lightblue: [108,94,181],
-  lightgrey: [149,149,149]
-};
+  var c64cols = {
+    black: [0,0,0],
+    white: [255,255,255],
+    red: [104,55,43],
+    cyan: [112,164,178],
+    purple: [111,61,134],
+    green: [77,141,67],
+    blue: [53,40,121],
+    yellow: [184,199,111],
+    orange: [111,79,37],
+    brown: [67,57,0],
+    lightred: [154,103,89],
+    darkgrey: [68,68,68],
+    grey: [108,108,108],
+    lightgreen: [154,210,132],
+    lightblue: [108,94,181],
+    lightgrey: [149,149,149]
+  };
 
 /*
   Seed navigation 
@@ -122,7 +120,7 @@ nav.innerHTML = out;
 */
   save.addEventListener('click',function(e){
     if (e.target.tagName === "BUTTON") {
-      editor.className = 'active';
+      editor.classList.toggle('active');
       var img = document.querySelector('#save img');
       ecx.canvas.width = img.naturalWidth;
       ecx.canvas.height = img.naturalHeight;
@@ -136,7 +134,9 @@ nav.innerHTML = out;
   Close editor
 */
   closeeditor.addEventListener('click',function(e){
-    editor.className = '';
+    editor.classList.toggle('active');
+    c64palette.classList.add('inactive');
+    savenewcolour.innerHTML = '';
     e.preventDefault();
   },false);
 
@@ -190,13 +190,13 @@ nav.innerHTML = out;
   function readcolour(ev) {
     var x = ev.layerX;
     var y = ev.layerY;
-    console.log(x,y);
     swab.style.background = 'rgba('+
       pixelcolour(x, y).r + ',' +
       pixelcolour(x, y).g + ',' +
       pixelcolour(x, y).b + ',' +
       pixelcolour(x, y).a + ')';
     oldpixelcolour = pixelcolour(x,y);
+    c64palette.classList.remove('inactive');
   }
   function pixelcolour(x, y) {
     var pixels = ecx.getImageData(0,0,ecx.canvas.width,ecx.canvas.height);
