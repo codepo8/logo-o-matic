@@ -31,8 +31,10 @@
   var old = document.querySelector('.current');
   var set = fonts[old.id];
   var background = 'rgba(0,0,0,1)';
+  var pixels;
   var oldpixelcolour;
   var newpixelcolour;
+  var pixelbuffer = [];
   var c64cols = {
     transparent: [0,0,0,0],
     black: [0,0,0,255],
@@ -113,21 +115,6 @@ nav.innerHTML = out;
     e.preventDefault();
   },false);
 
-/*
-  Show editor, copy canvas
-*/
-  save.addEventListener('click',function(e){
-    if (e.target.tagName === "BUTTON") {
-      editor.classList.toggle('active');
-      var img = document.querySelector('#save img');
-      ctx.canvas.width = img.naturalWidth;
-      ctx.canvas.height = img.naturalHeight;
-      ctx.drawImage(img, 0, 0);
-      pixels = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
-      e.preventDefault();
-    }
-  },false);
-
 
 /* 
   Pick C64 colour
@@ -152,18 +139,14 @@ nav.innerHTML = out;
     e.preventDefault();
   },false);
   
-  function replacecolour(pixels, oldcolour, newcolour) {
-    var all = pixels.data.length;
-    for(var i = 0; i < all; i+=4) {
-      if (pixels.data[i] === oldcolour[0] &&
-          pixels.data[i+1] === oldcolour[1] &&
-          pixels.data[i+2] === oldcolour[2] &&
-          pixels.data[i+3] === oldcolour[3]) {
+  function replacecolour(moo, oldcolour, newcolour) {
+    var all = pixelbuffer.length;
+    for(var j = 0; j < all; j++) {
+      var i = pixelbuffer[j];
         pixels.data[i] = newcolour[0];
         pixels.data[i+1] = newcolour[1];
         pixels.data[i+2] = newcolour[2];
         pixels.data[i+3] = newcolour[3];
-      }
     }
     ctx.putImageData(pixels, 0, 0);
     storelink();
@@ -185,16 +168,31 @@ nav.innerHTML = out;
       pixelcolour(x, y).b + ',' +
       pixelcolour(x, y).a + ')';
     oldpixelcolour = pixelcolour(x,y);
+    getpixelsofcolour(pixelcolour(x,y));
     c64palette.classList.remove('inactive');
   }
-  function pixelcolour(x, y) {
+  function getpixelsofcolour(col) {
+    pixelbuffer = [];
     var pixels = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
-    var index = ((y*(pixels.width*4)) + (x*4)),
-        red = pixels.data[index],
-        green = pixels.data[index + 1],
-        blue = pixels.data[index + 2],
-        a = pixels.data[index + 3];
-    return {r:red, g:green, b:blue, a:a};
+    var all = pixels.data.length;
+    for(var i = 0; i < all; i+=4) {
+      if (pixels.data[i] === col.r &&
+          pixels.data[i+1] === col.g &&
+          pixels.data[i+2] === col.b &&
+          pixels.data[i+3] === col.a) {
+        pixelbuffer.push(i);
+      }
+    }
+  }
+
+  function pixelcolour(x, y) {
+    var pixeldata = ctx.getImageData(x,y,1,1);
+    return {
+        r: pixeldata.data[0],
+        g: pixeldata.data[1],
+        b: pixeldata.data[2],
+        a: pixeldata.data[3]
+    };
   }
 
 
@@ -301,6 +299,7 @@ nav.innerHTML = out;
       }
     }
     storelink();
+    pixels = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
   }
 /*
   Create a new image link from the Canvas data and add it to the 
