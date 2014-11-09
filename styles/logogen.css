@@ -242,3 +242,29 @@ ul.palette li {
   border-radius: 50%;
   margin-right: 10px;
 }
+aside {
+  z-index: 10;
+  position: fixed;
+  background: #000;
+  top: -800px;
+  left: 20px;
+  width: 60%;
+  color: #ccc;
+  transition: 0.5s;
+}
+aside:target{
+  top: 40px;
+}
+aside h2 {
+  color: #9ad284
+}
+aside p ,aside li{
+ font-size: inherit;
+}
+aside li {
+  padding: 10px 20px 0 20px;;
+}
+aside p:nth-child(odd) {
+  margin-top:10px;
+  text-align: left;
+}
