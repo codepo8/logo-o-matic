@@ -16,16 +16,12 @@
   reading out its ID
 */
   var n = document.querySelector('#nav');
-  var ctx = document.querySelector('canvas').getContext('2d');
-  var ec = document.querySelectorAll('canvas')[1];
-  var ecx = ec.getContext('2d');
+  var c = document.querySelector('canvas');
+  var ctx = c.getContext('2d');
   var srcimg = document.querySelector('#fonts');
   var save = document.querySelector('#save');
   var input = document.querySelector('#text');
-  var editor = document.querySelector('#editor');
-  var closeeditor = document.querySelector('#editor button');
   var swab = document.querySelector('#swab');
-  var savenewcolour = document.querySelector('#savenewcolour');
   var c64palette = document.querySelector('#c64colours');
   var output = document.querySelector('output');
   var colour = document.querySelector('#colour');
@@ -34,26 +30,27 @@
   var opacity = document.querySelector('#opacity');
   var old = document.querySelector('.current');
   var set = fonts[old.id];
-  var currentcolour = 'rgba(0,0,0,1)';
+  var background = 'rgba(0,0,0,1)';
   var oldpixelcolour;
   var newpixelcolour;
   var c64cols = {
-    black: [0,0,0],
-    white: [255,255,255],
-    red: [104,55,43],
-    cyan: [112,164,178],
-    purple: [111,61,134],
-    green: [77,141,67],
-    blue: [53,40,121],
-    yellow: [184,199,111],
-    orange: [111,79,37],
-    brown: [67,57,0],
-    lightred: [154,103,89],
-    darkgrey: [68,68,68],
-    grey: [108,108,108],
-    lightgreen: [154,210,132],
-    lightblue: [108,94,181],
-    lightgrey: [149,149,149]
+    transparent: [0,0,0,0],
+    black: [0,0,0,255],
+    white: [255,255,255,255],
+    red: [104,55,43,255],
+    cyan: [112,164,178,255],
+    purple: [111,61,134,255],
+    green: [77,141,67,255],
+    blue: [53,40,121,255],
+    yellow: [184,199,111,255],
+    orange: [111,79,37,255],
+    brown: [67,57,0,255],
+    lightred: [154,103,89,255],
+    darkgrey: [68,68,68,255],
+    grey: [108,108,108,255],
+    lightgreen: [154,210,132,255],
+    lightblue: [108,94,181,255],
+    lightgrey: [149,149,149,255]
   };
 
 /*
@@ -62,7 +59,8 @@
 nav.innerHTML = '';
 var out = '';
 for (var i in fonts) {
-  out += '<li><img src="img/'+i+'.png" alt="'+i+' '+fonts[i].maker+' - '+fonts[i].product+'" id="'+i+'"></li>';
+  out += (fonts[i].w[1] > 80) ? '<li style="width:'+(fonts[i].w[1]*3)+'px;height:'+(fonts[i].height+5)+'px">' : '<li>';
+  out += '<img src="img/'+i+'.png" alt="'+i+' '+fonts[i].maker+' - '+fonts[i].product+'" id="'+i+'"></li>';
 }
 nav.innerHTML = out;
 
@@ -122,23 +120,14 @@ nav.innerHTML = out;
     if (e.target.tagName === "BUTTON") {
       editor.classList.toggle('active');
       var img = document.querySelector('#save img');
-      ecx.canvas.width = img.naturalWidth;
-      ecx.canvas.height = img.naturalHeight;
-      ecx.drawImage(img, 0, 0);
-      pixels = ecx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
+      ctx.canvas.width = img.naturalWidth;
+      ctx.canvas.height = img.naturalHeight;
+      ctx.drawImage(img, 0, 0);
+      pixels = ctx.getImageData(0, 0, img.naturalWidth, img.naturalHeight);
       e.preventDefault();
     }
   },false);
 
-/*
-  Close editor
-*/
-  closeeditor.addEventListener('click',function(e){
-    editor.classList.toggle('active');
-    c64palette.classList.add('inactive');
-    savenewcolour.innerHTML = '';
-    e.preventDefault();
-  },false);
 
 /* 
   Pick C64 colour
@@ -146,14 +135,14 @@ nav.innerHTML = out;
   c64palette.addEventListener('click',function(e){
     var t = e.target;
     if (t.tagName === 'LI') {
-      var col = t.dataset.col;
-      if (oldpixelcolour && oldpixelcolour.a) {
+      if (oldpixelcolour) {
         replacecolour(
-          ecx.getImageData(0,0,ecx.canvas.width,ecx.canvas.height),
+          ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height),
           [
             oldpixelcolour.r,
             oldpixelcolour.g,
-            oldpixelcolour.b
+            oldpixelcolour.b,
+            oldpixelcolour.a
           ],
           c64cols[t.className]
         );
@@ -168,28 +157,28 @@ nav.innerHTML = out;
     for(var i = 0; i < all; i+=4) {
       if (pixels.data[i] === oldcolour[0] &&
           pixels.data[i+1] === oldcolour[1] &&
-          pixels.data[i+2] === oldcolour[2]) {
+          pixels.data[i+2] === oldcolour[2] &&
+          pixels.data[i+3] === oldcolour[3]) {
         pixels.data[i] = newcolour[0];
         pixels.data[i+1] = newcolour[1];
         pixels.data[i+2] = newcolour[2];
-        pixels.data[i+3] = 255;
+        pixels.data[i+3] = newcolour[3];
       }
     }
-    ecx.putImageData(pixels, 0, 0);
-    savenewcolour.innerHTML = '' +
-      '<a href="' + ecx.canvas.toDataURL('image/png') +
-      '" download="' + input.value + '.png">Download this image</a>';
+    ctx.putImageData(pixels, 0, 0);
+    storelink();
   }
 
 /*
   Pick colour from canvas
 */
-  ec.addEventListener('click', function(ev) {
+  c.addEventListener('click', function(ev) {
     readcolour(ev);
   }, false);
+
   function readcolour(ev) {
-    var x = ev.layerX;
-    var y = ev.layerY;
+    var x = ev.clientX-c.offsetLeft;
+    var y = ev.layerY-c.offsetTop;
     swab.style.background = 'rgba('+
       pixelcolour(x, y).r + ',' +
       pixelcolour(x, y).g + ',' +
@@ -199,7 +188,7 @@ nav.innerHTML = out;
     c64palette.classList.remove('inactive');
   }
   function pixelcolour(x, y) {
-    var pixels = ecx.getImageData(0,0,ecx.canvas.width,ecx.canvas.height);
+    var pixels = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
     var index = ((y*(pixels.width*4)) + (x*4)),
         red = pixels.data[index],
         green = pixels.data[index + 1],
@@ -208,12 +197,6 @@ nav.innerHTML = out;
     return {r:red, g:green, b:blue, a:a};
   }
 
-/* 
-  Every time a new background colour is chosen, draw a new logo 
-*/
-  colour.addEventListener('change',function(e){
-    sanitise(input.value);
-  },false);
 
 /* 
   Every time the kerning changes, draw a new logo
@@ -229,12 +212,6 @@ nav.innerHTML = out;
     sanitise(input.value);
   },false);
 
-/* 
-  Every time the transparency changes, recalculate the colour 
-*/
-  opacity.addEventListener('change',function(e){
-    sanitise(input.value);
-  },false);
 
 
 /*
@@ -261,17 +238,6 @@ nav.innerHTML = out;
     }
     output.innerHTML = credits;
   }
-/*
-  Assemble the current colour string
-*/
-  function getcurrentcolour() {
-    var col = colour.value;
-    return 'rgba(' + parseInt(col.substr(1,2), 16) + ',' +
-                     parseInt(col.substr(3,2), 16) + ',' +
-                     parseInt(col.substr(5,2), 16) + ',' +
-                     opacity.value + ')';
-  }
-
 
 /*
   Replace all invalid characters and call draw 
@@ -310,7 +276,7 @@ nav.innerHTML = out;
     }
     ctx.canvas.width = w + 10;
     ctx.canvas.height = set.height + 10;
-    ctx.fillStyle = getcurrentcolour();
+    ctx.fillStyle = background;
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
 /*
@@ -334,15 +300,16 @@ nav.innerHTML = out;
         destX += set[str[i]][1] + parseInt(kerning.value, 10);
       }
     }
-
+    storelink();
+  }
 /*
-  Create a new image from the Canvas data and add it to the document for 
-  saving.
+  Create a new image link from the Canvas data and add it to the 
+  document for saving.
 */
-  save.innerHTML = '' +
-   '<p>Click logo to download or <button>Edit the colours</button></p><a href="' + ctx.canvas.toDataURL('image/png') + '" download="' +
-    input.value + '.png"><img src="' + ctx.canvas.toDataURL('image/png') +
-    '"></a>';
+  function storelink() {
+    save.innerHTML = '' +
+     '<a href="' + ctx.canvas.toDataURL('image/png') + '" download="' +
+      input.value + '.png">Click to save the image</a>';
   }
 
 })();
