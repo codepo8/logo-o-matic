@@ -24,7 +24,7 @@
   var swab = document.querySelector('#swab');
   var c64palette = document.querySelector('#c64colours');
   var output = document.querySelector('output');
-  var colour = document.querySelector('#colour');
+  // var colour = document.querySelector('#colour');
   var kerning = document.querySelector('#kerning');
   var spacing = document.querySelector('#spacing');
   var opacity = document.querySelector('#opacity');
@@ -32,6 +32,7 @@
   var set = fonts[old.id];
   var background = 'rgba(0,0,0,1)';
   var pixels;
+  var colourpicked = false;
   var oldpixelcolour;
   var newpixelcolour;
   var pixelbuffer = [];
@@ -133,9 +134,9 @@ nav.innerHTML = out;
           ],
           c64cols[t.className]
         );
-
       }
     }
+    colourpicked = false;
     e.preventDefault();
   },false);
   
@@ -157,6 +158,12 @@ nav.innerHTML = out;
 */
   c.addEventListener('click', function(ev) {
     readcolour(ev);
+    colourpicked = true;
+  }, false);
+  c.addEventListener('mousemove', function(ev) {
+    if (!colourpicked) {
+      readcolour(ev);
+    }
   }, false);
 
   function readcolour(ev) {
@@ -167,10 +174,13 @@ nav.innerHTML = out;
       pixelcolour(x, y).g + ',' +
       pixelcolour(x, y).b + ',' +
       pixelcolour(x, y).a + ')';
-    oldpixelcolour = pixelcolour(x,y);
-    getpixelsofcolour(pixelcolour(x,y));
-    c64palette.classList.remove('inactive');
+    if (ev.type === 'click') {
+      oldpixelcolour = pixelcolour(x,y);
+      getpixelsofcolour(pixelcolour(x,y));
+      c64palette.classList.remove('inactive');
+    }
   }
+
   function getpixelsofcolour(col) {
     pixelbuffer = [];
     var pixels = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
