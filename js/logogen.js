@@ -18,6 +18,8 @@
   var n = document.querySelector('#nav');
   var c = document.querySelector('canvas');
   var ctx = c.getContext('2d');
+  var zc = document.querySelectorAll('canvas')[1];
+  var zcx = zc.getContext('2d');
   var srcimg = document.querySelector('#fonts');
   var save = document.querySelector('#save');
   var input = document.querySelector('#text');
@@ -55,6 +57,11 @@
     lightblue: [108,94,181,255],
     lightgrey: [149,149,149,255]
   };
+  zc.width = 80;
+  zc.height = 80;
+  zcx.imageSmoothingEnabled = false;
+  zcx.mozImageSmoothingEnabled = false;
+  zcx.webkitImageSmoothingEnabled = false;
 
 /*
   Seed navigation 
@@ -164,11 +171,23 @@ nav.innerHTML = out;
     if (!colourpicked) {
       readcolour(ev);
     }
+    showzoom(ev);
   }, false);
 
+  function showzoom(ev) {
+    var x = ev.layerX;
+    var y = ev.layerY;
+    var sx = (x-5) < 0 ? 0 : x-5;
+    var sy = (y-5) < 0 ? 0 : y-5;
+    zcx.drawImage(c,sx,sy,10,10,0,0,80,80);
+  }
+
   function readcolour(ev) {
-    var x = ev.clientX-c.offsetLeft;
-    var y = ev.layerY-c.offsetTop;
+    //var x = ev.clientX-c.offsetLeft;
+    //var y = ev.clientY-c.offsetTop;
+    var x = ev.layerX;
+    var y = ev.layerY;
+
     swab.style.background = 'rgba('+
       pixelcolour(x, y).r + ',' +
       pixelcolour(x, y).g + ',' +
