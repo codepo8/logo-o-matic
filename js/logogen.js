@@ -15,92 +15,90 @@
   The image with the .current class defines which font is preset by
   reading out its ID
 */
-  var n = document.querySelector('#nav');
-  var c = document.querySelector('canvas');
-  var ctx = c.getContext('2d');
-  var zc = document.querySelectorAll('canvas')[1];
-  var zcx = zc.getContext('2d');
-  var srcimg = document.querySelector('#fonts');
-  var save = document.querySelector('#save');
-  var input = document.querySelector('#text');
-  var swab = document.querySelector('#swab');
+  var n =          document.querySelector('#nav');
+  var srcimg =     document.querySelector('#fonts');
+  var save =       document.querySelector('#save');
+  var input =      document.querySelector('#text');
+  var swab =       document.querySelector('#swab');
   var c64palette = document.querySelector('#c64colours');
-  var output = document.querySelector('output');
-  // var colour = document.querySelector('#colour');
-  var kerning = document.querySelector('#kerning');
-  var spacing = document.querySelector('#spacing');
-  var opacity = document.querySelector('#opacity');
-  var old = document.querySelector('.current');
-  var set = fonts[old.id];
-  var background = 'rgba(0,0,0,1)';
-  var pixels;
-  var colourpicked = false;
-  var oldpixelcolour;
-  var newpixelcolour;
-  var pixelbuffer = [];
-  var c64cols = {
-    transparent: [0,0,0,0],
-    black: [0,0,0,255],
-    white: [255,255,255,255],
-    red: [104,55,43,255],
-    cyan: [112,164,178,255],
-    purple: [111,61,134,255],
-    green: [77,141,67,255],
-    blue: [53,40,121,255],
-    yellow: [184,199,111,255],
-    orange: [111,79,37,255],
-    brown: [67,57,0,255],
-    lightred: [154,103,89,255],
-    darkgrey: [68,68,68,255],
-    grey: [108,108,108,255],
-    lightgreen: [154,210,132,255],
-    lightblue: [108,94,181,255],
-    lightgrey: [149,149,149,255]
-  };
+  var output =     document.querySelector('output');
+  var kerning =    document.querySelector('#kerning');
+  var spacing =    document.querySelector('#spacing');
+  var old =        document.querySelector('.current');
+  var container =  document.querySelector('#container');
+  var zoombutton = document.querySelector('#zoombutton');
+
+  var c = document.querySelector('#main');
+  var ctx = c.getContext('2d');
+
+  var zc = document.querySelector('#zoom');
+  var zcx = zc.getContext('2d');
   zc.width = 80;
   zc.height = 80;
   zcx.imageSmoothingEnabled = false;
   zcx.mozImageSmoothingEnabled = false;
   zcx.webkitImageSmoothingEnabled = false;
 
-/*
-  Seed navigation 
-*/
-nav.innerHTML = '';
-var out = '';
-for (var i in fonts) {
-  out += (fonts[i].w[1] > 80) ? '<li style="width:'+(fonts[i].w[1]*3)+'px;height:'+(fonts[i].height+5)+'px">' : '<li>';
-  out += '<img src="img/'+i+'.png" alt="'+i+' '+fonts[i].maker+' - '+fonts[i].product+'" id="'+i+'"></li>';
-}
-nav.innerHTML = out;
+  var dc = document.querySelector('#display');
+  var dcx = dc.getContext('2d');
+  dc.width = 80;
+  dc.height = 80;
+  dcx.imageSmoothingEnabled = false;
+  dcx.mozImageSmoothingEnabled = false;
+  dcx.webkitImageSmoothingEnabled = false;
 
+  var zoomfactor = 2;
+  var set = fonts[old.id];
+  var background = 'rgba(0,0,0,0)';
+  var pixels;
+  var colourpicked = false;
+  var oldpixelcolour;
+  var newpixelcolour;
+  var pixelbuffer = [];
+  var c64cols = {
+    transparent: [0, 0, 0, 0],
+    black:      [0, 0, 0, 255],
+    white:      [255, 255, 255, 255],
+    red:        [104, 55, 43, 255],
+    cyan:       [112, 164, 178, 255],
+    purple:     [111, 61, 134, 255],
+    green:      [77, 141, 67, 255],
+    blue:       [53, 40, 121, 255],
+    yellow:     [184, 199, 111, 255],
+    orange:     [111, 79, 37, 255],
+    brown:      [67, 57, 0, 255],
+    lightred:   [154, 103, 89, 255],
+    darkgrey:   [68, 68, 68, 255],
+    grey:       [108, 108, 108, 255],
+    lightgreen: [154, 210, 132, 255],
+    lightblue:  [108, 94, 181, 255],
+    lightgrey:  [149, 149, 149, 255]
+  };
 
-
-/* 
-  only allow characters a-z, space and the dollar sign. I use dollar to
-  define a space in the coordinates above
-*/
   var valid = /^[a-z|\s|\$|\.|,|!]+$/;
   var rep = /[^a-z|\s|\$]+/g;
 
-/*
-  If there is a ?text=moo parameter on the URL, grab the text, remove the 
-  space encoding and call sanitise()
-*/
-  window.addEventListener('load',function(e){
+  nav.innerHTML = '';
+  var out = '';
+  for (var i in fonts) {
+    out += (fonts[i].w[1] > 80) ?
+            '<li style="width:' + (fonts[i].w[1] * 3) + 'px;height:' +
+             (fonts[i].height +5) + 'px">':
+            '<li>';
+    out += '<img src="img/' + i + '.png" alt="' + i + ' ' + fonts[i].maker +
+           ' - ' + fonts[i].product + '" id="' + i + '"></li>';
+  }
+  nav.innerHTML = out;
+
+  function init() {
     var url = document.location.search.split('?text=')[1];
     if(url){
       sanitise(url.replace(/%20/g,' '));
     }
     document.querySelector('#orc').click();
-  },false);
+  }
 
-/*
-  Using event delegation, set the font by clicking on the images in the 
-  nav list. Call sanitise to immediately show changes and shift the current
-  class in the HTML to the clicked element
-*/
-  n.addEventListener('click',function(e){
+  function pickfont(e) {
     var t = e.target;
     if(t.tagName === 'IMG'){
       set = fonts[t.id];
@@ -111,28 +109,17 @@ nav.innerHTML = out;
       t.className = 'current';
       old = t;
       sanitise(input.value);
+      // n.style.marginTop = (set.height + 320) + 'px';
     }
     e.preventDefault();
-  },false);
+  }
 
-/*
-  Every time the key is released inside the input element, sanitise the value
-*/
-  input.addEventListener('input',function(e){
-    sanitise(input.value);
-    e.preventDefault();
-  },false);
-
-
-/* 
-  Pick C64 colour
-*/
-  c64palette.addEventListener('click',function(e){
+  function getC64colour(e) {
     var t = e.target;
     if (t.tagName === 'LI') {
       if (oldpixelcolour) {
         replacecolour(
-          ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height),
+          ctx.getImageData(0,0,c.width,c.height),
           [
             oldpixelcolour.r,
             oldpixelcolour.g,
@@ -145,8 +132,8 @@ nav.innerHTML = out;
     }
     colourpicked = false;
     e.preventDefault();
-  },false);
-  
+  }
+
   function replacecolour(moo, oldcolour, newcolour) {
     var all = pixelbuffer.length;
     for(var j = 0; j < all; j++) {
@@ -157,37 +144,25 @@ nav.innerHTML = out;
         pixels.data[i+3] = newcolour[3];
     }
     ctx.putImageData(pixels, 0, 0);
-    storelink();
+    storelink(c);
   }
-
-/*
-  Pick colour from canvas
-*/
-  c.addEventListener('click', function(ev) {
-    readcolour(ev);
-    colourpicked = true;
-  }, false);
-  c.addEventListener('mousemove', function(ev) {
-    if (!colourpicked) {
-      readcolour(ev);
-    }
-    showzoom(ev);
-  }, false);
 
   function showzoom(ev) {
     var x = ev.layerX;
     var y = ev.layerY;
     var sx = (x-5) < 0 ? 0 : x-5;
     var sy = (y-5) < 0 ? 0 : y-5;
+    zcx.fillStyle = '#000';
+    zcx.fillRect(0,0,80,80);
     zcx.drawImage(c,sx,sy,10,10,0,0,80,80);
+    zcx.strokeStyle = '1px solid #000';
+    zcx.strokeWidth = 0.5;
+    zcx.strokeRect(30,35,20,10);
   }
 
   function readcolour(ev) {
-    //var x = ev.clientX-c.offsetLeft;
-    //var y = ev.clientY-c.offsetTop;
     var x = ev.layerX;
     var y = ev.layerY;
-
     swab.style.background = 'rgba('+
       pixelcolour(x, y).r + ',' +
       pixelcolour(x, y).g + ',' +
@@ -202,7 +177,7 @@ nav.innerHTML = out;
 
   function getpixelsofcolour(col) {
     pixelbuffer = [];
-    var pixels = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
+    var pixels = ctx.getImageData(0, 0, c.width, c.height);
     var all = pixels.data.length;
     for(var i = 0; i < all; i+=4) {
       if (pixels.data[i] === col.r &&
@@ -224,26 +199,6 @@ nav.innerHTML = out;
     };
   }
 
-
-/* 
-  Every time the kerning changes, draw a new logo
-*/
-  kerning.addEventListener('change',function(e){
-    sanitise(input.value);
-  },false);
-
-/* 
-  Every time the spacing changes, draw a new logo
-*/
-  spacing.addEventListener('change',function(e){
-    sanitise(input.value);
-  },false);
-
-
-
-/*
-  Assemble the credit string and show it.
-*/
   function givecredit(set) {
     var credits = 'Font by ';
     if (set.makerlink) {
@@ -266,9 +221,6 @@ nav.innerHTML = out;
     output.innerHTML = credits;
   }
 
-/*
-  Replace all invalid characters and call draw 
-*/
   function sanitise(s){
     s = s.toLowerCase();
     if(!valid.test(s)){
@@ -301,15 +253,11 @@ nav.innerHTML = out;
         w += set[str[i]][1] + parseInt(kerning.value, 10);
       }
     }
-    ctx.canvas.width = w + 10;
-    ctx.canvas.height = set.height + 10;
+    c.width = w + 10;
+    c.height = set.height + 10;
     ctx.fillStyle = background;
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.fillRect(0, 0, c.width, c.height);
 
-/*
-  Crop the characters one by one from the image and copy them into the 
-  Canvas - add to the destX to copy them in one after the other
-*/
     for(i = 0; i < j; i++) {
       if (str[i] === ' ') {
         if ('$' in set) {
@@ -327,17 +275,70 @@ nav.innerHTML = out;
         destX += set[str[i]][1] + parseInt(kerning.value, 10);
       }
     }
-    storelink();
-    pixels = ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
+    storelink(c);
+    pixels = ctx.getImageData(0,0,c.width,c.height);
   }
-/*
-  Create a new image link from the Canvas data and add it to the 
-  document for saving.
-*/
-  function storelink() {
+
+  function dozoom(ev) {
+    container.classList.toggle('zoomed');
+    if (zoomfactor === 2) {
+      var ax = c.width;
+      var ay = c.height;
+      dc.width = ax * zoomfactor;
+      dc.height = ay * zoomfactor;
+      for (var y = 0; y < ay; y++) {
+        for (var x = 0; x < ax; x++) {
+          var col = pixelcolour(x, y);
+          dcx.fillStyle = 'rgba(' + col.r + ',' + col.g + ',' +
+                           col.b + ' ,' + col.a + ')';
+          dcx.fillRect(x * zoomfactor, y * zoomfactor, 2, 2);
+        }
+      }
+      zoombutton.innerHTML = 'edit logo';
+      storelink(dc);
+      zoomfactor = 1;
+    } else {
+      zoombutton.innerHTML = '2x';
+      zoomfactor = 2;
+      storelink(c);
+    }
+    ev.preventDefault();
+  }
+
+  function storelink(srccanvas) {
     save.innerHTML = '' +
-     '<a href="' + ctx.canvas.toDataURL('image/png') + '" download="' +
-      input.value + '.png">Click to save the image</a>';
+     '<a href="' + srccanvas.toDataURL('image/png') + '" download="' +
+      input.value + '.png">Click to save your logo</a>';
   }
+
+  c.addEventListener('click', function(ev) {
+    readcolour(ev);
+    colourpicked = true;
+  }, false);
+  c.addEventListener('mousemove', function(ev) {
+    if (!colourpicked) {
+      readcolour(ev);
+    }
+    showzoom(ev);
+  }, false);
+
+  kerning.addEventListener('change',function(e){
+    sanitise(input.value);
+  },false);
+
+  spacing.addEventListener('change',function(e){
+    sanitise(input.value);
+  },false);
+
+  window.addEventListener('load', init, false);
+  n.addEventListener('click', pickfont, false);
+
+  input.addEventListener('input',function(e){
+    sanitise(input.value);
+  },false);
+
+  c64palette.addEventListener('click', getC64colour, false);
+  zoombutton.addEventListener('click', dozoom, false);
+
 
 })();

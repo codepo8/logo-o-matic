@@ -14,13 +14,11 @@ html, body {
   background: #000;
 }
 #fonts{
-  left: -9999px;
-  display: block;
+  display: none;
   opacity: 0;
   position: absolute;
 }
 #nav {
-  margin-top: 420px;
   background: #000;
   padding: 10px 0;
 }
@@ -89,11 +87,11 @@ input[type=text] {
 button {
   font-size: 1em ;
 }
+.inputs {
+  float: left;
+}
 #save p {
   font-size: inherit;
-}
-.inputs {
-  padding: 10px 0;
 }
 form {
   padding: 5px 0 5px 20px;
@@ -105,13 +103,11 @@ output a {
   color: #F6F6A9;
 }
 #container {
-  z-index: 10;
-  top: 30px;
   background: #999;
-  position: fixed;
+  /*position: fixed;*/
   width: 100%;
   overflow: scroll;
-  padding-bottom: 50px;
+  padding-bottom: 20px;
 }
 section, header, footer{
   display: block;
@@ -123,14 +119,10 @@ h2 {
   padding: 5px 10px;
   font-size: 18px;
 }
-#container h2:last-child {
-  z-index: 10;
+#container ~ h2 {
   background: #000;
   color: #fff;
-  position: absolute;
-  bottom: 0;
   height: 40px;
-  width: 100%;
 }
 span {
   font-weight: bold;
@@ -149,7 +141,7 @@ header {
   display: block;
   top: 0;
   z-index: 10;
-  position: fixed;
+  /*position: fixed;*/
   width: 100%;  
   background: #333;
 }
@@ -163,7 +155,7 @@ h1 {
   line-height: 30px;
 }
 footer {
-  position: fixed;
+  position: absolute;
   z-index: 20;
   right: 10px;
   top: 8px;
@@ -181,14 +173,35 @@ footer p{
   background: #333;
 }
 .instructions {
+  clear: both;
   font-size: inherit;
   padding: 10px 10px 10px 20px;
 }
-
+.zoomed #main,
+.zoomed .palette,
+.zoomed #zoom,
+.zoomed #swab,
+.zoomed input,
+.zoomed label,
+#container.zoomed  h2, 
+.zoomed .instructions {
+  display: none;
+}
+.zoomed #display {
+  display: block;
+}
 canvas {
   position: relative;
+  background: #000;
+}
+#main,#display {
+  background: url(../img/transback.png);
+}
+#display {
+  display: none;
 }
 #swab,#zoom {
+  background: #000;
   border: 2px solid #000;
   width: 80px;
   height: 80px;
@@ -199,8 +212,8 @@ canvas {
   margin-left: 0;
 }
 #save {
-  width: 580px;
-  text-align: right;
+  float: left;
+  margin-top: -7px;
   padding: 5px 10px;
 }
 #save a {
@@ -248,13 +261,17 @@ ul.palette li {
 }
 aside {
   z-index: 10;
-  position: fixed;
+  position: absolute;
   background: #000;
   top: -800px;
-  left: 20px;
+  right: 20px;
   width: 60%;
+  width: 400px;
   color: #ccc;
   transition: 0.5s;
+}
+aside li {
+  list-style: none;
 }
 aside:target{
   top: 40px;
