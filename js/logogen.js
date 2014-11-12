@@ -15,7 +15,7 @@
   The image with the .current class defines which font is preset by
   reading out its ID
 */
-  var n =          document.querySelector('#nav');
+  var nav =        document.querySelector('#nav ul');
   var srcimg =     document.querySelector('#fonts');
   var save =       document.querySelector('#save');
   var input =      document.querySelector('#text');
@@ -81,12 +81,29 @@
   nav.innerHTML = '';
   var out = '';
   for (var i in fonts) {
-    out += (fonts[i].w[1] > 80) ?
-            '<li style="width:' + (fonts[i].w[1] * 3) + 'px;height:' +
-             (fonts[i].height +5) + 'px">':
-            '<li>';
-    out += '<img src="img/' + i + '.png" alt="' + i + ' ' + fonts[i].maker +
-           ' - ' + fonts[i].product + '" id="' + i + '"></li>';
+    var set = fonts[i];
+    out += '<li><img src="img/' + i + '.png" alt="' + i + ' ' +
+            set.maker  + ' - ' + set.product + '" id="' +
+             i + '">';
+    out += '<small>Font by ';
+    if (set.makerlink) {
+      out += '<a href="' + set.makerlink + '">' + set.maker + '</a>';
+    } else {
+      out += set.maker;
+    }
+    if (set.product) {
+      out += ' used in <a href="' + set.productlink + '">' +
+                  set.product + '</a>';
+    } else {
+      out += set.product;
+    }
+    if (set.year) {
+      out += ' (' + set.year + ')';
+    }
+    if (set.format) {
+      out += ' format: ' + set.format + '';
+    }
+    out += '</li></small>';
   }
   nav.innerHTML = out;
 
@@ -200,25 +217,6 @@
   }
 
   function givecredit(set) {
-    var credits = 'Font by ';
-    if (set.makerlink) {
-      credits += '<a href="' + set.makerlink + '">' + set.maker + '</a>';
-    } else {
-      credits += set.maker;
-    }
-    if (set.product) {
-      credits += ' used in <a href="' + set.productlink + '">' +
-                  set.product + '</a>';
-    } else {
-      credits += set.product;
-    }
-    if (set.year) {
-      credits += ' (' + set.year + ')';
-    }
-    if (set.format) {
-      credits += ' format: ' + set.format + '';
-    }
-    output.innerHTML = credits;
   }
 
   function sanitise(s){
@@ -331,7 +329,7 @@
   },false);
 
   window.addEventListener('load', init, false);
-  n.addEventListener('click', pickfont, false);
+  nav.addEventListener('click', pickfont, false);
 
   input.addEventListener('input',function(e){
     sanitise(input.value);

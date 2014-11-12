@@ -19,25 +19,51 @@ html, body {
   position: absolute;
 }
 #nav {
-  background: #000;
-  padding: 10px 0;
+  width: 280px;
+  overflow: auto;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+#nav li small {
+  overflow: hidden;
+  display: block;
+  opacity: 1;
+  max-height: 0;
+  font-size: 12px;
+  color: #ccc;
+  margin: 5px 0;
+  text-align: left;
+  transition: 0.5s;
+}
+#nav li:hover small {
+  opacity: 1;
+  max-height: 2em;
+}
+#nav a {
+  color: #ffc;
 }
 #nav ul {
+  margin: 80px 0;
 }
 label.disabled {
   opacity: 0.3;
 }
-
+#nav h2 {
+  position:fixed;
+  background: #000;
+  width: 260px;
+  z-index: 10;
+  margin-top: 2em;
+  color: #fff;
+}
 #nav li {
-  position: relative;
-  float: left;
   list-style: none;
   text-align: center;
   background: #000;
   padding: 5px;
-  width: 250px;
   color: #fff;
-  min-height: 100px;
 }
 li, p, input {
   font-size: 20px;
@@ -55,27 +81,20 @@ input[type=text] {
   width: 400px;
 }
 #nav img {
+  display: block;
+  margin: 0 auto;
   border: 2px solid #000;
   transition: all .2s;
-  display: block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: scale(.8) translate(-56%,-54%);
+  transform: scale(.8);
 }
 #nav img:hover {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: scale(1) translate(-50%,-50%);
+  display: block;
+  transform: scale(1);
 }
 #nav img.current {
   border: 2px solid #999;
   border-radius: 10px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: scale(1) translate(-50%,-50%);
+  transform: scale(1);
 }
 #save {
   overflow: auto;
@@ -105,8 +124,7 @@ output a {
 #container {
   background: #999;
   /*position: fixed;*/
-  width: 100%;
-  overflow: scroll;
+  margin-left: 280px;
   padding-bottom: 20px;
 }
 section, header, footer{
@@ -118,11 +136,6 @@ h2 {
   font-weight: normal;
   padding: 5px 10px;
   font-size: 18px;
-}
-#container ~ h2 {
-  background: #000;
-  color: #fff;
-  height: 40px;
 }
 span {
   font-weight: bold;
@@ -143,15 +156,17 @@ header {
   z-index: 10;
   /*position: fixed;*/
   width: 100%;  
-  background: #333;
+  background: #000;
 }
 h1 {
   text-transform: uppercase;
   color: #fff;
   height: 30px;
+  background: #333;
   font-weight: normal;
   font-size: 20px;
   padding: 0 10px;
+  margin-left: 280px;
   line-height: 30px;
 }
 footer {
@@ -275,6 +290,9 @@ aside li {
 }
 aside:target{
   top: 40px;
+}
+#container h2 {
+  padding-top: 13px;
 }
 aside h2 {
   color: #9ad284
