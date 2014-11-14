@@ -125,8 +125,9 @@
       old.className = '';
       t.className = 'current';
       old = t;
+      c64palette.classList.add('inactive');
+      pixelbuffer = [];
       sanitise(input.value);
-      // n.style.marginTop = (set.height + 320) + 'px';
     }
     e.preventDefault();
   }
@@ -313,6 +314,7 @@
     readcolour(ev);
     colourpicked = true;
   }, false);
+
   c.addEventListener('mousemove', function(ev) {
     if (!colourpicked) {
       readcolour(ev);

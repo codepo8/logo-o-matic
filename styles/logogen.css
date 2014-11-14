@@ -27,22 +27,16 @@ html, body {
   left: 0;
 }
 #nav li small {
-  overflow: hidden;
   display: block;
   opacity: 1;
-  max-height: 0;
   font-size: 12px;
-  color: #ccc;
-  margin: 5px 0;
+  color: #666;
+  margin: 5px;
   text-align: left;
   transition: 0.5s;
 }
-#nav li:hover small {
-  opacity: 1;
-  max-height: 2em;
-}
 #nav a {
-  color: #ffc;
+  color: #ccc;
 }
 #nav ul {
   margin: 80px 0;
