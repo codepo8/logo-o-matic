@@ -116,20 +116,22 @@
   }
 
   function pickfont(e) {
-    var t = e.target;
-    if(t.tagName === 'IMG'){
-      set = fonts[t.id];
-      givecredit(set);
-      spacing.disabled = ('$' in set);
-      spacing.parentNode.className = ('$' in set) ? 'disabled' : '';
-      old.className = '';
-      t.className = 'current';
-      old = t;
-      c64palette.classList.add('inactive');
-      pixelbuffer = [];
-      sanitise(input.value);
+    if (!document.body.classList.contains('zoomed')) {
+      var t = e.target;
+      if(t.tagName === 'IMG'){
+        set = fonts[t.id];
+        givecredit(set);
+        spacing.disabled = ('$' in set);
+        spacing.parentNode.className = ('$' in set) ? 'disabled' : '';
+        old.className = '';
+        t.className = 'current';
+        old = t;
+        c64palette.classList.add('inactive');
+        pixelbuffer = [];
+        sanitise(input.value);
+      }
+      e.preventDefault();
     }
-    e.preventDefault();
   }
 
   function getC64colour(e) {
@@ -279,7 +281,7 @@
   }
 
   function dozoom(ev) {
-    container.classList.toggle('zoomed');
+    document.body.classList.toggle('zoomed');
     if (zoomfactor === 2) {
       var ax = c.width;
       var ay = c.height;
