@@ -81,7 +81,7 @@
   nav.innerHTML = '';
   var out = '';
   for (var i in fonts) {
-    var set = fonts[i];
+    set = fonts[i];
     out += '<li><img src="img/' + i + '.png" alt="' + i + ' ' +
             set.maker  + ' - ' + set.product + '" id="' +
              i + '">';
@@ -144,7 +144,7 @@
             oldpixelcolour.b,
             oldpixelcolour.a
           ],
-          c64cols[t.className]
+          c64cols[t.className.replace(' row','')]
         );
       }
     }
