@@ -262,11 +262,14 @@ ul.palette {
 ul.palette li {
   list-style: none;
   float: left;
-  border: 2px solid #000;
   width: 20px;
   height: 20px;
-  border-radius: 50%;
-  margin-right: 10px;
+}
+
+ul.palette li.row {
+  clear: both;
+  background: url(../img/transback.png);
+  margin-right: 20px;
 }
 aside {
   z-index: 10;
