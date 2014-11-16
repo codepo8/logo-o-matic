@@ -18,10 +18,6 @@ html, body {
   opacity: 0;
   position: absolute;
 }
-.zoomed #nav {
-  opacity: 0.2;
-  transition: 0.5s;
-}
 #nav {
   transition: 0.5s;
   width: 280px;
@@ -30,6 +26,14 @@ html, body {
   height: 100%;
   top: 0;
   left: 0;
+}
+.zoomed #container, .zoomed h1 {
+  margin-left: 0;
+  transition: 0.5s;
+}
+.zoomed #nav {
+  left: -280px;
+  transition: 0.5s;
 }
 #nav li small {
   display: block;
@@ -122,6 +126,7 @@ output a {
   color: #F6F6A9;
 }
 #container {
+  transition: 0.5s;
   background: #999;
   /*position: fixed;*/
   margin-left: 280px;
@@ -159,6 +164,7 @@ header {
   background: #000;
 }
 h1 {
+  transition: 0.5s;
   text-transform: uppercase;
   color: #fff;
   height: 30px;
@@ -199,7 +205,8 @@ footer p{
 .zoomed input,
 .zoomed label,
 #container.zoomed  h2, 
-.zoomed .instructions {
+.zoomed .instructions,
+.zoomed span {
   display: none;
 }
 .zoomed #display {

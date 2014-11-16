@@ -78,6 +78,7 @@
   var valid = /^[a-z|\s|\$|\.|,|!]+$/;
   var rep = /[^a-z|\s|\$]+/g;
 
+
   nav.innerHTML = '';
   var out = '';
   for (var i in fonts) {
