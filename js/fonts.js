@@ -491,7 +491,7 @@ var fonts = {
   doolittle:{
     product:'Doolittle',
     year:'1993',
-    productlink:'http://csdb.dk/release/?id=771',
+    productlink:'http://csdb.dk/release/?id=77',
     format:'Multicolour',
     maker:'compyx',
     makerlink: 'http://csdb.dk/scener/?id=1190',
