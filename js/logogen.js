@@ -113,7 +113,12 @@
     if(url){
       sanitise(url.replace(/%20/g,' '));
     }
-    document.querySelector('#orc').click();
+    var hash = document.location.hash;
+    if (hash !== '' && document.querySelector(hash)) {
+      document.querySelector(hash).click();
+    } else {
+      document.querySelector('#orc').click();
+    }
   }
 
   function pickfont(e) {
@@ -121,6 +126,7 @@
       var t = e.target;
       if(t.tagName === 'IMG'){
         set = fonts[t.id];
+        window.location.hash = t.id;
         givecredit(set);
         spacing.disabled = ('$' in set);
         spacing.parentNode.className = ('$' in set) ? 'disabled' : '';
