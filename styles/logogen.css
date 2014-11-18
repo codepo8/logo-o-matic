@@ -222,7 +222,14 @@ canvas {
   background: #000;
 }
 #main,#display {
-  background: url(../img/transback.png);
+  background-color: #333;
+  background-image: 
+    linear-gradient(45deg, #555 25%, transparent 25%, 
+                    transparent 75%, #555 75%, #555), 
+    linear-gradient(45deg, #555 25%, transparent 25%, 
+                    transparent 75%, #555 75%, #555);
+  background-size:30px 30px;
+  background-position:0 0, 15px 15px;
 }
 #display {
   display: none;
@@ -286,7 +293,14 @@ ul.palette li {
 
 ul.palette li.row {
   clear: both;
-  background: url(../img/transback.png);
+  background-color: #333;
+  background-image: 
+    linear-gradient(45deg, #555 25%, transparent 25%, 
+                    transparent 75%, #555 75%, #555), 
+    linear-gradient(45deg, #555 25%, transparent 25%, 
+                    transparent 75%, #555 75%, #555);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
   margin-right: 20px;
 }
 aside {

@@ -19,7 +19,7 @@ var fonts = {
     productlink:'',
     format:'',
     maker:'Cupid',
-    makerlink: '',
+    makerlink: 'http://csdb.dk/scener/?id=8137',
     offset:2902,height:40,
     a:[0,24],b:[26,24],c:[52,24],d:[78,24],e:[104,24],f:[130,24],
     g:[156,24],h:[182,24],i:[208,8],j:[218,23],k:[244,24],l:[270,24],
