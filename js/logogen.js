@@ -49,7 +49,7 @@
 
   var zoomfactor = 2;
   var set = fonts[old.id];
-  var background = 'rgba(0,0,0,0)';
+  var background = 'rgba(2,2,2,1)';
   var pixels;
   var colourpicked = false;
   var oldpixelcolour;
