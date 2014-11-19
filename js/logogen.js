@@ -136,6 +136,7 @@
         c64palette.classList.add('inactive');
         pixelbuffer = [];
         sanitise(input.value);
+        endcolouring();
       }
       e.preventDefault();
     }
@@ -351,6 +352,7 @@
 
   input.addEventListener('input',function(e){
     sanitise(input.value);
+    endcolouring();
   },false);
 
   c64palette.addEventListener('click', getC64colour, false);
