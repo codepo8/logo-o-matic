@@ -21,7 +21,6 @@
   var input =      document.querySelector('#text');
   var swab =       document.querySelector('#swab');
   var c64palette = document.querySelector('#c64colours');
-  var output =     document.querySelector('output');
   var kerning =    document.querySelector('#kerning');
   var spacing =    document.querySelector('#spacing');
   var old =        document.querySelector('.current');
@@ -115,6 +114,7 @@
       sanitise(url.replace(/%20/g,' '));
     }
     var hash = document.location.hash;
+    hash = hash.replace('goto-','');
     if (hash !== '' && document.querySelector(hash)) {
       document.querySelector(hash).click();
     } else {
@@ -127,7 +127,7 @@
       var t = e.target;
       if(t.tagName === 'IMG'){
         set = fonts[t.id];
-        window.location.hash = t.id;
+        window.location.hash = 'goto-' + t.id;
         spacing.disabled = ('$' in set);
         spacing.parentNode.className = ('$' in set) ? 'disabled' : '';
         old.className = '';
