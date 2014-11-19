@@ -54,6 +54,7 @@ html, body {
   left: 0;
   height: 80%;
   height: calc(100% - 100px);
+  counter-reset:list;
 }
 label.disabled {
   opacity: 0.3;
@@ -71,7 +72,17 @@ label.disabled {
   background: #000;
   padding: 5px;
   color: #fff;
+  position: relative;
   border-bottom: 1px solid #333;
+}
+#nav li::before {
+  counter-increment:list;
+  content:counter(list);
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  font-size: 14px;
+  color: #666;
 }
 li, p, input {
   font-size: 20px;
