@@ -27,6 +27,7 @@
   var old =        document.querySelector('.current');
   var container =  document.querySelector('#container');
   var zoombutton = document.querySelector('#zoombutton');
+  var colbutton = document.querySelector('#colourbutton');
 
   var c = document.querySelector('#main');
   var ctx = c.getContext('2d');
@@ -127,7 +128,6 @@
       if(t.tagName === 'IMG'){
         set = fonts[t.id];
         window.location.hash = t.id;
-        givecredit(set);
         spacing.disabled = ('$' in set);
         spacing.parentNode.className = ('$' in set) ? 'disabled' : '';
         old.className = '';
@@ -139,6 +139,11 @@
       }
       e.preventDefault();
     }
+  }
+
+  function endcolouring() {
+    c64palette.classList.add('inactive');
+    container.classList.remove('colouring');
   }
 
   function getC64colour(e) {
@@ -224,9 +229,6 @@
         b: pixeldata.data[2],
         a: pixeldata.data[3]
     };
-  }
-
-  function givecredit(set) {
   }
 
   function sanitise(s){
@@ -322,6 +324,11 @@
   c.addEventListener('click', function(ev) {
     readcolour(ev);
     colourpicked = true;
+    container.classList.add('colouring');
+  }, false);
+
+  c.addEventListener('dblclick', function(ev) {
+    endcolouring();
   }, false);
 
   c.addEventListener('mousemove', function(ev) {
@@ -348,6 +355,7 @@
 
   c64palette.addEventListener('click', getC64colour, false);
   zoombutton.addEventListener('click', dozoom, false);
+  colourbutton.addEventListener('click', endcolouring, false);
 
 
 })();

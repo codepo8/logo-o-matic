@@ -68,7 +68,6 @@ label.disabled {
 }
 #nav li {
   list-style: none;
-  text-align: center;
   background: #000;
   padding: 5px;
   color: #fff;
@@ -76,6 +75,9 @@ label.disabled {
 }
 li, p, input {
   font-size: 20px;
+}
+.colouring .inputs label {
+  opacity: 0.3;
 }
 input[type="range"] {
   width: 120px;
@@ -261,6 +263,9 @@ canvas {
   opacity: 0.1;
   transition: 0.5s;
 }
+.inactive button {
+  display: none;
+}
 ul.palette {
   overflow: hidden;
   margin: 10px 0 10px 25px;
@@ -290,7 +295,20 @@ ul.palette li {
   width: 20px;
   height: 20px;
 }
-
+ul.palette li:last-child {
+  width: 200px;
+}
+.palette button {
+    display: inline-block;
+    float: left;
+    font-size: 1em;
+    line-height: 2.5em;
+    margin: -1.5em 0px 0px 10px;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    border-radius: 5px;
+}
 ul.palette li.row {
   clear: both;
   background-color: #333;
