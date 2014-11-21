@@ -234,20 +234,20 @@ canvas {
   position: relative;
   background: #000;
 }
-#main,#display {
+#main, #display {
   background-color: #333;
   background-image: 
     linear-gradient(45deg, #555 25%, transparent 25%, 
                     transparent 75%, #555 75%, #555), 
     linear-gradient(45deg, #555 25%, transparent 25%, 
                     transparent 75%, #555 75%, #555);
-  background-size:30px 30px;
+  background-size: 30px 30px;
   background-position:0 0, 15px 15px;
 }
 #display {
   display: none;
 }
-#swab,#zoom {
+#swab, #zoom {
   background: #000;
   border: 2px solid #000;
   width: 80px;
