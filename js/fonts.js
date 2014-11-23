@@ -522,7 +522,7 @@ var fonts = {
     format:'Multicolour',
     maker:'Jason?',
     makerlink: 'http://csdb.dk/scener/?id=17405',
-    offset:2636,height:24,
+    offset:2636,height:25,
     a:[0,39],b:[39,39],c:[79,39],d:[119,39],e:[159,39],f:[199,39],
     g:[239,39],h:[279,39],i:[319,15],j:[335,39],k:[375,39],l:[414,40],
     m:[455,56],n:[511,39],o:[551,39],p:[591,39],q:[631,39],
