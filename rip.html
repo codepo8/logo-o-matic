@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C-64 charset logo generator</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="styles/logogen.css">
+</head>
+<body>
+
+<img src="img/canvas.png" alt="" id="fonts">
+
+<script>
+
+
+window.addEventListener('load', function(){
+  var c = document.createElement('canvas');
+  document.body.appendChild(c);
+  var ctx = c.getContext('2d');
+  var img = document.querySelector('img');
+  var width = img.naturalWidth;
+  c.width = width;
+  c.height = img.naturalHeight;
+
+  ctx.drawImage(img,0,0);
+
+  var startpoint = [0,3067];
+  var green = {r:62,b:67,g:255,a:255}
+  var letters = 'abcdefghijklmnopqrstuvwyz'.split('');
+  var fontdata = {};
+
+  function getfonts() {
+    var letter = 0;
+    var letterwidth = 0;
+    var boundaries = [];
+    for (x = 0; x < width; x++) {
+    var currentcolour = pixelcolour(x, startpoint[1]+5);
+      if(isgreen(currentcolour) === -1){
+        letterwidth++;
+      } else {
+        if (letterwidth > 0) {
+          if (letters[letter]) {
+            fontdata[letters[letter]] = [x-letterwidth, letterwidth];
+            letter++;
+          }
+        }
+        letterwidth = 0;
+      }
+    }
+    console.log(JSON.stringify(fontdata));
+    letters.forEach(function(letter){
+    });
+  }
+
+
+  function getheight(startpoint) {
+    var y = 0;
+    var currentcolour = pixelcolour(startpoint[0], startpoint[1]);
+    while (isgreen(currentcolour) === -1) {
+      y++;
+      currentcolour = pixelcolour(startpoint[0], startpoint[1]+y);
+    }
+    return y;
+  }
+  function isgreen(col) {
+    var canhas;
+    if (col.r !== green.r && col.g !== green.g && col.b !== green.b) {
+      canhas = -1;
+    } else {
+      canhas = 1;
+    }
+    return canhas;
+  }
+  function pixelcolour(x, y) {
+    var pixeldata = ctx.getImageData(x,y,1,1);
+    return {
+        r: pixeldata.data[0],
+        g: pixeldata.data[1],
+        b: pixeldata.data[2],
+        a: pixeldata.data[3]
+    };
+  }
+  fontdata.height = getheight(startpoint);
+  getfonts();
+}, false)
+
+
+
+
+</script>
+
+
+</body>
+</html>
