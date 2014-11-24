@@ -261,7 +261,10 @@
         }
       }
       if (str[i] in set) {
-        w += set[str[i]][1] + parseInt(kerning.value, 10);
+        w += set[str[i]][1];
+        if (i < (j-1)) {
+          w += parseInt(kerning.value, 10);
+        }
       }
     }
     c.width = w + 10;
