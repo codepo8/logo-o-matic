@@ -177,6 +177,7 @@
         pixels.data[i+3] = newcolour[3];
     }
     ctx.putImageData(pixels, 0, 0);
+    analysecolours(pixels.data);
     storelink(c);
   }
 
@@ -262,12 +263,10 @@
       }
       if (str[i] in set) {
         w += set[str[i]][1];
-        if (i < (j-1)) {
-          w += parseInt(kerning.value, 10);
-        }
       }
     }
-    c.width = w + 10;
+    w += (j - 1) * parseInt(kerning.value, 10) + 10;
+    c.width = w;
     c.height = set.height + 10;
     ctx.fillStyle = background;
     ctx.fillRect(0, 0, c.width, c.height);
@@ -291,6 +290,32 @@
     }
     storelink(c);
     pixels = ctx.getImageData(0,0,c.width,c.height);
+    analysecolours(pixels.data);
+  }
+
+  function analysecolours(pixels) {
+    var all = pixels.length;
+    var coloursused = {};
+    var i = 0;
+    var j = 0;
+    for (i = 0; i < all; i+=4) {
+      coloursused[pixels[i]+'|'+pixels[i+1]+'|'+pixels[i+2]+'|'+pixels[i+3]] = 1;
+    }
+    var lis = document.querySelectorAll('.palette li');
+    for (i=0; i<lis.length; i++) {
+      lis[i].classList.remove('used');
+    }
+    for (i in coloursused) {
+      for (j in c64cols) {
+        var parts = i.split('|');
+        if (c64cols[j][0] === +parts[0] &&
+            c64cols[j][1] === +parts[1] &&
+            c64cols[j][2] === +parts[2] &&
+            c64cols[j][3] === +parts[3]) {
+         document.querySelector('.'+j).classList.add('used');
+        }
+      }
+    }
   }
 
   function dozoom(ev) {
@@ -309,8 +334,8 @@
         }
       }
       zoombutton.innerHTML = 'edit logo';
-      storelink(dc);
       zoomfactor = 1;
+      storelink(dc);
     } else {
       zoombutton.innerHTML = '2x';
       zoomfactor = 2;
