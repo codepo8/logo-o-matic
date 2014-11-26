@@ -159,7 +159,7 @@
             oldpixelcolour.b,
             oldpixelcolour.a
           ],
-          c64cols[t.className.replace(' row','')]
+          c64cols[t.className.replace(/ row| used/g,'')]
         );
       }
     }
