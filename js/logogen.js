@@ -78,36 +78,6 @@
   var valid = /^[a-z|\s|\$|\.|,|!]+$/;
   var rep = /[^a-z|\s|\$]+/g;
 
-
-  nav.innerHTML = '';
-  var out = '';
-  for (var i in fonts) {
-    set = fonts[i];
-    out += '<li><img src="img/' + i + '.png" alt="' + i + ' ' +
-            set.maker  + ' - ' + set.product + '" id="' +
-             i + '">';
-    out += '<small>Font by ';
-    if (set.makerlink) {
-      out += '<a href="' + set.makerlink + '">' + set.maker + '</a>';
-    } else {
-      out += set.maker;
-    }
-    if (set.product) {
-      out += ' used in <a href="' + set.productlink + '">' +
-                  set.product + '</a>';
-    } else {
-      out += set.product;
-    }
-    if (set.year) {
-      out += ' (' + set.year + ')';
-    }
-    if (set.format) {
-      out += ' format: ' + set.format + '';
-    }
-    out += '</li></small>';
-  }
-  nav.innerHTML = out;
-
   function init() {
     var url = document.location.search.split('?text=')[1];
     if(url){
@@ -120,6 +90,36 @@
     } else {
       document.querySelector('#orc').click();
     }
+  }
+
+  function createFontMenu() {
+    var out = '';
+    for (var i in window.fonts) {
+      set = fonts[i];
+      out += '<li><img src="img/' + i + '.png" alt="' + i + ' ' +
+              set.maker  + ' - ' + set.product + '" id="' +
+               i + '">';
+      out += '<small>Font by ';
+      if (set.makerlink) {
+        out += '<a href="' + set.makerlink + '">' + set.maker + '</a>';
+      } else {
+        out += set.maker;
+      }
+      if (set.product) {
+        out += ' used in <a href="' + set.productlink + '">' +
+                    set.product + '</a>';
+      } else {
+        out += set.product;
+      }
+      if (set.year) {
+        out += ' (' + set.year + ')';
+      }
+      if (set.format) {
+        out += ' format: ' + set.format + '';
+      }
+      out += '</li></small>';
+    }
+    nav.innerHTML = out;
   }
 
   function pickfont(e) {
@@ -135,7 +135,7 @@
         old = t;
         c64palette.classList.add('inactive');
         pixelbuffer = [];
-        sanitise(input.value);
+        sanitise();
         endcolouring();
       }
       e.preventDefault();
@@ -234,6 +234,7 @@
   }
 
   function sanitise(s){
+    if (!s) { s = input.value; }
     s = s.toLowerCase();
     if(!valid.test(s)){
       s = s.replace(rep,'');
@@ -367,25 +368,17 @@
     showzoom(ev);
   }, false);
 
-  kerning.addEventListener('change',function(e){
-    sanitise(input.value);
-  },false);
-
-  spacing.addEventListener('change',function(e){
-    sanitise(input.value);
-  },false);
-
-  window.addEventListener('load', init, false);
+  kerning.addEventListener('change', sanitise, false);
+  spacing.addEventListener('change',sanitise, false);
   nav.addEventListener('click', pickfont, false);
-
   input.addEventListener('input',function(e){
-    sanitise(input.value);
+    sanitise();
     endcolouring();
   },false);
-
   c64palette.addEventListener('click', getC64colour, false);
   zoombutton.addEventListener('click', dozoom, false);
   colourbutton.addEventListener('click', endcolouring, false);
-
+  window.addEventListener('load', init, false);
+  window.addEventListener('DOMContentLoaded', createFontMenu, false);
 
 })();
