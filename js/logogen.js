@@ -321,7 +321,7 @@
 
   function dozoom(ev) {
     document.body.classList.toggle('zoomed');
-    if (zoomfactor === 2) {
+    if (zoomfactor > 1) {
       var ax = c.width;
       var ay = c.height;
       dc.width = ax * zoomfactor;
@@ -331,7 +331,7 @@
           var col = pixelcolour(x, y);
           dcx.fillStyle = 'rgba(' + col.r + ',' + col.g + ',' +
                            col.b + ' ,' + col.a + ')';
-          dcx.fillRect(x * zoomfactor, y * zoomfactor, 2, 2);
+          dcx.fillRect(x * zoomfactor, y * zoomfactor, zoomfactor, zoomfactor);
         }
       }
       zoombutton.innerHTML = 'edit logo';
@@ -368,13 +368,14 @@
     showzoom(ev);
   }, false);
 
-  kerning.addEventListener('change', sanitise, false);
-  spacing.addEventListener('change',sanitise, false);
-  nav.addEventListener('click', pickfont, false);
   input.addEventListener('input',function(e){
     sanitise();
     endcolouring();
   },false);
+
+  kerning.addEventListener('change', sanitise, false);
+  spacing.addEventListener('change',sanitise, false);
+  nav.addEventListener('click', pickfont, false);
   c64palette.addEventListener('click', getC64colour, false);
   zoombutton.addEventListener('click', dozoom, false);
   colourbutton.addEventListener('click', endcolouring, false);
