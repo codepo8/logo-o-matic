@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<img src="img/canvas.png" alt="" id="fonts">
+<img src="img/canvas-1.png?xx" alt="" id="fonts">
 
 <script>
 
@@ -22,9 +22,9 @@ window.addEventListener('load', function(){
   c.width = width;
   c.height = img.naturalHeight;
 
-  ctx.drawImage(img,0,0);
+  ctx.drawImage(img,0,0,width,img.naturalHeight);
 
-  var startpoint = [0,3030];
+  var startpoint = [0,3061];
   var green = {r:62,b:67,g:255,a:255}
   var letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
   var fontdata = {};
@@ -33,14 +33,14 @@ window.addEventListener('load', function(){
     var letter = 0;
     var letterwidth = 0;
     var boundaries = [];
-    for (x = 0; x < width; x++) {
-    var currentcolour = pixelcolour(x, startpoint[1]+5);
+    for (var i = 0; i < width; i++) {
+    var currentcolour = pixelcolour(i, startpoint[1]+5);
       if(isgreen(currentcolour) === -1){
         letterwidth++;
       } else {
         if (letterwidth > 0) {
           if (letters[letter]) {
-            fontdata[letters[letter]] = [x-letterwidth, letterwidth];
+            fontdata[letters[letter]] = [i-letterwidth, letterwidth];
             letter++;
           }
         }
@@ -52,24 +52,26 @@ window.addEventListener('load', function(){
 
 
   function getheight(startpoint) {
-    var y = 0;
+    var hy = 0;
     var currentcolour = pixelcolour(startpoint[0], startpoint[1]);
     while (isgreen(currentcolour) === -1) {
-      y++;
-      currentcolour = pixelcolour(startpoint[0], startpoint[1]+y);
+      hy++;
+      currentcolour = pixelcolour(startpoint[0], startpoint[1]+hy);
     }
-    return y;
+    return hy;
   }
+
   function isgreen(col) {
     var canhas;
     if (col.r !== green.r && col.g !== green.g && col.b !== green.b) {
       canhas = -1;
     } else {
-      canhas = 1;
+      canhas = 2;
     }
     return canhas;
   }
-  function pixelcolour(x, y) {
+
+  function pixelcolour(x,y) {
     var pixeldata = ctx.getImageData(x,y,1,1);
     return {
         r: pixeldata.data[0],
@@ -81,10 +83,6 @@ window.addEventListener('load', function(){
   fontdata.height = getheight(startpoint);
   getfonts();
 }, false)
-
-
-
-
 </script>
 
 

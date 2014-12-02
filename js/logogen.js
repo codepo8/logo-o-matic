@@ -234,7 +234,7 @@
   }
 
   function sanitise(s){
-    if (!s) { s = input.value; }
+    if (typeof s !== 'string') { s = input.value; }
     s = s.toLowerCase();
     if(!valid.test(s)){
       s = s.replace(rep,'');
