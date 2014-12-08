@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<img src="img/canvas-1.png?xx" alt="" id="fonts">
+<img src="img/canvas.png?xx" alt="" id="fonts">
 
 <script>
 
@@ -24,7 +24,7 @@ window.addEventListener('load', function(){
 
   ctx.drawImage(img,0,0,width,img.naturalHeight);
 
-  var startpoint = [0,3061];
+  var startpoint = [0,3093];
   var green = {r:62,b:67,g:255,a:255}
   var letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
   var fontdata = {};
@@ -47,9 +47,9 @@ window.addEventListener('load', function(){
         letterwidth = 0;
       }
     }
-    console.log(JSON.stringify(fontdata));
+    var out = JSON.stringify(fontdata);
+    console.log(out.replace(/"|\{|\}/g,''));
   }
-
 
   function getheight(startpoint) {
     var hy = 0;
@@ -62,13 +62,9 @@ window.addEventListener('load', function(){
   }
 
   function isgreen(col) {
-    var canhas;
-    if (col.r !== green.r && col.g !== green.g && col.b !== green.b) {
-      canhas = -1;
-    } else {
-      canhas = 2;
-    }
-    return canhas;
+    return (col.r === green.r && 
+            col.g === green.g && 
+            col.b === green.b) ? 1 : -1;
   }
 
   function pixelcolour(x,y) {
@@ -80,6 +76,7 @@ window.addEventListener('load', function(){
         a: pixeldata.data[3]
     };
   }
+
   fontdata.height = getheight(startpoint);
   getfonts();
 }, false)
