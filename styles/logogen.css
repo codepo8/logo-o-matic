@@ -73,7 +73,7 @@ label.disabled {
   padding: 5px;
   color: #fff;
   position: relative;
-  border-bottom: 1px solid #333;
+  /*border-bottom: 1px solid #333;*/
 }
 #nav li::before {
   counter-increment:list;

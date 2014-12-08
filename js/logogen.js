@@ -46,6 +46,7 @@
   dcx.imageSmoothingEnabled = false;
   dcx.mozImageSmoothingEnabled = false;
   dcx.webkitImageSmoothingEnabled = false;
+  dcx.msImageSmoothingEnabled = false;
 
   var zoomfactor = 2;
   var set = fonts[old.id];
@@ -189,8 +190,9 @@
     zcx.fillStyle = '#000';
     zcx.fillRect(0,0,80,80);
     zcx.drawImage(c,sx,sy,10,10,0,0,80,80);
-    zcx.strokeStyle = '1px solid #000';
-    zcx.strokeWidth = 0.5;
+    zcx.strokeStyle = 'black';
+    zcx.lineWidth = 1;
+    zcx.lineCap = 'square';
     zcx.strokeRect(30,35,20,10);
   }
 
