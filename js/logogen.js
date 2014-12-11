@@ -271,7 +271,11 @@
     w += (j - 1) * parseInt(kerning.value, 10) + 10;
     c.width = w;
     c.height = set.height + 10;
-    ctx.fillStyle = background;
+    ctx.fillStyle = set.background ?
+                    'rgb(' + c64cols[set.background][0] + ',' +
+                             c64cols[set.background][1] + ',' +
+                             c64cols[set.background][2] + ')' :
+                     background;
     ctx.fillRect(0, 0, c.width, c.height);
 
     for(i = 0; i < j; i++) {
