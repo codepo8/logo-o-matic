@@ -58,22 +58,22 @@
   var pixelbuffer = [];
   var c64cols = {
     transparent: [0, 0, 0, 0],
-    black:      [0, 0, 0, 255],
-    white:      [255, 255, 255, 255],
-    red:        [104, 55, 43, 255],
-    cyan:       [112, 164, 178, 255],
-    purple:     [111, 61, 134, 255],
-    green:      [77, 141, 67, 255],
-    blue:       [53, 40, 121, 255],
-    yellow:     [184, 199, 111, 255],
-    orange:     [111, 79, 37, 255],
-    brown:      [67, 57, 0, 255],
-    lightred:   [154, 103, 89, 255],
-    darkgrey:   [68, 68, 68, 255],
-    grey:       [108, 108, 108, 255],
-    lightgreen: [154, 210, 132, 255],
-    lightblue:  [108, 94, 181, 255],
-    lightgrey:  [149, 149, 149, 255]
+    black:      [0, 0, 0, 1],
+    white:      [255, 255, 255, 1],
+    red:        [104, 55, 43, 1],
+    cyan:       [112, 164, 178, 1],
+    purple:     [111, 61, 134, 1],
+    green:      [77, 141, 67, 1],
+    blue:       [53, 40, 121, 1],
+    yellow:     [184, 199, 111, 1],
+    orange:     [111, 79, 37, 1],
+    brown:      [67, 57, 0, 1],
+    lightred:   [154, 103, 89, 1],
+    darkgrey:   [68, 68, 68, 1],
+    grey:       [108, 108, 108, 1],
+    lightgreen: [154, 210, 132, 1],
+    lightblue:  [108, 94, 181, 1],
+    lightgrey:  [149, 149, 149, 1]
   };
 
   var valid = /^[a-z|\s|\$|\.|,|!]+$/;
@@ -97,9 +97,9 @@
     var out = '';
     for (var i in window.fonts) {
       set = fonts[i];
-      out += '<li><img src="img/' + i + '.png" alt="' + i + ' ' +
-              set.maker  + ' - ' + set.product + '" id="' +
-               i + '">';
+      out += '<li><a href="index.html?font=' + i + '"><img src="img/' + i +
+              '.png" alt="' + i + ' ' + set.maker  + ' - ' + set.product +
+               '" id="' + i + '"></a>';
       out += '<small>Font by ';
       if (set.makerlink) {
         out += '<a href="' + set.makerlink + '">' + set.maker + '</a>';

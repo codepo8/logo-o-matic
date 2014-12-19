@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>C-64 charset logo generator</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="styles/logogen.css">
+</head>
+<body>
+  <header>
+    <h1>C-64 charset logo generator</h1>
+  </header>
+  <section>
+  <div id="swab"></div>
+  <canvas id="zoom"></canvas>
+  <canvas id="main"></canvas>
+  <ul class="palette" id="c64colours">
+    <li class="transparent row" title="transparent" data-col="000000"></li>
+    <li class="black" title="black" data-col="000000"></li>
+    <li class="brown" title="brown" data-col="433900"></li> 
+    <li class="red" data-col="68372B"></li> 
+    <li class="orange" data-col="6F4F25"></li> 
+    <li class="grey" data-col="6C6C6C"></li> 
+    <li class="lightred" data-col="9A6759"></li> 
+    <li class="lightgrey" data-col="959595"></li> 
+    <li class="yellow" data-col="B8C76F"></li> 
+    <li class="white" data-col="FFFFFF"></li> 
+    <li class="transparent row" title="transparent" data-col="000000"></li>
+    <li class="black" data-col="000000"></li>
+    <li class="blue" data-col="352879"></li> 
+    <li class="darkgrey" data-col="444444"></li> 
+    <li class="purple" data-col="6F3D86"></li> 
+    <li class="lightblue" data-col="6C5EB5"></li> 
+    <li class="green" data-col="588D43"></li> 
+    <li class="cyan" data-col="70A4B2"></li> 
+    <li class="lightgreen" data-col="9AD284"></li> 
+    <li class="white" data-col="FFFFFF"></li>
+    <li></li> 
+  </ul>
+
+</div>
+</section>
+<footer>
+</footer>
+<script>
+  var c = document.querySelector('#main');
+  var cx = c.getContext('2d');
+  var palette = document.querySelector('#c64colours');
+  var colour = '000000';
+  var pixelsizex = 10;
+  var pixelsizey = 5;
+  var mousedown = false;
+  var oldx = null;
+  var oldy = null;
+  cx.strokeStyle = '#000000';
+
+function onmousedown(ev) {
+  mousedown = true;
+  ev.preventDefault();
+}
+
+function onmouseout(ev) {
+  oldx = -1;
+  oldy = -1;
+}
+
+function onmouseup(ev) {
+  mousedown = false;
+  ev.preventDefault();
+}
+
+function onmousemove(ev) {
+  var x = ev.layerX;
+  var y = ev.layerY;
+  if (mousedown) {
+    paint(x, y);
+  } 
+}
+
+function paint(x, y) {
+  cx.beginPath();
+  if (oldx > 0 && oldy > 0) {
+    cx.moveTo(oldx, oldy);
+  }
+  x = (Math.ceil(x / pixelsizex) * pixelsizex) - pixelsizex;
+  y = (Math.ceil(y / pixelsizey) * pixelsizey) - pixelsizey;
+  cx.moveTo(x, y);          
+  cx.fillStyle = colour;
+  cx.lineHeight = 0;
+  if (colour == 'transparent') {
+    cx.clearRect(x, y, pixelsizex, pixelsizey);
+  } else {
+    cx.fillRect(x, y, pixelsizex, pixelsizey);
+  }
+}
+
+function pickcolour(ev) {
+  var t = ev.target;
+  if (t.nodeName === 'LI') {
+    colour = '#' + t.dataset.col;
+  }
+}
+
+c.addEventListener('mouseout', onmouseout, false);
+c.addEventListener('mousedown', onmousedown, false);
+c.addEventListener('mouseup', onmouseup, false);
+c.addEventListener('mousemove', onmousemove, false);
+palette.addEventListener('click', pickcolour, false);
+
+</script>
+</body>
+</html>
