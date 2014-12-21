@@ -308,7 +308,6 @@
     for (i = 0; i < all; i+=4) {
       coloursused[pixels[i]+'|'+pixels[i+1]+'|'+pixels[i+2]+'|'+pixels[i+3]] = 1;
     }
-    console.log(coloursused);
     var lis = document.querySelectorAll('.palette li');
     for (i=0; i<lis.length; i++) {
       lis[i].classList.remove('used');
