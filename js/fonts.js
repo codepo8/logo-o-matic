@@ -41,7 +41,6 @@ var fonts = {
     t:[304,15],u:[320,15],v:[336,15],w:[352,15],x:[368,15],y:[385,13],
     z:[400,15]
   },
-
   balls:{
     product:'',
     year:'2014',
@@ -117,7 +116,7 @@ var fonts = {
     year:'1989',
     productlink:'http://csdb.dk/release/?id=3513',
     format:'3 colour charset',
-    maker:'Flex',
+    maker:'Orc',
     makerlink: 'http://csdb.dk/scener/?id=530',
     offset:2400,height:32,
     a:[0,31],b:[42,31],c:[84,31],d:[126,31],e:[166,31],f:[208,31],
@@ -342,8 +341,8 @@ var fonts = {
     year:'',
     productlink:'',
     format:'',
-    maker:'',
-    makerlink: '',
+    maker:'Biz-Kid',
+    makerlink: 'http://csdb.dk/scener/?id=352',
     offset:816,height:48,
     a:[0,40],b:[50,40],c:[100,40],d:[150,40],e:[200,40],f:[250,40],g:[300,40],
     h:[350,40],i:[400,16],j:[426,40],k:[476,40],l:[526,40],m:[576,64],
@@ -364,6 +363,20 @@ var fonts = {
     n:[528,32],o:[570,32],p:[612,32],q:[654,32],r:[696,32],s:[738,32],
     t:[780,32],u:[822,32],v:[864,32],w:[906,32],x:[948,32],y:[990,32],
     z:[1032,32]
+  },
+  sulaco:{
+    product:'',
+    year:'',
+    productlink:'',
+    format:'',
+    maker:'Cupid',
+    makerlink: 'http://csdb.dk/scener/?id=8137',
+    offset:3226,height:24,
+    a:[0,22],b:[24,21],c:[47,23],d:[72,22],e:[96,22],f:[120,22],g:[144,22],
+    h:[168,22],i:[192,22],j:[216,22],k:[240,22],l:[264,22],m:[288,22],
+    n:[313,22],o:[337,22],p:[361,22],q:[385,22],r:[409,22],s:[433,22],
+    t:[457,22],v:[481,22],u:[505,22],w:[529,22],x:[553,22],y:[577,22],
+    z:[601,22]
   },
   dize: {
     product:'',
