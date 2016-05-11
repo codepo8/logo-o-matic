@@ -393,12 +393,12 @@ var fonts = {
     z:[601,22]
   },
   dize: {
-    product:'',
-    year:'',
-    productlink:'',
-    format:'',
-    maker:'',
-    makerlink: '',
+    product:'So-Phisticated III',
+    year:'1989',
+    productlink:'http://csdb.dk/release/?id=11667',
+    format:'Bitmap',
+    maker:'Orc of Blackmail',
+    makerlink: 'http://csdb.dk/scener/?id=8055',
     offset:1288,height:32,
     a:[0,32],b:[42,32],c:[84,32],d:[126,32],e:[168,32],f:[210,32],g:[252,32],
     h:[294,32],i:[336,16],j:[362,32],k:[404,32],l:[446,32],m:[488,48],
