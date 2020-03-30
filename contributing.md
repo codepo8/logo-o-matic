@@ -27,4 +27,5 @@ Now, as I have a real job, I'm not that keen to do all that over and over again,
 $php -S localhost:8080
 ```
 
-* Patience is a virtue, I won't be able to add them all the time, best would be to create an issue here so I know when new stuff comes up.
+* If you are versed in Git, add the image to the `incoming` folder and create a pull request/file an issue.
+* Patience is a virtue, I won't be able to add them all the time.
