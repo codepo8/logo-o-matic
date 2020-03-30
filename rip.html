@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="styles/logogen.css">
 </head>
 <body>
+<textarea>
 
+</textarea>
 <img src="img/canvas.png?xx" alt="" id="fonts">
 
 <script>
@@ -48,7 +50,7 @@ window.addEventListener('load', function(){
       }
     }
     var out = JSON.stringify(fontdata);
-    console.log(out.replace(/"|\{|\}/g,''));
+    document.querySelector('textarea').innerText = out.replace(/"|\{|\}/g,'');
   }
 
   function getheight(startpoint) {
