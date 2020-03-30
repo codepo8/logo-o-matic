@@ -8,6 +8,9 @@ Now, as I have a real job, I'm not that keen to do all that over and over again,
 * If you take screenshots, it'd be good to use the pepto colours. If you can't set this, you can use [The C64 colour changer](https://codepo8.github.io/c64-colour-changer/index.html) in your browser to do so. 
 * Each font needs to get added to a main file and I need to convert it to pixel values. For this, I am using the [rip.html](rip.html) file, which for now is pretty terrible. However, you can make it easier for me if you create the font encased in green rectangles, like so: 
 
+![font in green rectangles](./img/font-with-boundaries.png)
+
+* The green needs to be `RGB(62,255,67)` or `hex #3eff43` for my script to detect the boundaries.
 * This allows me to easily add and convert.
 * If you submit a font it would be super helpful to get the information needed, f.e.:
 ```
