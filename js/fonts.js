@@ -436,13 +436,13 @@ var fonts = {
     s:[667,38],t:[707,30],u:[739,38],v:[779,38],w:[819,62],x:[883,38],
     y:[923,38],z:[963,38]  
   },
-  notsure:{
-    product:'',
-    year:'',
-    productlink:'',
-    format:'',
-    maker:'',
-    makerlink: '',
+  deekay4:{
+    product:'C=Bit 18',
+    year:'2018',
+    productlink:'https://csdb.dk/release/?id=170950',
+    format:'Bitmap',
+    maker:'Deekay',
+    makerlink: 'https://csdb.dk/scener/?id=8058',
     offset:3412,height:32,
     height:32,a:[0,32],b:[33,32],c:[66,32],d:[99,32],e:[132,32],
     f:[165,32],g:[198,32],h:[231,32],i:[264,20],j:[285,32],k:[318,32],
