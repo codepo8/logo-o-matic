@@ -8,6 +8,326 @@
 
 (function(){
 
+const imgobj = {
+  "tinygold": {
+    "start": 0,
+    "width": 68,
+    "height": 24
+  },
+  "fullheight": 3648,
+  "fullwidth": 266,
+  "ollie": {
+    "start": 24,
+    "width": 139,
+    "height": 62
+  },
+  "arcoss": {
+    "start": 86,
+    "width": 192,
+    "height": 58
+  },
+  "foldfont": {
+    "start": 144,
+    "width": 208,
+    "height": 90
+  },
+  "bigcolourhires": {
+    "start": 234,
+    "width": 208,
+    "height": 66
+  },
+  "twobytwohirescupid": {
+    "start": 300,
+    "width": 76,
+    "height": 24
+  },
+  "balls": {
+    "start": 324,
+    "width": 73,
+    "height": 25
+  },
+  "cupidtilt": {
+    "start": 349,
+    "width": 104,
+    "height": 32
+  },
+  "psychopoetry": {
+    "start": 381,
+    "width": 104,
+    "height": 33
+  },
+  "ironsky": {
+    "start": 414,
+    "width": 104,
+    "height": 34
+  },
+  "cupid2014": {
+    "start": 448,
+    "width": 114,
+    "height": 52
+  },
+  "pseudotechno": {
+    "start": 500,
+    "width": 104,
+    "height": 29
+  },
+  "censor": {
+    "start": 529,
+    "width": 142,
+    "height": 42
+  },
+  "legend": {
+    "start": 571,
+    "width": 142,
+    "height": 42
+  },
+  "qpd": {
+    "start": 613,
+    "width": 114,
+    "height": 41
+  },
+  "tostretch": {
+    "start": 654,
+    "width": 160,
+    "height": 25
+  },
+  "cpx4": {
+    "start": 679,
+    "width": 166,
+    "height": 43
+  },
+  "cpx3": {
+    "start": 722,
+    "width": 167,
+    "height": 51
+  },
+  "macaroons": {
+    "start": 773,
+    "width": 110,
+    "height": 32
+  },
+  "artline": {
+    "start": 805,
+    "width": 166,
+    "height": 50
+  },
+  "deekay": {
+    "start": 855,
+    "width": 146,
+    "height": 42
+  },
+  "cupidround": {
+    "start": 897,
+    "width": 88,
+    "height": 34
+  },
+  "orc": {
+    "start": 931,
+    "width": 154,
+    "height": 85
+  },
+  "compyx": {
+    "start": 1016,
+    "width": 178,
+    "height": 107
+  },
+  "bd": {
+    "start": 1123,
+    "width": 210,
+    "height": 58
+  },
+  "artix": {
+    "start": 1181,
+    "width": 154,
+    "height": 50
+  },
+  "bd2": {
+    "start": 1231,
+    "width": 202,
+    "height": 42
+  },
+  "bk": {
+    "start": 1273,
+    "width": 210,
+    "height": 66
+  },
+  "sulaco": {
+    "start": 1339,
+    "width": 104,
+    "height": 34
+  },
+  "bk2": {
+    "start": 1373,
+    "width": 178,
+    "height": 58
+  },
+  "cml": {
+    "start": 1431,
+    "width": 144,
+    "height": 42
+  },
+  "diart2": {
+    "start": 1473,
+    "width": 144,
+    "height": 72
+  },
+  "deekay4": {
+    "start": 1545,
+    "width": 144,
+    "height": 42
+  },
+  "dize": {
+    "start": 1587,
+    "width": 146,
+    "height": 42
+  },
+  "genius": {
+    "start": 1629,
+    "width": 210,
+    "height": 42
+  },
+  "gp": {
+    "start": 1671,
+    "width": 178,
+    "height": 50
+  },
+  "htl": {
+    "start": 1721,
+    "width": 178,
+    "height": 50
+  },
+  "htl2": {
+    "start": 1771,
+    "width": 186,
+    "height": 42
+  },
+  "manowar": {
+    "start": 1813,
+    "width": 178,
+    "height": 50
+  },
+  "nec": {
+    "start": 1863,
+    "width": 146,
+    "height": 42
+  },
+  "ons": {
+    "start": 1905,
+    "width": 178,
+    "height": 50
+  },
+  "oregon": {
+    "start": 1955,
+    "width": 210,
+    "height": 74
+  },
+  "skyhigh": {
+    "start": 2029,
+    "width": 178,
+    "height": 32
+  },
+  "vic": {
+    "start": 2061,
+    "width": 146,
+    "height": 50
+  },
+  "deliverance": {
+    "start": 2111,
+    "width": 174,
+    "height": 50
+  },
+  "unibit": {
+    "start": 2161,
+    "width": 206,
+    "height": 58
+  },
+  "vic3": {
+    "start": 2219,
+    "width": 146,
+    "height": 42
+  },
+  "wot": {
+    "start": 2261,
+    "width": 138,
+    "height": 44
+  },
+  "wow": {
+    "start": 2305,
+    "width": 146,
+    "height": 42
+  },
+  "tempest": {
+    "start": 2347,
+    "width": 210,
+    "height": 74
+  },
+  "vic2": {
+    "start": 2421,
+    "width": 266,
+    "height": 74
+  },
+  "cpx6": {
+    "start": 2495,
+    "width": 151,
+    "height": 49
+  },
+  "tough": {
+    "start": 2544,
+    "width": 175,
+    "height": 34
+  },
+  "doolittle": {
+    "start": 2578,
+    "width": 175,
+    "height": 42
+  },
+  "unknown": {
+    "start": 2620,
+    "width": 234,
+    "height": 81
+  },
+  "cpx5": {
+    "start": 2701,
+    "width": 174,
+    "height": 52
+  },
+  "deekay3": {
+    "start": 2753,
+    "width": 198,
+    "height": 143
+  },
+  "cupidbigstone": {
+    "start": 2896,
+    "width": 118,
+    "height": 60
+  },
+  "deliverance2": {
+    "start": 2956,
+    "width": 142,
+    "height": 74
+  },
+  "deekay2": {
+    "start": 3030,
+    "width": 198,
+    "height": 140
+  },
+  "oregon2": {
+    "start": 3170,
+    "width": 202,
+    "height": 106
+  },
+  "cpx2": {
+    "start": 3276,
+    "width": 210,
+    "height": 170
+  },
+  "diart": {
+    "start": 3446,
+    "width": 202,
+    "height": 202
+  }
+}
+
   // sorry, old browsers…
   if (!document.querySelector) {return false;}
 /* 
@@ -93,10 +413,15 @@
   const createFontMenu = () => {
     var out = '';
     for (var i in window.fonts) {
-      set = fonts[i];
+      let set = fonts[i];
+      console.log(imgobj[i]);
       out += `<li>
-        <a href="index.html?font=${i}"><img src="demologos/${i}.png" 
-        alt="${i} ${set.maker} - ${set.product}" id="${i}"></a>`;
+        <a href="index.html?font=${i}">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+        style="background:url(img/logos.png);background-position:0 -${imgobj[i].start}px"
+        alt="${i} ${set.maker} - ${set.product}" 
+        height="${imgobj[i].height}" 
+        width="${imgobj[i].width}" id="${i}"></a>`;
       out += '<small>Font by ';
       out += (set.makerlink) 
         ? `<a href="${set.makerlink}">${set.maker}</a>`

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Make Logo Canvas</title>
+</head>
+<body>
+    <script src="js/fonts.js"></script>
+
+    <script>
+        let i = null;
+        let imgobj = {};
+        let height = 0;
+        let width = 0;
+        var c = document.createElement('canvas');
+        var cx = c.getContext('2d');
+        c.width = 500;
+        c.height = 4000;
+        Object.keys(fonts).forEach(f => {
+            i = new Image()
+            i.src = `demologos/${f}.png`;
+            i.onload = function() {
+            imgobj[this.src.match(/.*\/(.*)\.png/)[1]]={
+                start: height,
+                width: this.naturalWidth,
+                height: this.naturalHeight
+            };
+            cx.drawImage(this, 0, height);
+            height +=  this.naturalHeight;
+            width = Math.max(width,this.naturalWidth);
+            imgobj.fullheight = height;
+            imgobj.fullwidth = width;
+            }
+        })
+        console.log(imgobj);
+        document.body.appendChild(c);
+
+
+    </script>
+</body>
+</html>
