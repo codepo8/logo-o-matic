@@ -278,7 +278,7 @@
                              c64cols[set.background][2] + ')' :
                      background;
     ctx.fillRect(0, 0, c.width, c.height);
-
+    let xoff = set.xoffset ? set.xoffset : 0;
     for(i = 0; i < j; i++) {
       if (str[i] === ' ') {
         if ('$' in set) {
@@ -289,8 +289,9 @@
         }
       }
       if (str[i] in set) {
+
         ctx.drawImage(
-          srcimg, set[str[i]][0], set.offset, set[str[i]][1],
+          srcimg, set[str[i]][0] + xoff, set.offset, set[str[i]][1],
           set.height, destX, destY, set[str[i]][1], set.height
         );
         destX += set[str[i]][1] + parseInt(kerning.value, 10);
