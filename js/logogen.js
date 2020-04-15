@@ -76,8 +76,9 @@
     lightgrey:  [149, 149, 149, 255]
   };
 
-  var valid = /^[a-z|\s|\$|\.|,|!]+$/;
+  var valid = /^[a-z|0-9|\?|\.|\"|\:|,|\(|\)|!|\s]+$/;
   var rep = /[^a-z|\s|\$]+/g;
+  input.setAttribute('pattern','[a-z|0-9|\?|\.|\"|\:|,|\(|\)|!|\s]+');
 
   function init() {
     var url = document.location.search.split('?text=')[1];
