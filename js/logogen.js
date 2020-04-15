@@ -15,49 +15,45 @@
   The image with the .current class defines which font is preset by
   reading out its ID
 */
-  var nav =        document.querySelector('#nav ul');
-  var srcimg =     document.querySelector('#fonts');
-  var save =       document.querySelector('#save');
-  var input =      document.querySelector('#text');
-  var swab =       document.querySelector('#swab');
-  var c64palette = document.querySelector('#c64colours');
-  var kerning =    document.querySelector('#kerning');
-  var spacing =    document.querySelector('#spacing');
-  var offsetchar =    document.querySelector('#charoffset');
-  var old =        document.querySelector('.current');
-  var container =  document.querySelector('#container');
-  var zoombutton = document.querySelector('#zoombutton');
-  var colbutton = document.querySelector('#colourbutton');
+  let nav =        document.querySelector('#nav ul');
+  let srcimg =     document.querySelector('#fonts');
+  let save =       document.querySelector('#save');
+  let input =      document.querySelector('#text');
+  let swab =       document.querySelector('#swab');
+  let c64palette = document.querySelector('#c64colours');
+  let kerning =    document.querySelector('#kerning');
+  let spacing =    document.querySelector('#spacing');
+  let offsetchar = document.querySelector('#charoffset');
+  let old =        document.querySelector('.current');
+  let container =  document.querySelector('#container');
+  let zoombutton = document.querySelector('#zoombutton');
+  // TODO let colbutton =  document.querySelector('#colourbutton');
 
-  var c = document.querySelector('#main');
-  var ctx = c.getContext('2d');
-
-  var zc = document.querySelector('#zoom');
-  var zcx = zc.getContext('2d');
+  let c = document.querySelector('#main');
+  let ctx = c.getContext('2d');
+  let zc = document.querySelector('#zoom');
+  let zcx = zc.getContext('2d');
   zc.width = 80;
   zc.height = 80;
   zcx.imageSmoothingEnabled = false;
-  zcx.mozImageSmoothingEnabled = false;
   zcx.webkitImageSmoothingEnabled = false;
 
-  var dc = document.querySelector('#display');
-  var dcx = dc.getContext('2d');
+  let dc = document.querySelector('#display');
+  let dcx = dc.getContext('2d');
   dc.width = 80;
   dc.height = 80;
   dcx.imageSmoothingEnabled = false;
-  dcx.mozImageSmoothingEnabled = false;
   dcx.webkitImageSmoothingEnabled = false;
-  dcx.msImageSmoothingEnabled = false;
 
-  var zoomfactor = 2;
-  var set = fonts[old.id];
-  var background = 'rgba(2,2,2,1)';
-  var pixels;
-  var colourpicked = false;
-  var oldpixelcolour;
-  var newpixelcolour;
-  var pixelbuffer = [];
-  var c64cols = {
+  let zoomfactor = 2;
+  let set = fonts[old.id];
+  let background = 'rgba(2,2,2,1)';
+  let pixels;
+  let colourpicked = false;
+  let oldpixelcolour;
+  let newpixelcolour;
+  let pixelbuffer = [];
+  let c64cols = {
     transparent: [0, 0, 0, 0],
     black:      [0, 0, 0, 255],
     white:      [255, 255, 255, 255],
@@ -77,16 +73,14 @@
     lightgrey:  [149, 149, 149, 255]
   };
 
-  var valid = /^[a-z|0-9|\?|\.|\"|\:|,|\(|\)|!|\s]+$/;
-  var rep = /[^a-z|\s|\$]+/g;
+  let valid = /^[a-z|0-9|\?|\.|\"|\:|,|\(|\)|!|\s]+$/;
+  let rep = /[^a-z|\s|\$]+/g;
   input.setAttribute('pattern','[a-z|0-9|\?|\.|\"|\:|,|\(|\)|!|\s]+');
 
-  function init() {
-    var url = document.location.search.split('?text=')[1];
-    if(url){
-      sanitise(url.replace(/%20/g,' '));
-    }
-    var hash = document.location.hash;
+  const init = () => {
+    let url = document.location.search.split('?text=')[1];
+    if (url){ sanitise(url.replace(/%20/g,' ')) }
+    let hash = document.location.hash;
     hash = hash.replace('goto-','');
     if (hash !== '' && document.querySelector(hash)) {
       document.querySelector(hash).click();
@@ -95,39 +89,34 @@
     }
   }
 
-  function createFontMenu() {
+  const createFontMenu = () => {
     var out = '';
     for (var i in window.fonts) {
       set = fonts[i];
-      out += '<li><a href="index.html?font=' + i + '"><img src="img/' + i +
-              '.png" alt="' + i + ' ' + set.maker  + ' - ' + set.product +
-               '" id="' + i + '"></a>';
+      out += `<li>
+        <a href="index.html?font=${i}"><img src="demologos/${i}.png" 
+        alt="${i} ${set.maker} - ${set.product}" id="${i}"></a>`;
       out += '<small>Font by ';
-      if (set.makerlink) {
-        out += '<a href="' + set.makerlink + '">' + set.maker + '</a>';
-      } else {
-        out += set.maker;
-      }
-      if (set.product) {
-        out += ' used in <a href="' + set.productlink + '">' +
-                    set.product + '</a>';
-      } else {
-        out += set.product;
-      }
+      out += (set.makerlink) 
+        ? `<a href="${set.makerlink}">${set.maker}</a>`
+        : set.maker;
+      out += (set.product)
+        ? ` used in <a href="${set.productlink}">${set.product}</a>` 
+        : set.product;
       if (set.year) {
-        out += ' (' + set.year + ')';
+        out += ` (${set.year})`;
       }
       if (set.format) {
-        out += ' format: ' + set.format + '';
+        out += ` format: ${set.format}`;
       }
-      out += '</li></small>';
+      out += `</small></li>`;
     }
     nav.innerHTML = out;
   }
 
-  function pickfont(e) {
+  const pickfont = (e) => {
     if (!document.body.classList.contains('zoomed')) {
-      var t = e.target;
+      let t = e.target;
       if(t.tagName === 'IMG'){
         set = fonts[t.id];
         window.location.hash = 'goto-' + t.id;
@@ -145,13 +134,13 @@
     }
   }
 
-  function endcolouring() {
+  const endcolouring = () => {
     c64palette.classList.add('inactive');
     container.classList.remove('colouring');
   }
 
-  function getC64colour(e) {
-    var t = e.target;
+  const getC64colour = (e) => {
+    let t = e.target;
     if (t.tagName === 'LI') {
       if (oldpixelcolour) {
         replacecolour(
@@ -170,10 +159,10 @@
     e.preventDefault();
   }
 
-  function replacecolour(moo, oldcolour, newcolour) {
-    var all = pixelbuffer.length;
-    for(var j = 0; j < all; j++) {
-      var i = pixelbuffer[j];
+  const replacecolour = (moo, oldcolour, newcolour) => {
+    let all = pixelbuffer.length;
+    for(let j = 0; j < all; j++) {
+      let i = pixelbuffer[j];
         pixels.data[i] = newcolour[0];
         pixels.data[i+1] = newcolour[1];
         pixels.data[i+2] = newcolour[2];
@@ -184,11 +173,11 @@
     storelink(c);
   }
 
-  function showzoom(ev) {
-    var x = ev.layerX;
-    var y = ev.layerY;
-    var sx = (x-5) < 0 ? 0 : x-5;
-    var sy = (y-5) < 0 ? 0 : y-5;
+  const showzoom = (ev) => {
+    let x = ev.layerX;
+    let y = ev.layerY;
+    let sx = (x-5) < 0 ? 0 : x-5;
+    let sy = (y-5) < 0 ? 0 : y-5;
     zcx.fillStyle = '#000';
     zcx.fillRect(0,0,80,80);
     zcx.drawImage(c,sx,sy,10,10,0,0,80,80);
@@ -198,9 +187,9 @@
     zcx.strokeRect(30,35,20,10);
   }
 
-  function readcolour(ev) {
-    var x = ev.layerX;
-    var y = ev.layerY;
+  const readcolour = (ev) => {
+    let x = ev.layerX;
+    let y = ev.layerY;
     swab.style.background = 'rgba('+
       pixelcolour(x, y).r + ',' +
       pixelcolour(x, y).g + ',' +
@@ -213,11 +202,11 @@
     }
   }
 
-  function getpixelsofcolour(col) {
+  const getpixelsofcolour = (col) => {
     pixelbuffer = [];
-    var pixels = ctx.getImageData(0, 0, c.width, c.height);
-    var all = pixels.data.length;
-    for(var i = 0; i < all; i+=4) {
+    let pixels = ctx.getImageData(0, 0, c.width, c.height);
+    let all = pixels.data.length;
+    for(let i = 0; i < all; i+=4) {
       if (pixels.data[i] === col.r &&
           pixels.data[i+1] === col.g &&
           pixels.data[i+2] === col.b &&
@@ -227,7 +216,7 @@
     }
   }
 
-  function pixelcolour(x, y) {
+  const pixelcolour = (x,y) => {
     var pixeldata = ctx.getImageData(x,y,1,1);
     return {
         r: pixeldata.data[0],
@@ -237,28 +226,25 @@
     };
   }
 
-  function sanitise(s){
+  const sanitise = (s) => {
     if (typeof s !== 'string') { s = input.value; }
     s = s.toLowerCase();
     if(!valid.test(s)){
       s = s.replace(rep,'');
     }
     input.value = s;
-    if(s){
-      draw(s);
-    }
+    if(s){ draw(s) }
   }
 
-  function draw(s) {
-    var charoff = true;
-    var charoffset = +offsetchar.value;
-    var str = s.split('');
-    var w = 0;
-    var h = 0;
-    var i = 0;
-    var j = str.length;
-    var destX = 5;
-    var destY = 5;
+  const draw = (s) => {
+    let charoff = true;
+    let charoffset = +offsetchar.value;
+    let str = s.split('');
+    let w = 0;
+    let i = 0;
+    let j = str.length;
+    let destX = 5;
+    let destY = 5;
     for(i = 0; i < j; i++) {
       if (str[i] === ' ') {
         if ('$' in set) {
@@ -305,16 +291,16 @@
     analysecolours(pixels.data);
   }
 
-  function analysecolours(pixels) {
-    var all = pixels.length;
-    var coloursused = {};
-    var i = 0;
-    var j = 0;
+  const analysecolours = (pixels) => {
+    let all = pixels.length;
+    let coloursused = {};
+    let i = 0;
+    let j = 0;
     for (i = 0; i < all; i+=4) {
       coloursused[pixels[i]+'|'+pixels[i+1]+'|'+pixels[i+2]+'|'+pixels[i+3]] = 1;
     }
     var lis = document.querySelectorAll('.palette li');
-    for (i=0; i<lis.length; i++) {
+    for (i = 0; i < lis.length; i++) {
       lis[i].classList.remove('used');
     }
     for (i in coloursused) {
@@ -330,18 +316,17 @@
     }
   }
 
-  function dozoom(ev) {
+  const dozoom = (ev) => {
     document.body.classList.toggle('zoomed');
     if (zoomfactor > 1) {
-      var ax = c.width;
-      var ay = c.height;
+      let ax = c.width;
+      let ay = c.height;
       dc.width = ax * zoomfactor;
       dc.height = ay * zoomfactor;
-      for (var y = 0; y < ay; y++) {
-        for (var x = 0; x < ax; x++) {
-          var col = pixelcolour(x, y);
-          dcx.fillStyle = 'rgba(' + col.r + ',' + col.g + ',' +
-                           col.b + ' ,' + col.a + ')';
+      for (let y = 0; y < ay; y++) {
+        for (let x = 0; x < ax; x++) {
+          let col = pixelcolour(x, y);
+          dcx.fillStyle = `rgba(${col.r},${col.g},${col.b},${col.a})`;
           dcx.fillRect(x * zoomfactor, y * zoomfactor, zoomfactor, zoomfactor);
         }
       }
@@ -349,37 +334,37 @@
       zoomfactor = 1;
       storelink(dc);
     } else {
-      zoombutton.innerHTML = '2x';
+      zoombutton.innerHTML = 'Show double size logo';
       zoomfactor = 2;
       storelink(c);
     }
     ev.preventDefault();
   }
 
-  function storelink(srccanvas) {
-    save.innerHTML = '' +
-     '<a href="' + srccanvas.toDataURL('image/png') + '" download="' +
-      input.value + '.png">Click to save your logo</a>';
+  const storelink = (srccanvas) => {
+    save.innerHTML = `
+    <a href="${srccanvas.toDataURL('image/png')}" 
+    download="${input.value}.png">Click to save your logo</a>`;
   }
 
-  c.addEventListener('click', function(ev) {
+  c.addEventListener('click', (ev) => {
     readcolour(ev);
     colourpicked = true;
     container.classList.add('colouring');
   }, false);
 
-  c.addEventListener('dblclick', function(ev) {
+  c.addEventListener('dblclick', (ev) => {
     endcolouring();
   }, false);
 
-  c.addEventListener('mousemove', function(ev) {
+  c.addEventListener('mousemove', (ev) => {
     if (!colourpicked) {
       readcolour(ev);
     }
     showzoom(ev);
   }, false);
 
-  input.addEventListener('input',function(e){
+  input.addEventListener('input', (e) => {
     sanitise();
     endcolouring();
   },false);
