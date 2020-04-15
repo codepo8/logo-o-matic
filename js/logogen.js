@@ -27,6 +27,7 @@
   let old =        document.querySelector('.current');
   let container =  document.querySelector('#container');
   let zoombutton = document.querySelector('#zoombutton');
+  let availablecontainer = document.querySelector('#charsavailable');
   // TODO let colbutton =  document.querySelector('#colourbutton');
 
   let c = document.querySelector('#main');
@@ -73,9 +74,9 @@
     lightgrey:  [149, 149, 149, 255]
   };
 
-  let valid = /^[a-z|0-9|\?|\.|\"|\:|,|\(|\)|!|\s]+$/;
+  let valid = /^[a-z|0-9|\?|\.|\"|\:|/|%|,|\(|\)|'|!|+|\-|=|\s]+$/;
   let rep = /[^a-z|\s|\$]+/g;
-  input.setAttribute('pattern','[a-z|0-9|\?|\.|\"|\:|,|\(|\)|!|\s]+');
+  //  input.setAttribute('pattern',`^[a-z|0-9|\?|\.|\"|\:|/|%|,|\(|\)|'|!|+|-|=|\s]+$`);
 
   const init = () => {
     let url = document.location.search.split('?text=')[1];
@@ -119,6 +120,12 @@
       let t = e.target;
       if(t.tagName === 'IMG'){
         set = fonts[t.id];
+        let out = 'a-z';
+        let available = Object.keys(set).filter(k=>k.length===1&&!/[a-z]/.test(k));
+        if (available.indexOf('0') !== -1) { out += ' 0-9' }
+        out += ' ' + available.filter(k => !/[0-9]/.test(k)).sort().join('');
+        availablecontainer.innerText = out;
+
         window.location.hash = 'goto-' + t.id;
         spacing.disabled = ('$' in set);
         spacing.parentNode.className = ('$' in set) ? 'disabled' : '';

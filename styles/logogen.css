@@ -162,7 +162,7 @@ h2 {
   padding: 5px 10px;
   font-size: 18px;
 }
-span {
+span:first-of-type {
   font-weight: bold;
   text-align: center;
   background: lime;
