@@ -95,6 +95,8 @@ input[type="range"] {
 }
 input[type=number] {
   width: 3em;
+  font-family: inherit;
+  font-size: 14px;
 }
 input[type=text] {
   display: block;
@@ -209,6 +211,11 @@ footer p{
   color: #ccc;
   padding: 5px 10px;
   background: #333;
+}
+.inputs li {
+  font-size: 16px;
+  list-style: none;
+  padding-bottom: 5px;
 }
 .instructions {
   clear: both;

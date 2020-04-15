@@ -23,6 +23,7 @@
   var c64palette = document.querySelector('#c64colours');
   var kerning =    document.querySelector('#kerning');
   var spacing =    document.querySelector('#spacing');
+  var offsetchar =    document.querySelector('#charoffset');
   var old =        document.querySelector('.current');
   var container =  document.querySelector('#container');
   var zoombutton = document.querySelector('#zoombutton');
@@ -249,6 +250,8 @@
   }
 
   function draw(s) {
+    var charoff = true;
+    var charoffset = +offsetchar.value;
     var str = s.split('');
     var w = 0;
     var h = 0;
@@ -271,7 +274,7 @@
     }
     w += (j - 1) * parseInt(kerning.value, 10) + 10;
     c.width = w;
-    c.height = set.height + 10;
+    c.height = set.height + 10 + charoffset;
     ctx.fillStyle = set.background ?
                     'rgb(' + c64cols[set.background][0] + ',' +
                              c64cols[set.background][1] + ',' +
@@ -289,10 +292,10 @@
         }
       }
       if (str[i] in set) {
-
+        charoff = !charoff
         ctx.drawImage(
           srcimg, set[str[i]][0] + xoff, set.offset, set[str[i]][1],
-          set.height, destX, destY, set[str[i]][1], set.height
+          set.height, destX, destY + (charoff?charoffset:0) , set[str[i]][1], set.height
         );
         destX += set[str[i]][1] + parseInt(kerning.value, 10);
       }
@@ -382,6 +385,7 @@
   },false);
 
   kerning.addEventListener('change', sanitise, false);
+  offsetchar.addEventListener('change', sanitise, false);
   spacing.addEventListener('change',sanitise, false);
   nav.addEventListener('click', pickfont, false);
   c64palette.addEventListener('click', getC64colour, false);
