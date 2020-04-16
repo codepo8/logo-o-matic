@@ -9,323 +9,7 @@
 (function(){
 
 const imgobj = {
-  "tinygold": {
-    "start": 0,
-    "width": 68,
-    "height": 24
-  },
-  "fullheight": 3648,
-  "fullwidth": 266,
-  "ollie": {
-    "start": 24,
-    "width": 139,
-    "height": 62
-  },
-  "arcoss": {
-    "start": 86,
-    "width": 192,
-    "height": 58
-  },
-  "foldfont": {
-    "start": 144,
-    "width": 208,
-    "height": 90
-  },
-  "bigcolourhires": {
-    "start": 234,
-    "width": 208,
-    "height": 66
-  },
-  "twobytwohirescupid": {
-    "start": 300,
-    "width": 76,
-    "height": 24
-  },
-  "balls": {
-    "start": 324,
-    "width": 73,
-    "height": 25
-  },
-  "cupidtilt": {
-    "start": 349,
-    "width": 104,
-    "height": 32
-  },
-  "psychopoetry": {
-    "start": 381,
-    "width": 104,
-    "height": 33
-  },
-  "ironsky": {
-    "start": 414,
-    "width": 104,
-    "height": 34
-  },
-  "cupid2014": {
-    "start": 448,
-    "width": 114,
-    "height": 52
-  },
-  "pseudotechno": {
-    "start": 500,
-    "width": 104,
-    "height": 29
-  },
-  "censor": {
-    "start": 529,
-    "width": 142,
-    "height": 42
-  },
-  "legend": {
-    "start": 571,
-    "width": 142,
-    "height": 42
-  },
-  "qpd": {
-    "start": 613,
-    "width": 114,
-    "height": 41
-  },
-  "tostretch": {
-    "start": 654,
-    "width": 160,
-    "height": 25
-  },
-  "cpx4": {
-    "start": 679,
-    "width": 166,
-    "height": 43
-  },
-  "cpx3": {
-    "start": 722,
-    "width": 167,
-    "height": 51
-  },
-  "macaroons": {
-    "start": 773,
-    "width": 110,
-    "height": 32
-  },
-  "artline": {
-    "start": 805,
-    "width": 166,
-    "height": 50
-  },
-  "deekay": {
-    "start": 855,
-    "width": 146,
-    "height": 42
-  },
-  "cupidround": {
-    "start": 897,
-    "width": 88,
-    "height": 34
-  },
-  "orc": {
-    "start": 931,
-    "width": 154,
-    "height": 85
-  },
-  "compyx": {
-    "start": 1016,
-    "width": 178,
-    "height": 107
-  },
-  "bd": {
-    "start": 1123,
-    "width": 210,
-    "height": 58
-  },
-  "artix": {
-    "start": 1181,
-    "width": 154,
-    "height": 50
-  },
-  "bd2": {
-    "start": 1231,
-    "width": 202,
-    "height": 42
-  },
-  "bk": {
-    "start": 1273,
-    "width": 210,
-    "height": 66
-  },
-  "sulaco": {
-    "start": 1339,
-    "width": 104,
-    "height": 34
-  },
-  "bk2": {
-    "start": 1373,
-    "width": 178,
-    "height": 58
-  },
-  "cml": {
-    "start": 1431,
-    "width": 144,
-    "height": 42
-  },
-  "diart2": {
-    "start": 1473,
-    "width": 144,
-    "height": 72
-  },
-  "deekay4": {
-    "start": 1545,
-    "width": 144,
-    "height": 42
-  },
-  "dize": {
-    "start": 1587,
-    "width": 146,
-    "height": 42
-  },
-  "genius": {
-    "start": 1629,
-    "width": 210,
-    "height": 42
-  },
-  "gp": {
-    "start": 1671,
-    "width": 178,
-    "height": 50
-  },
-  "htl": {
-    "start": 1721,
-    "width": 178,
-    "height": 50
-  },
-  "htl2": {
-    "start": 1771,
-    "width": 186,
-    "height": 42
-  },
-  "manowar": {
-    "start": 1813,
-    "width": 178,
-    "height": 50
-  },
-  "nec": {
-    "start": 1863,
-    "width": 146,
-    "height": 42
-  },
-  "ons": {
-    "start": 1905,
-    "width": 178,
-    "height": 50
-  },
-  "oregon": {
-    "start": 1955,
-    "width": 210,
-    "height": 74
-  },
-  "skyhigh": {
-    "start": 2029,
-    "width": 178,
-    "height": 32
-  },
-  "vic": {
-    "start": 2061,
-    "width": 146,
-    "height": 50
-  },
-  "deliverance": {
-    "start": 2111,
-    "width": 174,
-    "height": 50
-  },
-  "unibit": {
-    "start": 2161,
-    "width": 206,
-    "height": 58
-  },
-  "vic3": {
-    "start": 2219,
-    "width": 146,
-    "height": 42
-  },
-  "wot": {
-    "start": 2261,
-    "width": 138,
-    "height": 44
-  },
-  "wow": {
-    "start": 2305,
-    "width": 146,
-    "height": 42
-  },
-  "tempest": {
-    "start": 2347,
-    "width": 210,
-    "height": 74
-  },
-  "vic2": {
-    "start": 2421,
-    "width": 266,
-    "height": 74
-  },
-  "cpx6": {
-    "start": 2495,
-    "width": 151,
-    "height": 49
-  },
-  "tough": {
-    "start": 2544,
-    "width": 175,
-    "height": 34
-  },
-  "doolittle": {
-    "start": 2578,
-    "width": 175,
-    "height": 42
-  },
-  "unknown": {
-    "start": 2620,
-    "width": 234,
-    "height": 81
-  },
-  "cpx5": {
-    "start": 2701,
-    "width": 174,
-    "height": 52
-  },
-  "deekay3": {
-    "start": 2753,
-    "width": 198,
-    "height": 143
-  },
-  "cupidbigstone": {
-    "start": 2896,
-    "width": 118,
-    "height": 60
-  },
-  "deliverance2": {
-    "start": 2956,
-    "width": 142,
-    "height": 74
-  },
-  "deekay2": {
-    "start": 3030,
-    "width": 198,
-    "height": 140
-  },
-  "oregon2": {
-    "start": 3170,
-    "width": 202,
-    "height": 106
-  },
-  "cpx2": {
-    "start": 3276,
-    "width": 210,
-    "height": 170
-  },
-  "diart": {
-    "start": 3446,
-    "width": 202,
-    "height": 202
-  }
+  "fullheight":3648,"fullwidth":266,"tinygold":[0,68,24],"ollie":[24,139,62],"arcoss":[86,192,58],"foldfont":[144,208,90],"bigcolourhires":[234,208,66],"twobytwohirescupid":[300,76,24],"balls":[324,73,25],"cupidtilt":[349,104,32],"psychopoetry":[381,104,33],"ironsky":[414,104,34],"cupid2014":[448,114,52],"pseudotechno":[500,104,29],"censor":[529,142,42],"legend":[571,142,42],"qpd":[613,114,41],"tostretch":[654,160,25],"cpx4":[679,166,43],"cpx3":[722,167,51],"macaroons":[773,110,32],"artline":[805,166,50],"deekay":[855,146,42],"cupidround":[897,88,34],"orc":[931,154,85],"compyx":[1016,178,107],"bd":[1123,210,58],"artix":[1181,154,50],"bd2":[1231,202,42],"bk":[1273,210,66],"sulaco":[1339,104,34],"bk2":[1373,178,58],"cml":[1431,144,42],"diart2":[1473,144,72],"deekay4":[1545,144,42],"dize":[1587,146,42],"genius":[1629,210,42],"gp":[1671,178,50],"htl":[1721,178,50],"htl2":[1771,186,42],"manowar":[1813,178,50],"nec":[1863,146,42],"ons":[1905,178,50],"oregon":[1955,210,74],"skyhigh":[2029,178,32],"vic":[2061,146,50],"deliverance":[2111,174,50],"unibit":[2161,206,58],"vic3":[2219,146,42],"wot":[2261,138,44],"wow":[2305,146,42],"tempest":[2347,210,74],"vic2":[2421,266,74],"cpx6":[2495,151,49],"tough":[2544,175,34],"doolittle":[2578,175,42],"unknown":[2620,234,81],"cpx5":[2701,174,52],"deekay3":[2753,198,143],"cupidbigstone":[2896,118,60],"deliverance2":[2956,142,74],"deekay2":[3030,198,140],"oregon2":[3170,202,106],"cpx2":[3276,210,170],"diart":[3446,202,202]
 }
 
   // sorry, old browsers…
@@ -394,7 +78,7 @@ const imgobj = {
     lightgrey:  [149, 149, 149, 255]
   };
 
-  let valid = /^[a-z|0-9|\?|\.|\"|\:|/|%|,|\(|\)|'|!|+|\-|=|\s]+$/;
+  let valid = /^[a-z|0-9|\?|\.|\"|\:|/|%|&|;|,|\(|\)|'|!|+|\-|=|\s]+$/;
   let rep = /[^a-z|\s|\$]+/g;
   //  input.setAttribute('pattern',`^[a-z|0-9|\?|\.|\"|\:|/|%|,|\(|\)|'|!|+|-|=|\s]+$`);
 
@@ -417,10 +101,10 @@ const imgobj = {
       out += `<li>
         <a href="index.html?font=${i}">
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-        style="background:url(img/logos.png);background-position:0 -${imgobj[i].start}px"
+        style="background:url(img/logos.png);background-position:0 -${imgobj[i][0]}px"
         alt="${i} ${set.maker} - ${set.product}" 
-        height="${imgobj[i].height}" 
-        width="${imgobj[i].width}" id="${i}"></a>`;
+        height="${imgobj[i][2]}" 
+        width="${imgobj[i][1]}" id="${i}"></a>`;
       out += '<small>Font by ';
       out += (set.makerlink) 
         ? `<a href="${set.makerlink}">${set.maker}</a>`
@@ -447,12 +131,12 @@ const imgobj = {
         let out = 'a-z';
         let available = Object.keys(set).filter(k=>k.length===1&&!/[a-z]/.test(k));
         if (available.indexOf('0') !== -1) { out += ' 0-9' }
-        out += ' ' + available.filter(k => !/[0-9]/.test(k)).sort().join('');
+        out += ' ' + available.filter(k => !/[0-9|\^]/.test(k)).sort().join('');
         availablecontainer.innerText = out;
 
         window.location.hash = 'goto-' + t.id;
-        spacing.disabled = ('$' in set);
-        spacing.parentNode.className = ('$' in set) ? 'disabled' : '';
+        spacing.disabled = ('^' in set);
+        spacing.parentNode.className = ('^' in set) ? 'disabled' : '';
         old.className = '';
         t.className = 'current';
         old = t;
@@ -578,8 +262,8 @@ const imgobj = {
     let destY = 5;
     for(i = 0; i < j; i++) {
       if (str[i] === ' ') {
-        if ('$' in set) {
-          str[i] = '$';
+        if ('^' in set) {
+          str[i] = '^';
         } else {
           w += +spacing.value;
           continue;
