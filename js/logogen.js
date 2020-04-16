@@ -414,7 +414,6 @@ const imgobj = {
     var out = '';
     for (var i in window.fonts) {
       let set = fonts[i];
-      console.log(imgobj[i]);
       out += `<li>
         <a href="index.html?font=${i}">
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
@@ -461,8 +460,8 @@ const imgobj = {
         pixelbuffer = [];
         sanitise();
         endcolouring();
+        e.preventDefault();
       }
-      e.preventDefault();
     }
   }
 

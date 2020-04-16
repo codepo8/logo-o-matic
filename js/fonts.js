@@ -860,7 +860,7 @@ var fonts = {
     format:'3 colour charset',
     maker:'Atomic Flash',
     makerlink: 'http://csdb.dk/scener/?id=6858',
-    offset:1772,height:96,
+    xoffset:1153,offset:1304,height:96,
     a:[0,96],b:[106,96],c:[212,96],d:[318,96],e:[424,96],f:[530,96],g:[636,96],
     h:[742,96],i:[848,48],j:[906,96],k:[1012,96],l:[1118,96],m:[1224,152],
     n:[1386,96],o:[1492,96],p:[1598,96],q:[1704,96],r:[1810,96],
