@@ -8,10 +8,6 @@
 
 (function(){
 
-const imgobj = {
-  "fullheight":3648,"fullwidth":266,"tinygold":[0,68,24],"ollie":[24,139,62],"arcoss":[86,192,58],"foldfont":[144,208,90],"bigcolourhires":[234,208,66],"twobytwohirescupid":[300,76,24],"balls":[324,73,25],"cupidtilt":[349,104,32],"psychopoetry":[381,104,33],"ironsky":[414,104,34],"cupid2014":[448,114,52],"pseudotechno":[500,104,29],"censor":[529,142,42],"legend":[571,142,42],"qpd":[613,114,41],"tostretch":[654,160,25],"cpx4":[679,166,43],"cpx3":[722,167,51],"macaroons":[773,110,32],"artline":[805,166,50],"deekay":[855,146,42],"cupidround":[897,88,34],"orc":[931,154,85],"compyx":[1016,178,107],"bd":[1123,210,58],"artix":[1181,154,50],"bd2":[1231,202,42],"bk":[1273,210,66],"sulaco":[1339,104,34],"bk2":[1373,178,58],"cml":[1431,144,42],"diart2":[1473,144,72],"deekay4":[1545,144,42],"dize":[1587,146,42],"genius":[1629,210,42],"gp":[1671,178,50],"htl":[1721,178,50],"htl2":[1771,186,42],"manowar":[1813,178,50],"nec":[1863,146,42],"ons":[1905,178,50],"oregon":[1955,210,74],"skyhigh":[2029,178,32],"vic":[2061,146,50],"deliverance":[2111,174,50],"unibit":[2161,206,58],"vic3":[2219,146,42],"wot":[2261,138,44],"wow":[2305,146,42],"tempest":[2347,210,74],"vic2":[2421,266,74],"cpx6":[2495,151,49],"tough":[2544,175,34],"doolittle":[2578,175,42],"unknown":[2620,234,81],"cpx5":[2701,174,52],"deekay3":[2753,198,143],"cupidbigstone":[2896,118,60],"deliverance2":[2956,142,74],"deekay2":[3030,198,140],"oregon2":[3170,202,106],"cpx2":[3276,210,170],"diart":[3446,202,202]
-}
-
   // sorry, old browsers…
   if (!document.querySelector) {return false;}
 /* 
@@ -101,10 +97,10 @@ const imgobj = {
       out += `<li>
         <a href="index.html?font=${i}">
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-        style="background:url(img/logos.png);background-position:0 -${imgobj[i][0]}px"
+        style="background:url(img/logos.png);background-position:0 -${window.imgobj[i][0]}px"
         alt="${i} ${set.maker} - ${set.product}" 
-        height="${imgobj[i][2]}" 
-        width="${imgobj[i][1]}" id="${i}"></a>`;
+        height="${window.imgobj[i][2]}" 
+        width="${window.imgobj[i][1]}" id="${i}"></a>`;
       out += '<small>Font by ';
       out += (set.makerlink) 
         ? `<a href="${set.makerlink}">${set.maker}</a>`
