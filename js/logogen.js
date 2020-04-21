@@ -74,8 +74,8 @@
     lightgrey:  [149, 149, 149, 255]
   };
 
-  let valid = /^[a-z|0-9|\?|\.|\"|\:|/|%|&|;|,|\(|\)|'|!|+|\-|=|\s]+$/;
-  let rep = /[^a-z|\s|\$]+/g;
+  let valid = /^[a-z|0-9|\?|\$|\.|\"|\:|/|%|&|;|,|\(|\)|'|!|+|\-|=|\s]+$/;
+  let rep = /[^a-z|\s]+/g;
   //  input.setAttribute('pattern',`^[a-z|0-9|\?|\.|\"|\:|/|%|,|\(|\)|'|!|+|-|=|\s]+$`);
 
   const init = () => {
@@ -125,7 +125,7 @@
       if(t.tagName === 'IMG'){
         set = fonts[t.id];
         let out = 'a-z';
-        let available = Object.keys(set).filter(k=>k.length===1&&!/[a-z]/.test(k));
+        let available = Object.keys(set).filter(k => k.length === 1 && !/[a-z]/.test(k));
         if (available.indexOf('0') !== -1) { out += ' 0-9' }
         out += ' ' + available.filter(k => !/[0-9|\^]/.test(k)).sort().join('');
         availablecontainer.innerText = out;
@@ -281,8 +281,8 @@
     let xoff = set.xoffset ? set.xoffset : 0;
     for(i = 0; i < j; i++) {
       if (str[i] === ' ') {
-        if ('$' in set) {
-          str[i] = '$';
+        if ('^' in set) {
+          str[i] = '^';
         } else {
           destX += parseInt(spacing.value, 10);
           continue;
