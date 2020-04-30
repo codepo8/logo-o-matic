@@ -23,48 +23,61 @@
   </ul>
 </div>
   <div id="container">
-  <h2><span>2</span><label>Add your logo text: <input id="text" value="excellent"></label> chars: <span id="charsavailable"></span> </h2>  
+  <h2><span>2</span><label>Logo text (~ for linebreak): <input id="text" value="excellent"></label> chars: <span id="charsavailable"></span> </h2>  
   <form>
-    <ul class="inputs">
+    <div class="inputs">
+      <ul>
 <!--  <label>Background: <input type="color" id="colour" value="#000000"></label>
       <label> Opacity: <input type="range" value="1" min="0" max="1" step="0.01" id="opacity"></label> -->
-      <li><label for="kerning">Space between chars: <input id="kerning" type="number" value="2"></label></li>
-      <li><label for="spacing">Space between words: <input id="spacing" type="number" value="15"></label></li>
-      <li><label for="charoffset">Offset each 2nd char: <input id="charoffset" type="number" value="0"></label></li>
-      <button id="zoombutton">Show double size logo</button>
+      <li><label for="kerning">Space between chars: </label><input id="kerning" type="number" value="2"></li>
+      <li><label for="spacing">Space between words: </label><input id="spacing" type="number" value="15"></li>
+      <li><label for="charoffset">Offset each 2nd char: </label><input id="charoffset" type="number" value="0"></li>
+      <li><label for="align">Align (for multiline): </label>
+        <select id="align">
+          <option selected>centre</option>
+          <option>left</option>
+          <option>right</option>
+      </select>
+      </li>
     </ul>
+    </div>
+
+    <div class="actions">
+    <button id="zoombutton">Show double size logo</button>
     <div id="save"></div>
 
+    <ul class="palette inactive" id="c64colours">
+      <li class="transparent row" title="transparent" data-col="000000"></li>
+      <li class="black" title="black" data-col="000000"></li>
+      <li class="brown" title="brown" data-col="433900"></li> 
+      <li class="red" data-col="68372B"></li> 
+      <li class="orange" data-col="6F4F25"></li> 
+      <li class="grey" data-col="6C6C6C"></li> 
+      <li class="lightred" data-col="9A6759"></li> 
+      <li class="lightgrey" data-col="959595"></li> 
+      <li class="yellow" data-col="B8C76F"></li> 
+      <li class="white" data-col="FFFFFF"></li> 
+      <li class="transparent row" title="transparent" data-col="000000"></li>
+      <li class="black" data-col="000000"></li>
+      <li class="blue" data-col="352879"></li> 
+      <li class="darkgrey" data-col="444444"></li> 
+      <li class="purple" data-col="6F3D86"></li> 
+      <li class="lightblue" data-col="6C5EB5"></li> 
+      <li class="green" data-col="588D43"></li> 
+      <li class="cyan" data-col="70A4B2"></li> 
+      <li class="lightgreen" data-col="9AD284"></li> 
+      <li class="white" data-col="FFFFFF"></li> 
+      <li><button id="colourbutton" title="done with colouring">✔</button></li>
+    </ul>
+
+    </div>
   </form>
-  <p class="instructions">Click on a colour in the logo and select from the palette below to change it. Double click or click the ✔ to finish changing colours.</p>
   <div id="swab"></div>
   <canvas id="zoom"></canvas>
   <canvas id="main"></canvas>
   <canvas id="display"></canvas>
-  <ul class="palette inactive" id="c64colours">
-    <li class="transparent row" title="transparent" data-col="000000"></li>
-    <li class="black" title="black" data-col="000000"></li>
-    <li class="brown" title="brown" data-col="433900"></li> 
-    <li class="red" data-col="68372B"></li> 
-    <li class="orange" data-col="6F4F25"></li> 
-    <li class="grey" data-col="6C6C6C"></li> 
-    <li class="lightred" data-col="9A6759"></li> 
-    <li class="lightgrey" data-col="959595"></li> 
-    <li class="yellow" data-col="B8C76F"></li> 
-    <li class="white" data-col="FFFFFF"></li> 
-    <li class="transparent row" title="transparent" data-col="000000"></li>
-    <li class="black" data-col="000000"></li>
-    <li class="blue" data-col="352879"></li> 
-    <li class="darkgrey" data-col="444444"></li> 
-    <li class="purple" data-col="6F3D86"></li> 
-    <li class="lightblue" data-col="6C5EB5"></li> 
-    <li class="green" data-col="588D43"></li> 
-    <li class="cyan" data-col="70A4B2"></li> 
-    <li class="lightgreen" data-col="9AD284"></li> 
-    <li class="white" data-col="FFFFFF"></li> 
-    <li><button id="colourbutton" title="done with colouring">✔</button></li>
-  </ul>
-
+  <p class="instructions">Click on a colour in the logo and select from the palette below to change it. Double click or click the ✔ to finish changing colours.</p>
+ 
 </div>
 </section>
 <footer>

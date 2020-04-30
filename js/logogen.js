@@ -22,6 +22,7 @@
   let swab =       document.querySelector('#swab');
   let c64palette = document.querySelector('#c64colours');
   let kerning =    document.querySelector('#kerning');
+  let alignment =  document.querySelector('#align');
   let spacing =    document.querySelector('#spacing');
   let offsetchar = document.querySelector('#charoffset');
   let old =        document.querySelector('.current');
@@ -74,7 +75,7 @@
     lightgrey:  [149, 149, 149, 255]
   };
 
-  let valid = /^[a-z|0-9|\?|\$|\.|\"|\:|/|%|&|;|,|\(|\)|'|!|+|\-|=|\s]+$/;
+  let valid = /^[a-z|0-9|\?|\$|\.|\"|\:|/|%|&|;|,|\(|\)|'|!|+|\-|=|~|\s]+$/;
   let rep = /[^a-z|\s]+/g;
   //  input.setAttribute('pattern',`^[a-z|0-9|\?|\.|\"|\:|/|%|,|\(|\)|'|!|+|-|=|\s]+$`);
 
@@ -248,6 +249,7 @@
   }
 
   const draw = (s) => {
+    let lines = [...s.matchAll('~')].length + 1; 
     let charoff = true;
     let charoffset = +offsetchar.value;
     let str = s.split('');
@@ -256,22 +258,32 @@
     let j = str.length;
     let destX = 5;
     let destY = 5;
-    for(i = 0; i < j; i++) {
-      if (str[i] === ' ') {
-        if ('^' in set) {
-          str[i] = '^';
-        } else {
-          w += +spacing.value;
-          continue;
+
+    let chunks = s.split('~');
+    let longest = Math.max(...(chunks.map(el => el.replace(/\s/g,'').length)));
+    let fullwidth = [];
+
+    chunks.forEach(s => {
+      let biggest = 0;
+      for (let c of s) {
+        if (c === ' ') {
+          if ('^' in set) {
+            c = '^';
+          } else {
+            biggest += +spacing.value;
+            continue;
+          }
         }
+        if (c in set) { biggest += set[c][1]; }
       }
-      if (str[i] in set) {
-        w += set[str[i]][1];
-      }
-    }
-    w += (j - 1) * parseInt(kerning.value, 10) + 10;
+      fullwidth.push(biggest);
+      w = Math.max(w,biggest);
+    });
+
+    w += (longest-1) * parseInt(kerning.value, 10) + 10;
+
     c.width = w;
-    c.height = set.height + 10 + charoffset;
+    c.height = (set.height + 10 + charoffset) * (lines);
     ctx.fillStyle = set.background ?
                     'rgb(' + c64cols[set.background][0] + ',' +
                              c64cols[set.background][1] + ',' +
@@ -279,24 +291,44 @@
                      background;
     ctx.fillRect(0, 0, c.width, c.height);
     let xoff = set.xoffset ? set.xoffset : 0;
-    for(i = 0; i < j; i++) {
-      if (str[i] === ' ') {
-        if ('^' in set) {
-          str[i] = '^';
-        } else {
-          destX += parseInt(spacing.value, 10);
-          continue;
+    let centered = 0;
+    chunks.forEach((s,k) => {
+      centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
+      switch (alignment.value) {
+        case 'centre':
+          destX += centered / 2;
+        break;
+        case 'right':
+          destX += centered;
+        break;        
+        case 'left':
+          destX = 5;
+        break;        
+      }
+      for (let c of s) {
+        if (c === ' ') {
+          if ('^' in set) {
+            c = '^';
+          } else {
+            destX += parseInt(spacing.value, 10);
+            continue;
+          }
+        }
+        if (c in set) {
+          charoff = !charoff
+          ctx.drawImage(
+            srcimg, set[c][0] + xoff, set.offset, set[c][1],
+            set.height, destX, destY + (charoff?charoffset:0) , set[c][1], set.height
+          );
+          destX += set[c][1] + parseInt(kerning.value, 10);
         }
       }
-      if (str[i] in set) {
-        charoff = !charoff
-        ctx.drawImage(
-          srcimg, set[str[i]][0] + xoff, set.offset, set[str[i]][1],
-          set.height, destX, destY + (charoff?charoffset:0) , set[str[i]][1], set.height
-        );
-        destX += set[str[i]][1] + parseInt(kerning.value, 10);
-      }
-    }
+      destY += (set.height + 10 + charoffset);
+      destX = 5;
+    })
+
+    for(i = 0; i < j; i++) {
+}
     storelink(c);
     pixels = ctx.getImageData(0,0,c.width,c.height);
     analysecolours(pixels.data);
@@ -383,6 +415,7 @@
   kerning.addEventListener('change', sanitise, false);
   offsetchar.addEventListener('change', sanitise, false);
   spacing.addEventListener('change',sanitise, false);
+  alignment.addEventListener('change',sanitise, false);
   nav.addEventListener('click', pickfont, false);
   c64palette.addEventListener('click', getC64colour, false);
   zoombutton.addEventListener('click', dozoom, false);

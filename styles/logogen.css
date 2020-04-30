@@ -27,6 +27,10 @@ html, body {
   top: 0;
   left: 0;
 }
+.actions {
+  flex: 3;
+  padding-left: 20px;
+}
 .zoomed #container, .zoomed h1 {
   margin-left: 0;
   transition: 0.5s;
@@ -86,7 +90,19 @@ label.disabled {
 }
 li, p, input {
   font-size: 20px;
+  font-family: inherit;
 }
+.inputs li {
+  display: flex;
+}
+.inputs label {
+  flex: 4;
+}
+.inputs input, .inputs select {
+  font-family: inherit;
+  font-size: 1em;
+}
+
 .colouring .inputs label {
   opacity: 0.3;
 }
@@ -94,8 +110,8 @@ input[type="range"] {
   width: 120px;
 }
 input[type=number] {
-  width: 3em;
   font-family: inherit;
+  width: 2em;
   font-size: 14px;
 }
 input[type=text] {
@@ -131,12 +147,13 @@ button {
   font-size: 1em ;
 }
 .inputs {
-  float: left;
+  flex: 1;
 }
 #save p {
   font-size: inherit;
 }
 form {
+  display: flex;
   padding: 5px 0 5px 20px;
 }
 output {
@@ -228,7 +245,9 @@ footer p{
 .zoomed #swab,
 .zoomed input,
 .zoomed label,
-#container.zoomed  h2, 
+.zoomed h2,
+.zoomed .inputs,
+#container.zoomed h2, 
 .zoomed .instructions,
 .zoomed span {
   display: none;
@@ -265,16 +284,19 @@ canvas {
   margin-left: 0;
 }
 #save {
-  float: left;
-  margin-top: -7px;
-  padding: 5px 10px;
+  padding: 5px 0;
 }
-#save a {
+#save a, button {
+  font-family: inherit;
+  border: none;
   background: #369;
   text-decoration: none;
   color: #fff;
   padding: 5px;
-  line-height: 2em;
+  margin-bottom: 5px;
+}
+button {
+  background: #333;
 }
 .inactive {
   opacity: 0.1;
@@ -285,9 +307,8 @@ canvas {
 }
 ul.palette {
   overflow: hidden;
-  margin: 10px 0 10px 25px;
+  margin: 10px 0 10px 0;
   transition: 0.5s;
-  clear: both;
 }
 .transparent { background: transparent; }
 .black { background: #000000 }
