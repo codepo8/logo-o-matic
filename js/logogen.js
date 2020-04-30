@@ -77,7 +77,6 @@
 
   let valid = /^[a-z|0-9|\?|\$|\.|\"|\:|/|%|&|;|,|\(|\)|'|!|+|\-|=|~|\s]+$/;
   let rep = /[^a-z|\s]+/g;
-  //  input.setAttribute('pattern',`^[a-z|0-9|\?|\.|\"|\:|/|%|,|\(|\)|'|!|+|-|=|\s]+$`);
 
   const init = () => {
     let url = document.location.search.split('?text=')[1];
@@ -241,25 +240,26 @@
   const sanitise = (s) => {
     if (typeof s !== 'string') { s = input.value; }
     s = s.toLowerCase();
-    if(!valid.test(s)){
-      s = s.replace(rep,'');
+    for (let c of s) {
+      if (c !== "~" && c !== ' ') {
+        if(!(c in set)){
+          s = s.replace(c,'');
+        }
+      }
     }
     input.value = s;
     if(s){ draw(s) }
   }
 
   const draw = (s) => {
-    let lines = [...s.matchAll('~')].length + 1; 
+
     let charoff = true;
     let charoffset = +offsetchar.value;
-    let str = s.split('');
     let w = 0;
-    let i = 0;
-    let j = str.length;
     let destX = 5;
     let destY = 5;
-
     let chunks = s.split('~');
+    let lines = chunks.length;
     let longest = Math.max(...(chunks.map(el => el.replace(/\s/g,'').length)));
     let fullwidth = [];
 
@@ -290,10 +290,11 @@
                              c64cols[set.background][2] + ')' :
                      background;
     ctx.fillRect(0, 0, c.width, c.height);
+
     let xoff = set.xoffset ? set.xoffset : 0;
-    let centered = 0;
+
     chunks.forEach((s,k) => {
-      centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
+      let centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
       switch (alignment.value) {
         case 'centre':
           destX += centered / 2;
@@ -326,9 +327,6 @@
       destY += (set.height + 10 + charoffset);
       destX = 5;
     })
-
-    for(i = 0; i < j; i++) {
-}
     storelink(c);
     pixels = ctx.getImageData(0,0,c.width,c.height);
     analysecolours(pixels.data);
