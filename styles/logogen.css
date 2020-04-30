@@ -103,7 +103,7 @@ li, p, input {
   font-size: 1em;
 }
 
-.colouring .inputs label {
+.colouring .inputs {
   opacity: 0.3;
 }
 input[type="range"] {
@@ -148,6 +148,12 @@ button {
 }
 .inputs {
   flex: 1;
+  background: #333;
+  padding: 10px;
+  color: #fff;
+}
+.colouring .inputs {
+  opacity: 0.3;
 }
 #save p {
   font-size: inherit;

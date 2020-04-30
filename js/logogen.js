@@ -53,8 +53,8 @@
   let pixels;
   let colourpicked = false;
   let oldpixelcolour;
-  let newpixelcolour;
   let pixelbuffer = [];
+
   let c64cols = {
     transparent: [0, 0, 0, 0],
     black:      [0, 0, 0, 255],
@@ -75,9 +75,6 @@
     lightgrey:  [149, 149, 149, 255]
   };
 
-  let valid = /^[a-z|0-9|\?|\$|\.|\"|\:|/|%|&|;|,|\(|\)|'|!|+|\-|=|~|\s]+$/;
-  let rep = /[^a-z|\s]+/g;
-
   const init = () => {
     let url = document.location.search.split('?text=')[1];
     if (url){ sanitise(url.replace(/%20/g,' ')) }
@@ -97,10 +94,10 @@
       out += `<li>
         <a href="index.html?font=${i}">
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-        style="background:url(img/logos.png);background-position:0 -${window.imgobj[i][0]}px"
+        style="background:url(img/logos.png);background-position:0 -${window.imgobj[i].start}px"
         alt="${i} ${set.maker} - ${set.product}" 
-        height="${window.imgobj[i][2]}" 
-        width="${window.imgobj[i][1]}" id="${i}"></a>`;
+        height="${window.imgobj[i].height}" 
+        width="${window.imgobj[i].width}" id="${i}"></a>`;
       out += '<small>Font by ';
       out += (set.makerlink) 
         ? `<a href="${set.makerlink}">${set.maker}</a>`
@@ -120,16 +117,21 @@
   }
 
   const pickfont = (e) => {
+    e.preventDefault();
     if (!document.body.classList.contains('zoomed')) {
       let t = e.target;
-      if(t.tagName === 'IMG'){
+      if(t.tagName === 'IMG' || t.tagName === "A"){
+        if (t.tagName === 'A') { t = t.querySelector('img');}
         set = fonts[t.id];
         let out = 'a-z';
-        let available = Object.keys(set).filter(k => k.length === 1 && !/[a-z]/.test(k));
+        let available = Object.keys(set).filter(
+          k => k.length === 1 && !/[a-z]/.test(k)
+        );
         if (available.indexOf('0') !== -1) { out += ' 0-9' }
-        out += ' ' + available.filter(k => !/[0-9|\^]/.test(k)).sort().join('');
+        out += ' ' + available.filter(
+          k => !/[0-9|\^]/.test(k)
+        ).sort().join('');
         availablecontainer.innerText = out;
-
         window.location.hash = 'goto-' + t.id;
         spacing.disabled = ('^' in set);
         spacing.parentNode.className = ('^' in set) ? 'disabled' : '';
@@ -140,7 +142,6 @@
         pixelbuffer = [];
         sanitise();
         endcolouring();
-        e.preventDefault();
       }
     }
   }
@@ -318,8 +319,11 @@
         if (c in set) {
           charoff = !charoff
           ctx.drawImage(
-            srcimg, set[c][0] + xoff, set.offset, set[c][1],
-            set.height, destX, destY + (charoff?charoffset:0) , set[c][1], set.height
+            srcimg, 
+            set[c][0] + xoff, set.offset, 
+            set[c][1], set.height, 
+            destX, destY + (charoff?charoffset:0),
+            set[c][1], set.height
           );
           destX += set[c][1] + parseInt(kerning.value, 10);
         }
