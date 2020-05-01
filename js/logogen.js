@@ -424,7 +424,6 @@
   const getalignment = (ev) => {
     let t = ev.target;
     if (t.tagName === 'INPUT') {
-      console.log();
       alignment = t.getAttribute('value');
       sanitise();
     }
