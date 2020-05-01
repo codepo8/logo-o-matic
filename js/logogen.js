@@ -22,12 +22,12 @@
   let swab =       document.querySelector('#swab');
   let c64palette = document.querySelector('#c64colours');
   let kerning =    document.querySelector('#kerning');
-  let alignment =  document.querySelector('#align');
   let spacing =    document.querySelector('#spacing');
   let offsetchar = document.querySelector('#charoffset');
   let old =        document.querySelector('.current');
   let container =  document.querySelector('#container');
   let zoombutton = document.querySelector('#zoombutton');
+  let radiogroup = document.querySelector('.radios');
   let availablecontainer = document.querySelector('#charsavailable');
   // TODO let colbutton =  document.querySelector('#colourbutton');
 
@@ -54,6 +54,7 @@
   let colourpicked = false;
   let oldpixelcolour;
   let pixelbuffer = [];
+  let alignment = 'left';
 
   let c64cols = {
     transparent: [0, 0, 0, 0],
@@ -240,6 +241,11 @@
 
   const sanitise = (s) => {
     if (typeof s !== 'string') { s = input.value; }
+    if (s.includes('~')) {
+      radiogroup.classList.remove('inactive');
+    } else {
+      radiogroup.classList.add('inactive');
+    }
     s = s.toLowerCase();
     for (let c of s) {
       if (c !== "~" && c !== ' ') {
@@ -296,7 +302,7 @@
 
     chunks.forEach((s,k) => {
       let centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
-      switch (alignment.value) {
+      switch (alignment) {
         case 'centre':
           destX += centered / 2;
         break;
@@ -375,11 +381,12 @@
           dcx.fillRect(x * zoomfactor, y * zoomfactor, zoomfactor, zoomfactor);
         }
       }
-      zoombutton.innerHTML = 'edit logo';
+      zoombutton.innerHTML = `<svg height='2em' width='2em'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 333 333" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd"><title>Edit</title><defs><style type="text/css">.fil0 {fill:#ffffff;fill-rule:nonzero}</style></defs><g><path class="fil0" d="M72 213l4 -4 26 -3 0 24 24 0c-4,38 5,29 -40,39l-22 -22 8 -34zm12 68l42 -9 152 -153c41,-41 -23,-105 -64,-64l-152 153 -20 84 42 -11zm5 -85l101 -100c28,-25 77,9 45,50l-99 99 3 -26 -25 0 0 -25 -25 2zm121 -120c14,-15 34,-37 59,-12 25,26 3,45 -12,60 2,-27 -21,-50 -47,-48zm6 50c6,-5 -2,-13 -8,-8l-82 82c-5,5 3,13 8,8l82 -82z"></path></g></svg>`;
       zoomfactor = 1;
       storelink(dc);
     } else {
-      zoombutton.innerHTML = 'Show double size logo';
+      zoombutton.innerHTML = `
+      <svg height='2em' width='2em'  fill="#ffffff" xmlns="http://www.w3.org/2000/svg" data-name="Layer 2" viewBox="0 0 100 100" x="0px" y="0px"><title>Zoom</title><path d="M65.46,58.26c0.4-.54.79-1.1,1.16-1.67a34,34,0,1,0-10,10c0.57-.36,1.13-0.75,1.67-1.16A33.85,33.85,0,0,0,65.46,58.26ZM6.23,38.19A31.92,31.92,0,1,1,38.14,70.1,32,32,0,0,1,6.23,38.19Z"></path><path d="M42.51,58.64a21,21,0,0,1-4.37.46,20.72,20.72,0,0,1-8.37-1.75,1,1,0,0,0-.8,1.83,22.71,22.71,0,0,0,9.18,1.92,23,23,0,0,0,4.78-.5A1,1,0,0,0,42.51,58.64Z"></path><path d="M38.15,11.27A26.89,26.89,0,0,0,13.35,27.71a1,1,0,1,0,1.84.78,24.91,24.91,0,1,1-2,9.69,1,1,0,0,0-2,0A26.91,26.91,0,1,0,38.15,11.27Z"></path><path d="M93.7,83.67L68.06,58c-0.37.57-.76,1.12-1.17,1.66l6.6,6.6-3.6,3.59a1,1,0,1,0,1.41,1.41l3.59-3.59L92.28,85.08a5.07,5.07,0,0,1-7.16,7.17L59.73,66.87c-0.54.41-1.08,0.8-1.65,1.18L83.7,93.67A7.07,7.07,0,0,0,93.7,83.67Z"></path><path d="M37.56,27.12a1,1,0,0,0-1,1v7.5h-7.5a1,1,0,1,0,0,2h7.5v7.5a1,1,0,0,0,2,0v-7.5h7.5a1,1,0,0,0,0-2h-7.5v-7.5A1,1,0,0,0,37.56,27.12Z"></path></svg>`;
       zoomfactor = 2;
       storelink(c);
     }
@@ -387,10 +394,10 @@
   }
 
   const storelink = (srccanvas) => {
-    save.innerHTML = `
-    <a href="${srccanvas.toDataURL('image/png')}" 
-    download="${input.value}.png">Click to save your logo</a>`;
+    save.setAttribute('href',srccanvas.toDataURL('image/png')); 
+    save.setAttribute('download',input.value.replace(/~/g,' ')); 
   }
+
 
   c.addEventListener('click', (ev) => {
     readcolour(ev);
@@ -414,10 +421,20 @@
     endcolouring();
   },false);
 
+  const getalignment = (ev) => {
+    let t = ev.target;
+    if (t.tagName === 'INPUT') {
+      console.log();
+      alignment = t.getAttribute('value');
+      sanitise();
+    }
+//    ev.preventDefault();
+  };
+
   kerning.addEventListener('change', sanitise, false);
+  radiogroup.addEventListener('click', getalignment, false);
   offsetchar.addEventListener('change', sanitise, false);
   spacing.addEventListener('change',sanitise, false);
-  alignment.addEventListener('change',sanitise, false);
   nav.addEventListener('click', pickfont, false);
   c64palette.addEventListener('click', getC64colour, false);
   zoombutton.addEventListener('click', dozoom, false);

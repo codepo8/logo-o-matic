@@ -240,6 +240,38 @@ footer p{
   list-style: none;
   padding-bottom: 5px;
 }
+
+input[type=radio] {
+  border: 0;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute !important;
+  white-space: nowrap;
+  width: 1px;
+}
+input[type=radio] + label {
+  background: #444444;
+  color: #999;
+}
+.radios label {
+  text-align: center;
+}
+input[type=radio]:checked:hover + label {
+  background: #9AD284;
+  color: #000;
+}
+input[type=radio]:checked + label {
+  background: #9AD284;
+  color: #000;
+}
+input[type=radio]:checked + label:before {
+  background: #9AD284;
+  color: #000;
+}
+
+
 .instructions {
   clear: both;
   font-size: inherit;
@@ -264,8 +296,10 @@ footer p{
 canvas {
   position: relative;
   background: #000;
+
 }
 #main, #display {
+  cursor: crosshair;
   background-color: #333;
   background-image: 
     linear-gradient(45deg, #555 25%, transparent 25%, 
@@ -289,19 +323,22 @@ canvas {
 #zoom {
   margin-left: 0;
 }
-#save {
-  padding: 5px 0;
+svg {
+  width: 1.7em;
 }
-#save a, button {
+a#save, button {
+  text-align: center;
+  display: inline-block;
   font-family: inherit;
   border: none;
+  width: 2em;
+  height: 2em;
+  font-size: inherit;
   background: #369;
   text-decoration: none;
   color: #fff;
-  padding: 5px;
-  margin-bottom: 5px;
 }
-button {
+.actions button {
   background: #333;
 }
 .inactive {
@@ -342,9 +379,9 @@ ul.palette li {
 ul.palette li:last-child {
   width: 200px;
 }
+
 .palette button {
     display: inline-block;
-    float: left;
     font-size: 1em;
     line-height: 2.5em;
     margin: -1.5em 0px 0px 10px;
