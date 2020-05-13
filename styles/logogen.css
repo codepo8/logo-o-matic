@@ -136,13 +136,6 @@ input[type=text] {
   border-radius: 10px;
   transform: scale(1);
 }
-#save {
-  overflow: auto;
-}
-#save img {
-  display: block;
-  margin: 10px 0;
-}
 button {
   font-size: 1em ;
 }
@@ -154,9 +147,6 @@ button {
 }
 .colouring .inputs {
   opacity: 0.3;
-}
-#save p {
-  font-size: inherit;
 }
 form {
   display: flex;
