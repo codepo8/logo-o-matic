@@ -22,14 +22,12 @@ window.addEventListener('load', function(){
   c.height = img.naturalHeight;
 
   ctx.drawImage(img,0,0,width,img.naturalHeight);
-  var offset = 0;
-  var startpoint = [0,1818];
-  var green = {r:62,b:67,g:255,a:255};
+  var offset = 1978;
+  var startpoint = [0,1422];
+  // var green = {r:62,b:67,g:255,a:255};
   var green = {r:75,g:253,b:81,a:255};
-  console.log(pixelcolour(0,1816))
-    var letters = `abcdefghijklmnopqrstuvwxyz12345679890.,:!?/+-()`.split('');
-//  var letters = 'abcdefghijklmnopqrstuvwxyz1234569890!?%./",'.split('');
-var fontdata = {};
+  var letters = `abcdefghijklmnopqrstuvwxyz012345679890?/+:,!'-.`.split('');
+  var fontdata = {};
 
   function getfonts() {
     var letter = 0;
@@ -56,7 +54,7 @@ var fontdata = {};
   function getheight(startpoint) {
     var hy = 0;
     var currentcolour = pixelcolour(startpoint[0], startpoint[1]);
-    while (isgreen(currentcolour) === -1) {
+    while (isgreen(currentcolour) === -1 && hy < 300) {
       hy++;
       currentcolour = pixelcolour(startpoint[0], startpoint[1]+hy);
     }
