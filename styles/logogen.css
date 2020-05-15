@@ -39,30 +39,6 @@ html, body {
   left: -280px;
   transition: 0.5s;
 }
-#nav li small {
-  display: block;
-  opacity: 1;
-  font-size: 12px;
-  color: #666;
-  margin: 5px;
-  text-align: left;
-  transition: 0.5s;
-}
-#nav a {
-  color: #ccc;
-}
-#nav ul {
-  overflow: auto;
-  position: absolute;
-  top: 100px;
-  left: 0;
-  height: 80%;
-  height: calc(100% - 100px);
-  counter-reset:list;
-}
-label.disabled {
-  opacity: 0.3;
-}
 #nav h2 {
   position:fixed;
   background: #000;
@@ -87,6 +63,48 @@ label.disabled {
   left: 10px;
   font-size: 14px;
   color: #666;
+}
+
+#nav li small {
+  display: block;
+  opacity: 1;
+  font-size: 12px;
+  color: #666;
+  margin: 5px;
+  text-align: left;
+  transition: 0.5s;
+}
+#nav a {
+  color: #ccc;
+}
+#nav ul {
+  overflow: auto;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  height: 80%;
+  height: calc(100% - 100px);
+  counter-reset:list;
+}
+#nav img {
+  display: block;
+  margin: 0 auto;
+  border: 2px solid #000;
+}
+#nav img:hover {
+  display: block;
+  border: 2px solid #999;
+  border-radius: 10px;
+}
+#nav img.current {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  transform: scale(1);
+}
+
+
+label.disabled {
+  opacity: 0.3;
 }
 li, p, input {
   font-size: 20px;
@@ -120,22 +138,7 @@ input[type=text] {
   margin: 10px 0;
   width: 400px;
 }
-#nav img {
-  display: block;
-  margin: 0 auto;
-  border: 2px solid #000;
-  transition: all .2s;
-  transform: scale(.8);
-}
-#nav img:hover {
-  display: block;
-  transform: scale(1);
-}
-#nav img.current {
-  border: 2px solid #999;
-  border-radius: 10px;
-  transform: scale(1);
-}
+
 button {
   font-size: 1em ;
 }

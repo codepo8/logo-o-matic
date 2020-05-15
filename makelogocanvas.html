@@ -17,24 +17,35 @@
         var cx = c.getContext('2d');
         c.width = 500;
         c.height = 4000;
-        Object.keys(fonts).forEach(f => {
+        logos = Object.keys(fonts);
+        all = logos.length;
+        j = 0;
+
+        function addto() {
             i = new Image()
-            i.src = `demologos/${f}.png`;
             i.onload = function() {
-            imgobj[this.src.match(/.*\/(.*)\.png/)[1]]={
-                start: height,
-                width: this.naturalWidth,
-                height: this.naturalHeight
-            };
-            cx.drawImage(this, 0, height);
-            height +=  this.naturalHeight;
-            width = Math.max(width,this.naturalWidth);
-            imgobj.fullheight = height;
-            imgobj.fullwidth = width;
+                imgobj[this.src.match(/.*\/(.*)\.png/)[1]]={
+                    start: height,
+                    width: this.naturalWidth,
+                    height: this.naturalHeight
+                };
+                cx.drawImage(this, 0, height);
+                height +=  this.naturalHeight;
+                width = Math.max(width,this.naturalWidth);
+                imgobj.fullheight = height;
+                imgobj.fullwidth = width;
+                j++;
+                if (j < all) {addto()}
+                else {
+                    console.log(
+                        JSON.stringify(imgobj).replace(/"height":(\d+)},/g,'"height":$1},'+"\n")
+                    );
+                    document.body.appendChild(c);
+                }
             }
-        })
-        console.log(imgobj);
-        document.body.appendChild(c);
+            i.src = `demologos/${logos[j]}.png`;
+        }
+        addto();
 
 
     </script>
