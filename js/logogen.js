@@ -39,7 +39,6 @@
   zc.height = 80;
   zcx.imageSmoothingEnabled = false;
   zcx.webkitImageSmoothingEnabled = false;
-
   let dc = document.querySelector('#display');
   let dcx = dc.getContext('2d');
   dc.width = 80;
@@ -427,18 +426,22 @@
       alignment = t.getAttribute('value');
       sanitise();
     }
-//    ev.preventDefault();
   };
 
-  kerning.addEventListener('change', sanitise, false);
-  radiogroup.addEventListener('click', getalignment, false);
-  offsetchar.addEventListener('change', sanitise, false);
-  spacing.addEventListener('change',sanitise, false);
-  nav.addEventListener('click', pickfont, false);
-  c64palette.addEventListener('click', getC64colour, false);
-  zoombutton.addEventListener('click', dozoom, false);
-  colourbutton.addEventListener('click', endcolouring, false);
-  window.addEventListener('load', init, false);
-  window.addEventListener('DOMContentLoaded', createFontMenu, false);
+  // Listeners
+  [
+    [kerning, 'change', sanitise],
+    [offsetchar, 'change', sanitise],
+    [spacing, 'change',sanitise],
+    [radiogroup, 'click', getalignment],
+    [nav, 'click', pickfont],
+    [c64palette, 'click', getC64colour],
+    [zoombutton, 'click', dozoom],
+    [colourbutton, 'click', endcolouring],
+    [window, 'load', init],
+    [window, 'DOMContentLoaded', createFontMenu]
+  ].forEach(_ => {
+    _[0].addEventListener(_[1],_[2]);
+  })
 
 })();
