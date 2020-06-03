@@ -295,6 +295,13 @@ canvas {
   background-size: 30px 30px;
   background-position:0 0, 15px 15px;
 }
+#dimensions {
+  position: absolute;
+  top: 15em;
+  left: 45em;
+  font-size: 0.8em;
+  color: #222;
+}
 #display {
   display: none;
 }

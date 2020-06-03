@@ -27,6 +27,7 @@
   let old =        document.querySelector('.current');
   let container =  document.querySelector('#container');
   let zoombutton = document.querySelector('#zoombutton');
+  let dimensions = document.querySelector('#dimensions');
   let radiogroup = document.querySelector('.radios');
   let availablecontainer = document.querySelector('#charsavailable');
   // TODO let colbutton =  document.querySelector('#colourbutton');
@@ -291,11 +292,15 @@
     c.width = w;
     c.height = (set.height + 10 + charoffset) * (lines);
     ctx.fillStyle = set.background ?
-                    'rgb(' + c64cols[set.background][0] + ',' +
-                             c64cols[set.background][1] + ',' +
-                             c64cols[set.background][2] + ')' :
-                     background;
+      `rgb(
+        ${c64cols[set.background][0]},
+        ${c64cols[set.background][1]},
+        ${c64cols[set.background][2]}
+        )`: background;
     ctx.fillRect(0, 0, c.width, c.height);
+    dimensions.innerText = `
+      Size: ${c.width}${c.width > 320 ? '(!)':''} x ${c.height}${c.height > 200 ? '(!)':''}
+    `;
 
     let xoff = set.xoffset ? set.xoffset : 0;
 
