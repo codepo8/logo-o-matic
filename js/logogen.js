@@ -399,7 +399,7 @@
 
   const storelink = (srccanvas) => {
     save.setAttribute('href',srccanvas.toDataURL('image/png')); 
-    save.setAttribute('download',input.value.replace(/~/g,' ')); 
+    save.setAttribute('download',input.value.replace(/~/g,' ')+'.png'); 
   }
 
 
