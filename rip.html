@@ -22,11 +22,12 @@ window.addEventListener('load', function(){
   c.height = img.naturalHeight;
 
   ctx.drawImage(img,0,0,width,img.naturalHeight);
-  var offset = 2314;
-  var startpoint = [0,642];
-  // var green = {r:62,b:67,g:255,a:255};
-  var green = {r:75,g:253,b:81,a:255};
+  var offset = 0;
+  var startpoint = [0,1871];
+  var green = {r:62,b:67,g:255,a:255};
+  // var green = {r:75,g:253,b:81,a:255};
   var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz`.split('');
   var fontdata = {};
 
   function getfonts() {
@@ -77,7 +78,7 @@ window.addEventListener('load', function(){
     };
   }
 
-  fontdata.height = getheight(startpoint);
+  fontdata.height = 100 //getheight(startpoint);
   getfonts();
 }, false)
 </script>
