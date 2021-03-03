@@ -15,20 +15,22 @@
   The image with the .current class defines which font is preset by
   reading out its ID
 */
-  let nav =        document.querySelector('#nav ul');
-  let srcimg =     document.querySelector('#fonts');
-  let save =       document.querySelector('#save');
-  let input =      document.querySelector('#text');
-  let swab =       document.querySelector('#swab');
-  let c64palette = document.querySelector('#c64colours');
-  let kerning =    document.querySelector('#kerning');
-  let spacing =    document.querySelector('#spacing');
-  let offsetchar = document.querySelector('#charoffset');
-  let old =        document.querySelector('.current');
-  let container =  document.querySelector('#container');
-  let zoombutton = document.querySelector('#zoombutton');
-  let dimensions = document.querySelector('#dimensions');
-  let radiogroup = document.querySelector('.radios');
+  let nav =                document.querySelector('#nav ul');
+  let srcimg =             document.querySelector('#fonts');
+  let save =               document.querySelector('#save');
+  let input =              document.querySelector('#text');
+  let swab =               document.querySelector('#swab');
+  let filterform =         document.querySelector('#nav form');
+  let filterresults =      document.querySelector('#nav output');
+  let c64palette =         document.querySelector('#c64colours');
+  let kerning =            document.querySelector('#kerning');
+  let spacing =            document.querySelector('#spacing');
+  let offsetchar =         document.querySelector('#charoffset');
+  let old =                document.querySelector('.current');
+  let container =          document.querySelector('#container');
+  let zoombutton =         document.querySelector('#zoombutton');
+  let dimensions =         document.querySelector('#dimensions');
+  let radiogroup =         document.querySelector('.radios');
   let availablecontainer = document.querySelector('#charsavailable');
   // TODO let colbutton =  document.querySelector('#colourbutton');
 
@@ -88,9 +90,11 @@
     }
   }
 
-  const createFontMenu = () => {
+  const createFontMenu = (f) => {
+    if (f.type) {f = window.fonts};
+    filterresults.innerHTML = `${Object.keys(f).length} font(s)`;
     var out = '';
-    for (var i in window.fonts) {
+    for (var i in f) {
       let set = fonts[i];
       out += `<li>
         <a href="index.html?font=${i}">
@@ -432,6 +436,19 @@
       sanitise();
     }
   };
+  const filterfonts = ev => {
+    ev.preventDefault();
+    let big = document.querySelector('#big').checked;
+    let small = document.querySelector('#small').checked;
+    let medium = document.querySelector('#medium').checked;
+    let out = {};
+    for (let f in window.fonts) {
+      if (window.fonts[f].height <= 32 && !small) { out[f] = window.fonts[f]; }
+      if (window.fonts[f].height > 32 && window.fonts[f].height < 40 && !medium) { out[f] = window.fonts[f]; }
+      if (window.fonts[f].height >= 40 && !big) { out[f] = window.fonts[f]; }
+    }
+    createFontMenu(out);
+  }
 
   // Listeners
   [
@@ -443,9 +460,10 @@
     [c64palette, 'click', getC64colour],
     [zoombutton, 'click', dozoom],
     [colourbutton, 'click', endcolouring],
+    [filterform, 'change', filterfonts],
     [window, 'load', init],
     [window, 'DOMContentLoaded', createFontMenu]
-  ].forEach(_ => {
+  ].forEach( _ => {
     _[0].addEventListener(_[1],_[2]);
   })
 
