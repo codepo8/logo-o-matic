@@ -443,9 +443,16 @@
     let medium = document.querySelector('#medium').checked;
     let out = {};
     for (let f in window.fonts) {
-      if (window.fonts[f].height <= 32 && !small) { out[f] = window.fonts[f]; }
-      if (window.fonts[f].height > 32 && window.fonts[f].height < 40 && !medium) { out[f] = window.fonts[f]; }
-      if (window.fonts[f].height >= 40 && !big) { out[f] = window.fonts[f]; }
+      if (!small && window.fonts[f].height <= 25) { 
+        out[f] = window.fonts[f];
+      }
+      if (!medium && window.fonts[f].height > 25 && 
+          window.fonts[f].height < 50) { 
+        out[f] = window.fonts[f]; 
+      }
+      if (!big && window.fonts[f].height >= 50) { 
+        out[f] = window.fonts[f]; 
+      }
     }
     createFontMenu(out);
   }
