@@ -11,7 +11,7 @@
   // sorry, old browsers…
   if (!document.querySelector) {return false;}
 /* 
-  Grabbing the canvas and all the neccesary elements from the DOM. 
+  Grabbing the canvas and all the necessary elements from the DOM. 
   The image with the .current class defines which font is preset by
   reading out its ID
 */
@@ -92,7 +92,7 @@
 
   const createFontMenu = (f) => {
     if (f.type) {f = window.fonts};
-    filterresults.innerHTML = `${Object.keys(f).length} font(s)`;
+    filterresults.innerHTML = `${Object.keys(f).length} fonts`;
     var out = '';
     for (var i in f) {
       let set = fonts[i];
@@ -311,15 +311,9 @@
     chunks.forEach((s,k) => {
       let centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
       switch (alignment) {
-        case 'centre':
-          destX += centered / 2;
-        break;
-        case 'right':
-          destX += centered;
-        break;        
-        case 'left':
-          destX = 5;
-        break;        
+        case 'centre': destX += centered / 2; break; 
+        case 'right': destX += centered; break;        
+        case 'left': destX = 5; break;        
       }
       for (let c of s) {
         if (c === ' ') {
@@ -405,7 +399,6 @@
     save.setAttribute('href',srccanvas.toDataURL('image/png')); 
     save.setAttribute('download',input.value.replace(/~/g,' ')+'.png'); 
   }
-
 
   c.addEventListener('click', (ev) => {
     readcolour(ev);
