@@ -23,7 +23,7 @@
   </header>
   <section>
 <div id="nav">
-<h2><span>1</span> Choose your font:</h2>
+  <h2><span>1</span> Choose your font:</h2>
   <form>
     <input type="checkbox" id="big"><label for="big">big</label>
     <input type="checkbox" id="medium"><label for="medium">medium</label>
@@ -41,7 +41,7 @@
 </div>
   <div id="container">
   <h2><span>2</span><label>Logo text (~ for linebreak): <input id="text" value="excellent"></label> chars: <span id="charsavailable"></span> </h2>  
-  <form>
+  <form class="zoomsafe">
     <div class="inputs">
       <ul>
 <!--  <label>Background: <input type="color" id="colour" value="#000000"></label>
@@ -89,8 +89,8 @@
     </ul>
     </div>
 
-    <div class="actions">
-    <button type="button" id="zoombutton">
+    <div class="actions zoomsafe">
+    <button type="button" class="zoomsafe" id="zoombutton">
       <svg height='100%' width='100%' fill="#ffffff"
       viewBox="0 0 100 100" x="0px" y="0px" aria-labelledby="zoomtitle" role="img">
         <title id="zoomtitle">Zoom</title>
@@ -101,7 +101,7 @@
         <path d="M37.56,27.12a1,1,0,0,0-1,1v7.5h-7.5a1,1,0,1,0,0,2h7.5v7.5a1,1,0,0,0,2,0v-7.5h7.5a1,1,0,0,0,0-2h-7.5v-7.5A1,1,0,0,0,37.56,27.12Z"></path>
       </svg>
     </button>
-    <a id="save" href="" download="">
+    <a id="save" class="zoomsafe" href="" download="">
       <svg height='100%' width='100%' fill="#ffffff"
       viewBox="0 0 847 847" x="0px" y="0px" aria-labelledby="savetitle" role="img">
       <title id="savetitle">Save</title>
@@ -135,14 +135,14 @@
       <li class="white" data-col="FFFFFF"></li> 
       <li><button type="button" id="colourbutton" title="done with colouring">✔</button></li>
     </ul>
+    <div id="dimensions"></div>
 
     </div>
   </form>
   <div id="swab"></div>
   <canvas id="zoom"></canvas>
   <canvas id="main"></canvas>
-  <canvas id="display"></canvas>
-  <div id="dimensions"></div>
+  <canvas id="display" class="zoomsafe"></canvas>
   <p class="instructions">Click on a colour in the logo and select from the palette below to change it. Double click or click the ✔ to finish changing colours.</p>
  
 </div>

@@ -19,49 +19,35 @@ html, body {
   position: absolute;
 }
 #nav {
-  transition: 0.5s;
-  width: 280px;
-  overflow: auto;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
+  display: flex;
+  flex-wrap: wrap;
 }
 .actions {
   flex: 3;
   padding-left: 20px;
 }
-.zoomed #container, .zoomed h1 {
-  margin-left: 0;
-  transition: 0.5s;
-}
-.zoomed #nav {
-  left: -280px;
-  transition: 0.5s;
-}
 #nav h2 {
-  position:fixed;
   background: #000;
-  width: 260px;
-  z-index: 2;
-  margin-top: 2em;
+  flex: 2;
   color: #fff;
 }
 #nav form{
+  flex: 3;
   color: #fff;
-  position:fixed;
   background: #000;
-  width: 260px;
   z-index: 2;
   font-size: .95em;
-  margin-top: 6em;
   color: #fff;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 #nav label { 
   background: #9AD284;
   color: #000;
-  padding: 5px 10px;  
-  margin-right: 5px;
+  text-align: center;
+  padding: 5px 10px; 
+  flex: 1;
 }
 #nav input[type=checkbox] {
   position: absolute;
@@ -72,10 +58,13 @@ html, body {
   color: #999;
 }
 #nav li {
+  flex: 1;
+  min-width: 250px;
   list-style: none;
   background: #000;
   padding: 5px;
   color: #fff;
+  align-items: flex-end;
 }
 #nav li::before {
   counter-increment:list;
@@ -98,12 +87,12 @@ html, body {
 }
 #nav ul {
   overflow: auto;
-  position: absolute;
-  top: 120px;
-  left: 0;
-  height: 80%;
-  height: calc(100% - 120px);
-  counter-reset:list;
+  height: 35vh;
+  flex: 0 0 100%;
+  display: flex;
+  flex-wrap:wrap;
+  flex-direction: row;
+  counter-reset:list; 
 }
 #nav img {
   display: block;
@@ -174,6 +163,7 @@ form {
 }
 #nav output {
   color: #fff;
+  flex: 2;
   font-size: .8em;
   line-height:2.2em;
 }
@@ -184,10 +174,11 @@ output a {
   color: #F6F6A9;
 }
 #container {
+  min-height: calc(54vh);
+  position: relative;
   transition: 0.5s;
   background: #999;
   /*position: fixed;*/
-  margin-left: 280px;
   padding-bottom: 20px;
 }
 section, header, footer{
@@ -230,8 +221,8 @@ h1 {
   font-weight: normal;
   font-size: 20px;
   padding: 0 10px;
-  margin-left: 280px;
   line-height: 30px;
+  min-height: 3vh;
 }
 footer {
   position: absolute;
@@ -292,21 +283,18 @@ input[type=radio]:checked + label:before {
   font-size: inherit;
   padding: 10px 10px 10px 20px;
 }
-.zoomed #main,
-.zoomed .palette,
-.zoomed #zoom,
-.zoomed #swab,
-.zoomed input,
-.zoomed label,
-.zoomed h2,
-.zoomed .inputs,
-#container.zoomed h2, 
-.zoomed .instructions,
-.zoomed span {
+.zoomed #container * {
   display: none;
 }
-.zoomed #display {
+.zoomed #container .zoomsafe {
+  display: inline-block;
+}
+.zoomed #container .actions .zoomsafe * {
+  display: initial;
+}
+.zoomed  #container #display {
   display: block;
+  margin: 1em;
 }
 canvas {
   position: relative;
@@ -328,9 +316,6 @@ canvas {
   display: none;
 }
 #dimensions {
-  position: absolute;
-  top: 14em;
-  left: 52em;
   font-size: 0.8em;
   color: #222;
 }
