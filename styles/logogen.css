@@ -324,10 +324,13 @@ canvas {
   background-size: 30px 30px;
   background-position:0 0, 15px 15px;
 }
+.zoomed #dimensions {
+  display: none;
+}
 #dimensions {
   position: absolute;
-  top: 15em;
-  left: 48em;
+  top: 14em;
+  left: 52em;
   font-size: 0.8em;
   color: #222;
 }
