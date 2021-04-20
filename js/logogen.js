@@ -97,7 +97,7 @@
     for (var i in f) {
       let set = fonts[i];
       out += `<li>
-        <a href="index.html?font=${i}">
+        <a href="index.html?font=${i}" class="image">
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
         style="background:url(img/logos.png);background-position:0 -${window.imgobj[i].start}px"
         alt="${i} ${set.maker} - ${set.product}" 

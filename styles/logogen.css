@@ -23,8 +23,7 @@ html, body {
   flex-wrap: wrap;
 }
 .actions {
-  flex: 3;
-  padding-left: 20px;
+  flex: 5;
 }
 #nav h2 {
   background: #000;
@@ -62,14 +61,19 @@ html, body {
   min-width: 250px;
   list-style: none;
   background: #000;
-  padding: 5px;
+  padding: 2px;
+  margin: 2px;
   color: #fff;
-  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-items: stretch;
 }
 #nav li::before {
+  flex: 1;
   counter-increment:list;
   content:counter(list);
   font-size: 14px;
+  margin-left: 5px;
   color: #fff;
 }
 
@@ -78,9 +82,12 @@ html, body {
   opacity: 1;
   font-size: 12px;
   color: #666;
-  margin: 5px;
   text-align: left;
-  transition: 0.5s;
+  flex: 1;
+}
+.image {
+  flex: 2;
+  display: block;
 }
 #nav a {
   color: #ccc;
@@ -92,7 +99,9 @@ html, body {
   display: flex;
   flex-wrap:wrap;
   flex-direction: row;
-  counter-reset:list; 
+  counter-reset:list;
+  gap: 10px;
+  background: #444;
 }
 #nav img {
   display: block;
@@ -158,8 +167,10 @@ button {
   opacity: 0.3;
 }
 form {
+  gap: 10px;
   display: flex;
-  padding: 5px 0 5px 20px;
+  flex-wrap: wrap;
+  padding: 10px;
 }
 #nav output {
   color: #fff;
@@ -176,7 +187,6 @@ output a {
 #container {
   min-height: calc(54vh);
   position: relative;
-  transition: 0.5s;
   background: #999;
   /*position: fixed;*/
   padding-bottom: 20px;
@@ -213,7 +223,6 @@ header {
   background: #000;
 }
 h1 {
-  transition: 0.5s;
   text-transform: uppercase;
   color: #fff;
   height: 30px;
