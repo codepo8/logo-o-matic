@@ -58,7 +58,7 @@ html, body {
 }
 #nav li {
   flex: 1;
-  min-width: 250px;
+  min-width: 290px;
   list-style: none;
   background: #000;
   padding: 2px;

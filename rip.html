@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>C-64 charset logo generator</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <link rel="stylesheet" href="styles/logogen.css">
 </head>
 <body>
@@ -23,11 +22,12 @@ window.addEventListener('load', function(){
 
   ctx.drawImage(img,0,0,width,img.naturalHeight);
   var offset = 0;
-  var startpoint = [0,1871];
+  var startpoint = [0,2028];
   var green = {r:62,b:67,g:255,a:255};
   // var green = {r:75,g:253,b:81,a:255};
   // var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
-  var letters = `abcdefghijklmnopqrstuvwxyz`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
+  console.log(letters);
   var fontdata = {};
 
   function getfonts() {
@@ -48,6 +48,7 @@ window.addEventListener('load', function(){
         letterwidth = 0;
       }
     }
+    console.log(fontdata);
     var out = JSON.stringify(fontdata);
     console.log(out);
   }
@@ -78,7 +79,7 @@ window.addEventListener('load', function(){
     };
   }
 
-  fontdata.height = 100 //getheight(startpoint);
+  fontdata.height = 76 //getheight(startpoint);
   getfonts();
 }, false)
 </script>
