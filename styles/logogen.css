@@ -21,6 +21,8 @@ html, body {
 #nav {
   display: flex;
   flex-wrap: wrap;
+  padding: 10px 0;
+
 }
 .actions {
   flex: 5;
@@ -31,7 +33,7 @@ html, body {
   color: #fff;
 }
 #nav form{
-  flex: 3;
+  flex: 1;
   color: #fff;
   background: #000;
   z-index: 2;
@@ -174,9 +176,11 @@ form {
 }
 #nav output {
   color: #fff;
-  flex: 2;
+  flex: 1;
+  text-align:right;
   font-size: .8em;
   line-height:2.2em;
+  
 }
 output {
   color: yellow;
@@ -190,6 +194,8 @@ output a {
   background: #999;
   /*position: fixed;*/
   padding-bottom: 20px;
+  border-top: 1px solid white;
+  box-shadow: 10px -10px 30px #000;
 }
 section, header, footer{
   display: block;
