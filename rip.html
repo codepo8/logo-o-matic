@@ -21,12 +21,13 @@ window.addEventListener('load', function(){
   c.height = img.naturalHeight;
 
   ctx.drawImage(img,0,0,width,img.naturalHeight);
-  var offset = 0;
-  var startpoint = [0,2028];
+  var offset = 1890;
+  var startpoint = [0,2279];
   var green = {r:62,b:67,g:255,a:255};
   // var green = {r:75,g:253,b:81,a:255};
-  // var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyxz`.split('');
+  // var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
   console.log(letters);
   var fontdata = {};
 
@@ -79,7 +80,7 @@ window.addEventListener('load', function(){
     };
   }
 
-  fontdata.height = 76 //getheight(startpoint);
+  fontdata.height = 95 //getheight(startpoint);
   getfonts();
 }, false)
 </script>
