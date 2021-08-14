@@ -119,6 +119,17 @@
       out += `</small></li>`;
     }
     nav.innerHTML = out;
+    shuffle();
+  }
+
+  const shuffle = () => {
+    let elms = [...document.querySelectorAll('#nav ul>li')];
+    const shuffled = elms.sort((a, b) => 0.5 - Math.random());
+    out = '';
+    shuffled.forEach(s => {
+      out += s.outerHTML;
+    });
+    nav.innerHTML = out;
   }
 
   const pickfont = (e) => {

@@ -71,12 +71,12 @@ html, body {
   justify-items: stretch;
 }
 #nav li::before {
-  flex: 1;
+  /* flex: 1;
   counter-increment:list;
   content:counter(list);
   font-size: 14px;
   margin-left: 5px;
-  color: #fff;
+  color: #fff; */
 }
 
 #nav li small {
