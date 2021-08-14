@@ -70,30 +70,23 @@ html, body {
   flex-direction: column;
   justify-items: stretch;
 }
-#nav li::before {
-  /* flex: 1;
-  counter-increment:list;
-  content:counter(list);
-  font-size: 14px;
-  margin-left: 5px;
-  color: #fff; */
-}
-
 #nav li small {
   display: block;
   opacity: 1;
   font-size: 12px;
   color: #666;
   text-align: left;
-  flex: 1;
-}
-.image {
-  flex: 2;
-  display: block;
 }
 #nav a {
   color: #ccc;
+  display: flex;
+  flex: 3;
+  flex-direction: row;
+  align-items: center;
 }
+#nav small a {
+  display: inline;
+} 
 #nav ul {
   overflow: auto;
   height: 35vh;
