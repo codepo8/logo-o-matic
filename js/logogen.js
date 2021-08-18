@@ -119,7 +119,7 @@
       out += `</small></li>`;
     }
     nav.innerHTML = out;
-    shuffle();
+//    shuffle();
   }
 
   const shuffle = () => {
@@ -313,6 +313,9 @@
         ${c64cols[set.background][2]}
         )`: background;
     ctx.fillRect(0, 0, c.width, c.height);
+    // ctx.fillStyle = 'red';
+    // ctx.fillRect(0, 0, c.width, 5);
+    ctx.fillRect(0, c.height - 5, c.width, c.height);
     dimensions.innerText = `
       Size: ${c.width}${c.width > 320 ? '(!)':''} x ${c.height}${c.height > 200 ? '(!)':''}
     `;
