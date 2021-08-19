@@ -119,7 +119,7 @@
       out += `</small></li>`;
     }
     nav.innerHTML = out;
-//    shuffle();
+   shuffle();
   }
 
   const shuffle = () => {
