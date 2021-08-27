@@ -86,7 +86,9 @@
     if (hash !== '' && document.querySelector(hash)) {
       document.querySelector(hash).click();
     } else {
-      document.querySelector('#orc').click();
+      let allimg = [...document.querySelectorAll('#nav img')];
+      let rand = Math.random() * allimg.length|0;
+      allimg[rand].click();
     }
   }
 
@@ -156,8 +158,11 @@
         old = t;
         c64palette.classList.add('inactive');
         pixelbuffer = [];
-        sanitise();
-        endcolouring();
+        srcimg.src = 'fonts/' + t.id + '.png';
+        srcimg.onload = () => {
+          sanitise();
+          endcolouring();
+        }
       }
     }
   }
@@ -320,7 +325,7 @@
       Size: ${c.width}${c.width > 320 ? '(!)':''} x ${c.height}${c.height > 200 ? '(!)':''}
     `;
 
-    let xoff = set.xoffset ? set.xoffset : 0;
+    let xoff = 0;
 
     chunks.forEach((s,k) => {
       let centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
@@ -342,7 +347,7 @@
           charoff = !charoff
           ctx.drawImage(
             srcimg, 
-            set[c][0] + xoff, set.offset, 
+            set[c][0] + xoff, 0, 
             set[c][1], set.height, 
             destX, destY + (charoff?charoffset:0),
             set[c][1], set.height
@@ -443,6 +448,11 @@
       sanitise();
     }
   };
+
+  const toggleeditor = (ev) => {
+    // TODO;
+  }
+
   const filterfonts = ev => {
     ev.preventDefault();
     let big = document.querySelector('#big').checked;
@@ -476,7 +486,9 @@
     [colourbutton, 'click', endcolouring],
     [filterform, 'change', filterfonts],
     [window, 'load', init],
-    [window, 'DOMContentLoaded', createFontMenu]
+    [window, 'DOMContentLoaded', createFontMenu],
+    [nav, 'focus', toggleeditor],
+    [container, 'focus', toggleeditor]
   ].forEach( _ => {
     _[0].addEventListener(_[1],_[2]);
   })

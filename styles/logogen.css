@@ -89,7 +89,7 @@ html, body {
 } 
 #nav ul {
   overflow: auto;
-  height: 35vh;
+  height: 40vh;
   flex: 0 0 100%;
   display: flex;
   flex-wrap:wrap;
@@ -102,6 +102,11 @@ html, body {
   display: block;
   margin: 0 auto;
   border: 2px solid #000;
+}
+#nav a:focus img {
+  display: block;
+  border: 2px solid #999;
+  border-radius: 10px;
 }
 #nav img:hover {
   display: block;
