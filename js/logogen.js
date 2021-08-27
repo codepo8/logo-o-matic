@@ -158,7 +158,7 @@
         old = t;
         c64palette.classList.add('inactive');
         pixelbuffer = [];
-        srcimg.src = 'fonts/' + t.id + '.png';
+        srcimg.src = 'img/fonts/' + t.id + '.png';
         srcimg.onload = () => {
           sanitise();
           endcolouring();
