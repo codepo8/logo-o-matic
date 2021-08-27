@@ -59,18 +59,21 @@ save.addEventListener('click', (ev) => {
     // ev.preventDefault();
 })
 let counter = 0;
-let i = new Image();
-i.src = './img/canvas.png';
-i.onload = () => {
-    all.width = i.width;
-    all.height = i.height;
-    allctx.drawImage(i, 0, 0);
-    ripfont(Object.keys(fonts)[counter]);
-}
- 
 
+const init = () => {
+    let i = new Image();
+    i.src = './img/canvas.png';
+    i.onload = () => {
+        all.width = i.width;
+        all.height = i.height;
+        allctx.drawImage(i, 0, 0);
+        ripfont(Object.keys(fonts)[counter]);
+    }
+}
+
+document.querySelector('button').addEventListener('click', init)
 </script>    
 
-    
+<button>Rip all fonts from canvas</button>    
 </body>
 </html>
