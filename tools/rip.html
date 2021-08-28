@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>C-64 charset logo generator</title>
-  <link rel="stylesheet" href="styles/logogen.css">
+  <link rel="stylesheet" href="../styles/logogen.css">
 </head>
 <body>
-<img src="fonts/ollie-logoland.png" alt="" id="fonts">
+<img src="../img/fonts/olliehigher.png" alt="" id="fonts">
 
 <script>
-
-
 window.addEventListener('load', function(){
   var c = document.createElement('canvas');
   document.body.appendChild(c);
@@ -23,14 +21,16 @@ window.addEventListener('load', function(){
   ctx.drawImage(img,0,0,width,img.naturalHeight);
   var offset = 0;
   var startpoint = [0,0];
-  var green = {r:62,b:67,g:255,a:255};
+  var green = {r:63,b:67,g:255,a:255};
+ 
+//  var green = {r:0,b:73,g:255,a:255};
   // var green = {r:75,g:253,b:81,a:255};
-  var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
-  var letters = `abcdefghijklmnopqrstuvwxyxz`.split('');
-  var letters = `abcdefghijklmnopqrstuvwxyxz0123456789'(),.!`.split('');
+  // var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
+  // var letters = `abcdefghijklmnopqrstuvwxyxz`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz!-0123456789:;?`.split('');
   // var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
-  console.log(letters);
-  var fontdata = {};
+  var fontdata = {};  
+  fontdata.height = c.height;
 
   function getfonts() {
     var letter = 0;
@@ -38,6 +38,7 @@ window.addEventListener('load', function(){
     var boundaries = [];
     for (var i = offset; i < width; i++) {
     var currentcolour = pixelcolour(i, startpoint[1]+5);
+//    console.log(currentcolour);
       if(isgreen(currentcolour) === -1){
         letterwidth++;
       } else {
@@ -53,16 +54,6 @@ window.addEventListener('load', function(){
     console.log(fontdata);
     var out = JSON.stringify(fontdata);
     console.log(out);
-  }
-
-  function getheight(startpoint) {
-    var hy = 0;
-    var currentcolour = pixelcolour(startpoint[0], startpoint[1]);
-    while (isgreen(currentcolour) === -1 && hy < 300) {
-      hy++;
-      currentcolour = pixelcolour(startpoint[0], startpoint[1]+hy);
-    }
-    return hy;
   }
 
   function isgreen(col) {
@@ -81,7 +72,6 @@ window.addEventListener('load', function(){
     };
   }
 
-  fontdata.height = 95 //getheight(startpoint);
   getfonts();
 }, false)
 </script>

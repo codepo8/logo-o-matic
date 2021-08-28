@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Logo Canvas</title>
+    <style>
+        #output {
+            width: 48vw;
+            height: 100vh;
+            padding: 1vw;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        canvas {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    </style>
+
 </head>
 <body>
-    <script src="js/fonts.js"></script>
+    <h1>Create the Logo Canvas</h1>
+    <p>This tool allows you to create the logo canvas used in the tool. It goes through all the images in the img/demologos folder and creates one big image from them. It also creates the imgobj used to paint the logos to click.</p>
+    
+    <script src="../js/fonts.js"></script>
+    <textarea id="output"></textarea>
 
     <script>
         let i = null;
@@ -37,13 +57,15 @@
                 j++;
                 if (j < all) {addto()}
                 else {
-                    console.log(
-                        JSON.stringify(imgobj).replace(/"height":(\d+)},/g,'"height":$1},'+"\n")
+                    let out = JSON.stringify(imgobj).replace(
+                        /"height":(\d+)},/g,'"height":$1},'+"\n"
                     );
+                    console.log(out)
+                    output.innerHTML = out;
                     document.body.appendChild(c);
                 }
             }
-            i.src = `demologos/${logos[j]}.png`;
+            i.src = `../img/demologos/${logos[j]}.png`;
         }
         addto();
 

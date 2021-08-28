@@ -14,7 +14,6 @@ You can see all the settings of the fonts in the `fonts.js` JSON set. If you kno
 * `format` - the original C64 file format
 * `maker` - the handle of the original creator
 * `makerlink` - CSDB link of the creator
-* `offset` - amount of pixels from top the font starts
 * `height` - height of the font
 * `a-z` (and special characters): array with start pixel coordinate and width of each character
 
