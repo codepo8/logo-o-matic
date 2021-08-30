@@ -13,24 +13,26 @@
 html, body {
   background: #000;
 }
-#fonts{
+#fonts {
   display: none;
   opacity: 0;
   position: absolute;
 }
 #nav {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 10px 0;
-
+  flex: 1;
 }
 .actions {
   flex: 5;
 }
 #nav h2 {
   background: #000;
-  flex: 2;
   color: #fff;
+  flex: 0 0 100%;
+}
+@media all and (max-width: 600px) {
+  #charsbox {
+    display: block;
+  }
 }
 #nav form{
   flex: 1;
@@ -48,7 +50,6 @@ html, body {
   color: #000;
   text-align: center;
   padding: 5px 10px; 
-  flex: 1;
 }
 #nav input[type=checkbox] {
   position: absolute;
@@ -89,13 +90,13 @@ html, body {
 } 
 #nav ul {
   overflow: auto;
-  height: 40vh;
   flex: 0 0 100%;
   display: flex;
   flex-wrap:wrap;
   flex-direction: row;
   counter-reset:list;
   gap: 10px;
+  height: 40vh;
   background: #444;
 }
 #nav img {
@@ -174,7 +175,7 @@ form {
 }
 #nav output {
   color: #fff;
-  flex: 1;
+  flex: 7;
   text-align:right;
   font-size: .8em;
   line-height:2.2em;
@@ -187,10 +188,8 @@ output a {
   color: #F6F6A9;
 }
 #container {
-  min-height: calc(54vh);
-  position: relative;
+  flex: 1;
   background: #999;
-  /*position: fixed;*/
   padding-bottom: 20px;
   border-top: 1px solid white;
   box-shadow: 10px -10px 30px #000;
@@ -198,32 +197,18 @@ output a {
 section, header, footer{
   display: block;
 }
+section {
+  align-items: justify;
+  display: flex;
+  flex-direction: column;
+}
 h2 {
-  line-height: 30px;
-  overflow: auto;
   font-weight: normal;
   padding: 5px 10px;
   font-size: 18px;
 }
-span:first-of-type {
-  font-weight: bold;
-  text-align: center;
-  background: lime;
-  color: #000;
-  line-height: 30px;
-  border-radius: 30px;
-  width: 30px;
-  height: 30px;
-  margin-right: 10px;
-  display: block;
-  float: left;
-}
 header {
   display: block;
-  top: 0;
-  z-index: 2;
-  /*position: fixed;*/
-  width: 100%;  
   background: #000;
 }
 h1 {
@@ -234,8 +219,6 @@ h1 {
   font-weight: normal;
   font-size: 20px;
   padding: 0 10px;
-  line-height: 30px;
-  min-height: 3vh;
 }
 footer {
   position: absolute;
@@ -289,8 +272,6 @@ input[type=radio]:checked + label:before {
   background: #9AD284;
   color: #000;
 }
-
-
 .instructions {
   clear: both;
   font-size: inherit;

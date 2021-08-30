@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../styles/logogen.css">
 </head>
 <body>
-<img src="../img/fonts/olliehigher.png" alt="" id="fonts">
+<img src="../img/fonts/scrapvio.png" alt="" id="fonts">
 
 <script>
 window.addEventListener('load', function(){
@@ -23,12 +23,14 @@ window.addEventListener('load', function(){
   var startpoint = [0,0];
   var green = {r:63,b:67,g:255,a:255};
  
-//  var green = {r:0,b:73,g:255,a:255};
+ var green = {r:0,b:73,g:255,a:255};
   // var green = {r:75,g:253,b:81,a:255};
   // var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
   // var letters = `abcdefghijklmnopqrstuvwxyxz`.split('');
-  var letters = `abcdefghijklmnopqrstuvwxyz!-0123456789:;?`.split('');
   // var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz!-0123456789:;?`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz-.!'()`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz!.`.split('');
   var fontdata = {};  
   fontdata.height = c.height;
 
@@ -38,7 +40,7 @@ window.addEventListener('load', function(){
     var boundaries = [];
     for (var i = offset; i < width; i++) {
     var currentcolour = pixelcolour(i, startpoint[1]+5);
-//    console.log(currentcolour);
+  //  console.log(currentcolour);
       if(isgreen(currentcolour) === -1){
         letterwidth++;
       } else {
