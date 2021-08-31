@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="../styles/logogen.css">
 </head>
 <body>
-<img src="../img/fonts/scrapvio.png" alt="" id="fonts">
+<img src="../img/fonts/rtype.png" alt="" id="fonts">
 
 <script>
 window.addEventListener('load', function(){
@@ -23,14 +23,14 @@ window.addEventListener('load', function(){
   var startpoint = [0,0];
   var green = {r:63,b:67,g:255,a:255};
  
- var green = {r:0,b:73,g:255,a:255};
+// var green = {r:0,b:73,g:255,a:255};
   // var green = {r:75,g:253,b:81,a:255};
   // var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
   // var letters = `abcdefghijklmnopqrstuvwxyxz`.split('');
   // var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz!-0123456789:;?`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz-.!'()`.split('');
-  var letters = `abcdefghijklmnopqrstuvwxyz!.`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz()!"'=?:;*+,-./0123456789`.split('');
   var fontdata = {};  
   fontdata.height = c.height;
 
@@ -53,6 +53,7 @@ window.addEventListener('load', function(){
         letterwidth = 0;
       }
     }
+    console.log(currentcolour);
     console.log(fontdata);
     var out = JSON.stringify(fontdata);
     console.log(out);
