@@ -1,4 +1,14 @@
   var fonts = {
+    "cpx-qpd-beyond": {
+      product: "Beyond Reality",
+      year: '1993',
+      productlink: 'https://csdb.dk/release/?id=78',
+      format: 'Multicolour charset',
+      maker: 'Compyx and Cupid',
+      makerlink: 'http://csdb.dk/scener/?id=8054',
+      "height":55,"a":[0,46],"b":[48,46],"c":[96,46],"d":[144,46],"e":[192,38],"f":[232,38],"g":[272,46],"h":[320,46],"i":[368,14],"j":[384,30],"k":[416,46],"l":[464,30],"m":[496,46],"n":[544,46],"o":[592,46],"p":[640,46],"q":[688,46],"r":[736,46],"s":[784,46],"t":[832,46],"u":[880,46],"v":[928,46],"w":[976,46],"x":[1024,46],"y":[1072,46],"z":[1120,46]
+    },
+
     "scoop": {
       product: "lady's own",
       year: '1989',
