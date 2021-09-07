@@ -4,14 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Make Logo Canvas</title>
+    <link rel="stylesheet" href="../styles/logogen.css">
     <style>
+        header {
+            display: block;
+            width: 40vw;
+            color: #fff
+        }
+        header p {
+            margin:.5em 0;
+        }
         #output {
             width: 48vw;
             height: 100vh;
             padding: 1vw;
             position: absolute;
             left: 0;
-            top: 0;
+            top: 10em;
         }
         canvas {
             position: absolute;
@@ -22,8 +31,10 @@
 
 </head>
 <body>
-    <h1>Create the Logo Canvas</h1>
-    <p>This tool allows you to create the logo canvas used in the tool. It goes through all the images in the img/demologos folder and creates one big image from them. It also creates the imgobj used to paint the logos to click.</p>
+    <header>
+        <h1>Create the Logo Canvas</h1>
+        <p>This tool allows you to create the logo canvas used in the tool. It goes through all the images in the img/demologos folder and creates one big image from them. It also creates the imgobj used to paint the logos to click.</p>
+    </header>
     
     <script src="../js/fonts.js"></script>
     <textarea id="output"></textarea>

@@ -325,6 +325,7 @@
     `;
 
     let xoff = 0;
+  
 
     chunks.forEach((s,k) => {
       let centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
