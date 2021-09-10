@@ -1,4 +1,12 @@
   var fonts = {
+    "crestlight": {
+      product: "Crest Light",
+      year: '1992',
+      productlink: 'https://csdb.dk/release/?id=2563',
+      format: 'Multicolour charset',
+      maker: 'Vision',
+      makerlink: 'https://csdb.dk/scener/?id=3678',
+      "height":55,"a":[0,38],"b":[40,38],"c":[80,38],"d":[120,38],"e":[160,38],"f":[200,38],"g":[240,38],"h":[281,38],"i":[321,14],"j":[337,38],"k":[377,38],"l":[417,38],"m":[457,54],"n":[513,38],"o":[553,38],"p":[593,38],"q":[633,38],"r":[673,38],"s":[713,38],"t":[753,38],"u":[793,38],"v":[834,38],"w":[874,54],"x":[930,38],"y":[970,38],"z":[1010,38]},
     "torture": {
       product: "Torture",
       year: '1990',
