@@ -332,8 +332,9 @@
       switch (alignment) {
         case 'centre': destX += centered / 2; break; 
         case 'right': destX += centered; break;        
-        case 'left': destX = 5; break;        
+        case 'left': destX = 5; break;   
       }
+      destX = parseInt(destX, 10);
       for (let c of s) {
         if (c === ' ') {
           if ('^' in set) {
