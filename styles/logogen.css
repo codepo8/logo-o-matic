@@ -58,6 +58,11 @@ html, body {
   display: flex;
   justify-self: center;
 }
+#se {
+  flex: 3;
+  background: #eee;
+  border: none;
+}
 #nav input[type=checkbox] {
   position: absolute;
   top: -100vh;
