@@ -44,12 +44,19 @@ html, body {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-}
+  justify-content: center;
+  align-items: center;}
 #nav label { 
   background: #9AD284;
   color: #000;
   text-align: center;
   padding: 5px 10px; 
+}
+#nav label[for=se] {
+  background: transparent;
+  color: #fff;
+  display: flex;
+  justify-self: center;
 }
 #nav input[type=checkbox] {
   position: absolute;

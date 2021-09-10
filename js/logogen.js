@@ -459,6 +459,7 @@
     let big = document.querySelector('#big').checked;
     let small = document.querySelector('#small').checked;
     let medium = document.querySelector('#medium').checked;
+    let search = document.querySelector('#se').value.toLowerCase();
     let out = {};
     for (let f in window.fonts) {
       if (!small && window.fonts[f].height <= 25) { 
@@ -470,6 +471,15 @@
       }
       if (!big && window.fonts[f].height >= 50) { 
         out[f] = window.fonts[f]; 
+      }
+      if (search.length >0) {
+
+        let data = `${f} ${window.fonts[f].product} ${window.fonts[f].year} ${window.fonts[f].maker} ${window.fonts[f].format}`.toLowerCase();
+        if (data.includes(search)){
+          out[f] = window.fonts[f];
+        } else {
+         delete out[f];
+        }
       }
     }
     createFontMenu(out);
