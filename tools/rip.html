@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="../styles/logogen.css">
 </head>
 <body>
-<img src="../img/fonts/gpf.png" alt="" id="fonts">
+<img src="../img/fonts/fatherdagon.png?cahse=1" alt="" id="fonts">
 
 <script>
 window.addEventListener('load', function(){
@@ -25,15 +25,20 @@ window.addEventListener('load', function(){
   var green = {r:63,b:67,g:255,a:255};
   var green = {r:63,b:67,g:255,a:255};
  
-// var green = {r:0,b:73,g:255,a:255};
-  // var green = {r:75,g:253,b:81,a:255};
-  // var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
-  // var letters = `abcdefghijklmnopqrstuvwxyxz`.split('');
-  // var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
+
+  //var green = {r:0,b:73,g:255,a:255};
+  
+//  var green = {r:75,g:253,b:81,a:255};
+  
+  //  var letters = `abcdefghijklmnopqrstuvwxyz[]!'"()+,-.0123456789:;=?`.split('');
+  
+  //  var letters = `abcdefghijklmnopqrstuvwxyxz`.split('');
+  
+  //  var letters = `@abcdefghijklmnopqrstuvwxyzåäö!"#$%&'()*+,-./01234567989:;?`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz!-0123456789:;?`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz-.!'()`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz()!"'=?:;*+,-./0123456789`.split('');
-  var letters = `abcdefghjklmnopqrstuvwxyz!i`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz`.split('');
   var fontdata = {};  
   fontdata.height = c.height;
 
@@ -43,7 +48,8 @@ window.addEventListener('load', function(){
     var boundaries = [];
     for (var i = offset; i < width; i++) {
     var currentcolour = pixelcolour(i, startpoint[1]+5);
-  //  console.log(currentcolour);
+  
+    //   console.log(currentcolour);
       if(isgreen(currentcolour) === -1){
         letterwidth++;
       } else {
@@ -80,6 +86,15 @@ window.addEventListener('load', function(){
 
   getfonts();
 }, false)
+
+//out='';n=0;
+//'abcdefghjklmnopqrstuvwxyzi'.split('').forEach(
+  //(c,k) => {
+  //let add = 'wm'.indexOf(c)===-1 ? 30 : 30;
+//out+=(`${c}:[${k+2+n},${add}],`);
+//n+=add;
+//});
+//console.log(out); 
 </script>
 </body>
 </html>
