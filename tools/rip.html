@@ -13,20 +13,36 @@
       width:500px;
       height: 200px;
     }
+    .nope {
+      display: none;
+    }
   </style>
 </head>
 <body>
-<img src="../img/fonts/blueforest.png?cahse=1" alt="" id="fonts">
+  <div id="container">
 <p>
   <textarea></textarea>
 </p>
-
+<input id="getfile" type="file" />
+<label for="getfile">Load</label></div>
+</div>
 <script>
-window.addEventListener('load', function(){
+  let container =  document.querySelector('#container');
+  let fileinput = document.querySelector('#getfile');
+  let url = window.URL || window.webkitURL;
+  let objURL = url.createObjectURL || false;
+
+
+const getcharsfromfont = (img) => { 
+  if (document.querySelector('canvas')){
+    document.querySelector('canvas').remove();
+  }
   var c = document.createElement('canvas');
+
+
   document.body.insertBefore(c,document.body.firstChild);
   var ctx = c.getContext('2d');
-  var img = document.querySelector('img');
+  // var img = document.querySelector('img');
   var width = img.naturalWidth;
   c.width = width;
   c.height = img.naturalHeight;
@@ -50,7 +66,7 @@ window.addEventListener('load', function(){
   var letters = `abcdefghijklmnopqrstuvwxyz!-0123456789:;?`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz-.!'()`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz()!"'=?:;*+,-./0123456789`.split('');
-  var letters = `abcdefghijklmnopqrstuvwxyz`.split('');
+  var letters = `abcdefghijklmnopqrstuvwxyz,.'!`.split('');
   var fontdata = {};  
   fontdata.height = c.height;
 
@@ -98,7 +114,74 @@ window.addEventListener('load', function(){
   }
 
   getfonts();
-}, false)
+};
+
+
+const getClipboardImage = (pasteEvent, callback) => {
+    if(pasteEvent.clipboardData == false){
+          if(typeof(callback) == "function"){
+              callback(undefined);
+          }
+      };
+      let items = pasteEvent.clipboardData.items;
+      if (items) {
+          if(typeof(callback) == "function"){
+              callback(undefined);
+          }
+      };
+      for (let i = 0; i < items.length; i++) {
+          if (items[i].type.indexOf("image") == -1) continue;
+          let blob = items[i].getAsFile();
+          if(typeof(callback) == "function"){
+              callback(blob);
+          }
+      }
+  }
+
+  window.addEventListener('paste', (e) => {
+    getClipboardImage(e, function(imageBlob){
+          if(imageBlob){
+              let img = new Image();
+              img.onload = function(){
+                imagetocanvas(this, img.naturalWidth, img.naturalHeight, name);
+              };
+              let URLObj = window.URL || window.webkitURL;
+              img.src = URLObj.createObjectURL(imageBlob);
+          }
+      });
+  }, false);
+
+  const getfile = (e) => {
+    i = 0;
+    let file = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+        if(objURL) {
+          loadImage(url.createObjectURL(file),file.name);
+        } else {
+          let reader = new FileReader();
+          reader.readAsDataURL( file );
+          reader.onload = function ( ev ) {
+            loadImage(ev.target.result,file.name);
+          };
+        }
+
+    e.preventDefault();
+  }
+
+  const loadImage = (file, name) => {
+    let img = new Image();
+    img.src = file;
+    img.onload = function() {
+      getcharsfromfont(img);
+      //imagetocanvas(this, img.naturalWidth, img.naturalHeight, name);
+    };
+  }
+
+  container.addEventListener('dragover', ev => ev.preventDefault());
+
+  container.addEventListener('drop', getfile, false);
+
+  fileinput.addEventListener('change', getfile, false);
+
 
 //out='';n=0;
 //'abcdefghjklmnopqrstuvwxyzi'.split('').forEach(

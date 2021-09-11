@@ -123,6 +123,7 @@
     nav.innerHTML = out;
    shuffle();
   }
+
   const shuffle = () => {
     let elms = [...document.querySelectorAll('#nav ul>li')];
     const shuffled = elms.sort((a, b) => 0.5 - Math.random());
