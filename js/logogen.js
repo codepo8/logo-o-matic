@@ -101,10 +101,10 @@
       out += `<li>
         <a href="index.html?font=${i}" class="image">
         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-        style="background:url(img/logos.png);background-position:0 -${window.imgobj[i].start}px"
+        style="background:url(img/demologos/logos.png);background-position:0 -${window.imgobj[i+'-logo'].start}px"
         alt="${i} ${set.maker} - ${set.product}" 
-        height="${window.imgobj[i].height}" 
-        width="${window.imgobj[i].width}" id="${i}"></a>`;
+        height="${window.imgobj[i+'-logo'].height}" 
+        width="${window.imgobj[i+'-logo'].width}" id="${i}"></a>`;
       out += '<small>Font by ';
       out += (set.makerlink) 
         ? `<a href="${set.makerlink}">${set.maker}</a>`
@@ -140,6 +140,11 @@
       if(t.tagName === 'IMG' || t.tagName === "A"){
         if (t.tagName === 'A') { t = t.querySelector('img');}
         set = fonts[t.id];
+        if(set.nogap) {
+          kerning.value = 0;
+        } else {
+          kerning.value = 2;
+        }
         let out = 'a-z';
         let available = Object.keys(set).filter(
           k => k.length === 1 && !/[a-z]/.test(k)
