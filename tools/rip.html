@@ -20,12 +20,17 @@
 </head>
 <body>
   <div id="container">
+    <label for="availablechars">Characters in set:</label>
+    <input type="text" value="abcdefghijklmnopqrstuvwxyxz" id="availablechars">
+    <label for="col">Separator colour:</label>
+    <input type="text" value="{r:63,b:67,g:255,a:255}" id="col">
 <p>
   <textarea></textarea>
 </p>
 <input id="getfile" type="file" />
 <label for="getfile">Load</label></div>
 </div>
+<img src="" id="fonts">
 <script>
   let container =  document.querySelector('#container');
   let fileinput = document.querySelector('#getfile');
@@ -38,16 +43,17 @@ const getcharsfromfont = (img) => {
     document.querySelector('canvas').remove();
   }
   var c = document.createElement('canvas');
-
-
+  
+  
   document.body.insertBefore(c,document.body.firstChild);
   var ctx = c.getContext('2d');
   // var img = document.querySelector('img');
   var width = img.naturalWidth;
   c.width = width;
   c.height = img.naturalHeight;
-
+  
   ctx.drawImage(img,0,0,width,img.naturalHeight);
+
   var offset = 0;
   var startpoint = [0,0];
   var green = {r:63,b:67,g:255,a:255};
@@ -67,10 +73,13 @@ const getcharsfromfont = (img) => {
   var letters = `abcdefghijklmnopqrstuvwxyz-.!'()`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz()!"'=?:;*+,-./0123456789`.split('');
   var letters = `abcdefghijklmnopqrstuvwxyz,.'!`.split('');
+  var letters = document.querySelector('#availablechars').value.split('');
   var fontdata = {};  
   fontdata.height = c.height;
 
   function getfonts() {
+    console.log(pixelcolour(width, 1))
+
     var letter = 0;
     var letterwidth = 0;
     var boundaries = [];
@@ -90,10 +99,10 @@ const getcharsfromfont = (img) => {
         letterwidth = 0;
       }
     }
-    console.log(currentcolour);
-    console.log(fontdata);
+    // console.log(currentcolour);
+    // console.log(fontdata);
     var out = JSON.stringify(fontdata);
-    console.log(out);
+    // console.log(out);
     document.querySelector('textarea').value = out;
   }
 
@@ -171,6 +180,7 @@ const getClipboardImage = (pasteEvent, callback) => {
     let img = new Image();
     img.src = file;
     img.onload = function() {
+      document.querySelector('img').src = img.src;
       getcharsfromfont(img);
       //imagetocanvas(this, img.naturalWidth, img.naturalHeight, name);
     };
@@ -182,8 +192,10 @@ const getClipboardImage = (pasteEvent, callback) => {
 
   fileinput.addEventListener('change', getfile, false);
 
-
-//out='';n=0;
+  document.querySelector('#availablechars').addEventListener('keyup', () => {
+    getcharsfromfont(document.querySelector('img'));
+  })
+  //out='';n=0;
 //'abcdefghjklmnopqrstuvwxyzi'.split('').forEach(
   //(c,k) => {
   //let add = 'wm'.indexOf(c)===-1 ? 30 : 30;
