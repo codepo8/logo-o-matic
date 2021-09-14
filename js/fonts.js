@@ -1,4 +1,14 @@
 var fonts = {
+  "powerengine": {
+    "product": "Mendip HQ promo",
+    "year": '1995',
+    "productlink": 'https://csdb.dk/release/?id=84429',
+    "format": 'Multicolour font',
+    "maker": 'Cupid',
+    "makerlink": 'http://csdb.dk/scener/?id=1805',
+    "height":74,
+      "a":[0,36],"b":[40,36],"c":[80,36],"d":[120,36],"e":[160,36],"f":[200,36],"g":[240,36],"h":[280,36],"i":[318,14],"j":[333,22],"k":[359,36],"l":[399,14],"m":[415,60],"n":[479,36],"o":[519,36],"p":[559,36],"q":[599,36],"r":[637,26],"s":[669,36],"t":[709,36],"u":[749,36],"v":[789,36],"w":[829,54],"x":[885,36],"y":[924,36],"z":[964,36]
+  },
   "pal-eb": {
     "product": "Emotional Breakdown",
     "year": '1992',
