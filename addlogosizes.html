@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="js/fonts.js"></script>
+<script>
+    let names = Object.keys(fonts);
+    let counter = 0;
+    const add = name => {
+        let i = new Image();
+        i.src = '../img/demologos/' + name +'-logo.png';
+        i.onload = function() {
+            console.log(name);
+            fonts[names[counter]].logowidth = i.naturalWidth;
+            fonts[names[counter]].logoheight = i.naturalHeight;
+            counter++;
+            if(names[counter]) {
+                add(names[counter]);
+            } else {
+                console.log(JSON.stringify(fonts));
+            }
+        }
+    }
+    add(names[0]);
+</script>
+
+
+</body>
+</html>

@@ -98,13 +98,19 @@
     var out = '';
     for (var i in f) {
       let set = fonts[i];
+      // out += `<li>
+      //   <a href="index.html?font=${i}" class="image">
+      //   <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+      //   style="background:url(img/demologos/logos.png);background-position:0 -${window.imgobj[i+'-logo'].start}px"
+      //   alt="${i} ${set.maker} - ${set.product}" 
+      //   height="${window.imgobj[i+'-logo'].height}" 
+      //   width="${window.imgobj[i+'-logo'].width}" id="${i}"></a>`;
       out += `<li>
         <a href="index.html?font=${i}" class="image">
-        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-        style="background:url(img/demologos/logos.png);background-position:0 -${window.imgobj[i+'-logo'].start}px"
+        <img src="img/demologos/${i}-logo.png"
         alt="${i} ${set.maker} - ${set.product}" 
-        height="${window.imgobj[i+'-logo'].height}" 
-        width="${window.imgobj[i+'-logo'].width}" id="${i}"></a>`;
+        height="${set.logoheight}" 
+        width="${set.logowidth}" loading="lazy" id="${i}"></a>`;
       out += '<small>Font by ';
       out += (set.makerlink) 
         ? `<a href="${set.makerlink}">${set.maker}</a>`
