@@ -12,7 +12,6 @@
 }
 html, body {
   background: #000;
-  padding: 17px;
 }
 #fonts {
   display: none;
@@ -71,6 +70,15 @@ html, body {
 #nav input:checked + label {
   background: #444444;
   color: #999;
+}
+.fontfilter{
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+  transition: 400ms;;
+}
+.fontfilter:focus-within{
+  opacity: 1;
 }
 #nav li {
   flex: 1;
@@ -133,17 +141,36 @@ html, body {
 }
 
 label.disabled {
-  opacity: 0.3;
+  opacity: 0;
 }
 li, p, input {
   font-size: 20px;
   font-family: inherit;
 }
+.inputs ul{
+  display: flex;
+  gap: .5em;
+  flex-flow: row wrap;
+  align-items: center;
+}
 .inputs li {
+  font-size: 16px;
+  list-style: none;
+  padding-bottom: 5px;
+}
+.inputs li.radios {
+  flex: 2;
   display: flex;
 }
-.inputs label {
-  flex: 4;
+.inputs li:last-of-type {
+  flex: 1;
+  display: contents;
+}
+.inputs li a {
+  display: block
+}
+.num label {
+  padding-right: 1em;
 }
 .inputs input, .inputs select {
   font-family: inherit;
@@ -151,7 +178,7 @@ li, p, input {
 }
 
 .colouring .inputs {
-  opacity: 0.3;
+  opacity: 0;
 }
 input[type="range"] {
   width: 120px;
@@ -172,13 +199,14 @@ button {
   font-size: 1em ;
 }
 .inputs {
-  flex: 1;
+  flex: 1 1 100%;
   background: #333;
   padding: 10px;
   color: #fff;
 }
-.colouring .inputs {
-  opacity: 0.3;
+.colouring .inputs, .colouring .logotext{
+  opacity: 0;
+  display: none;
 }
 form {
   gap: 10px;
@@ -222,16 +250,16 @@ h2 {
 }
 header {
   display: block;
-  background: #000;
+  background: #333;
+  padding: 1em .5em
 }
 h1 {
   text-transform: uppercase;
   color: #fff;
-  height: 30px;
   background: #333;
   font-weight: normal;
   font-size: 20px;
-  padding: 0 10px;
+  padding: 0 5em 0 10px;
 }
 footer {
   position: absolute;
@@ -250,11 +278,6 @@ footer p{
   padding: 5px 10px;
   background: #333;
 }
-.inputs li {
-  font-size: 16px;
-  list-style: none;
-  padding-bottom: 5px;
-}
 
 input[type=radio] {
   border: 0;
@@ -272,6 +295,7 @@ input[type=radio] + label {
 }
 .radios label {
   text-align: center;
+  padding: 2px 5px;
 }
 input[type=radio]:checked:hover + label {
   background: #9AD284;
@@ -306,7 +330,7 @@ input[type=radio]:checked + label:before {
 canvas {
   position: relative;
   background: #000;
-
+  display: block;
 }
 #main, #display {
   cursor: crosshair;
@@ -319,27 +343,26 @@ canvas {
   background-size: 30px 30px;
   background-position:0 0, 15px 15px;
 }
-.zoomed #dimensions {
-  display: none;
-}
 #dimensions {
   font-size: 0.8em;
   color: #222;
+  padding: 10px 10px 10px 200px;
 }
 #display {
   display: none;
+}
+.canvaslayout {
+  display: flex;
+  gap: 10px;
+  padding: 0 10px;
 }
 #swab, #zoom {
   background: #000;
   border: 2px solid #000;
   width: 80px;
   height: 80px;
-  float: left;
-  margin: 0 10px 15px 20px;
 }
-#zoom {
-  margin-left: 0;
-}
+
 svg {
   width: 1.7em;
 }
@@ -359,7 +382,9 @@ a#save, button {
   background: #333;
 }
 .inactive {
-  opacity: 0.1;
+  display: none;
+  opacity: 0.2;
+  pointer-events: none;
   transition: 0.5s;
 }
 .inactive button {
@@ -367,7 +392,7 @@ a#save, button {
 }
 ul.palette {
   overflow: hidden;
-  margin: 10px 0 10px 0;
+  margin: 10px 0 10px 190px;
   transition: 0.5s;
 }
 .transparent { background: transparent; }

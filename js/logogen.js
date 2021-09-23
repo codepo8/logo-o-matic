@@ -163,7 +163,11 @@
         availablecontainer.innerText = out;
         window.location.hash = 'goto-' + t.id;
         spacing.disabled = ('^' in set);
-        spacing.parentNode.className = ('^' in set) ? 'disabled' : '';
+        if ('^' in set) {
+          spacing.parentNode.classList.add('disabled'); 
+        } else {
+          spacing.parentNode.classList.remove('disabled'); 
+        }
         old.className = '';
         t.className = 'current';
         old = t;
@@ -332,9 +336,7 @@
     // ctx.fillStyle = 'red';
     // ctx.fillRect(0, 0, c.width, 5);
     ctx.fillRect(0, c.height - 5, c.width, c.height);
-    dimensions.innerText = `
-      Size: ${c.width}${c.width > 320 ? '(!)':''} x ${c.height}${c.height > 200 ? '(!)':''}
-    `;
+    dimensions.innerText = `Size: ${c.width}${c.width > 320 ? '(!)':''} x ${c.height}${c.height > 200 ? '(!)':''}`;
 
     let xoff = 0;
   
@@ -505,7 +507,7 @@
     [radiogroup, 'click', getalignment],
     [nav, 'click', pickfont],
     [c64palette, 'click', getC64colour],
-    [zoombutton, 'click', dozoom],
+    // [zoombutton, 'click', dozoom],
     [colourbutton, 'click', endcolouring],
     [filterform, 'change', filterfonts],
     [window, 'load', init],
