@@ -74,10 +74,12 @@ html, body {
 .fontfilter{
   display: flex;
   align-items: center;
+}
+#nav form {
   opacity: 0.5;
   transition: 400ms;;
 }
-.fontfilter:focus-within{
+#nav form:focus-within{
   opacity: 1;
 }
 #nav li {
