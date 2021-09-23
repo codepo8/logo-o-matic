@@ -1,4 +1,27 @@
 var fonts = {
+  "pal-f2green":{
+    "product":"Flexible II",
+    "year":"1997",
+    "productlink":"https://csdb.dk/release/?id=60418",
+    "format":"3 Colour Font",
+    "maker":"Pal",
+    "makerlink":"https://csdb.dk/scener/?id=1750",
+      "height":40,"a":[0,38],"b":[40,38],"c":[80,38],"d":[120,38],"e":[160,38],"f":[200,38],"g":[240,38],"h":[280,38],"i":[320,38],"j":[360,38],"k":[400,38],"l":[440,38],"m":[480,62],"n":[544,38],"o":[584,38],"p":[624,38],"q":[664,38],"r":[704,38],"s":[744,38],"t":[785,38],"u":[825,38],"v":[865,38],"w":[905,62],"x":[969,38],"y":[1009,38],"z":[1049,38],
+    "background": "darkgrey",
+    "logowidth": 168,
+    "logoheight": 50
+  },
+  "pal-flexible2":{
+    "product":"Flexible II",
+    "year":"1997",
+    "productlink":"https://csdb.dk/release/?id=60418",
+    "format":"3 Colour Font",
+    "maker":"Pal",
+    "makerlink":"https://csdb.dk/scener/?id=1750",
+      "height":40,"a":[0,38],"b":[40,38],"c":[80,38],"d":[120,38],"e":[160,38],"f":[200,38],"g":[240,38],"h":[280,38],"i":[320,38],"j":[360,38],"k":[400,38],"l":[440,38],"m":[482,38],"n":[522,38],"o":[562,38],"p":[602,38],"q":[642,38],"r":[682,38],"s":[722,38],"t":[762,38],"u":[802,38],"v":[842,38],"w":[882,38],"x":[922,38],"y":[962,38],"z":[1002,38],
+    "logowidth": 168,
+    "logoheight": 50
+  },
   "myohmy":{
     "product":"My oh My",
     "year":"1991",

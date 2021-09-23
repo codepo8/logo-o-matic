@@ -21,7 +21,7 @@
 <body>
   <div id="container">
     <label for="availablechars">Characters in set:</label>
-    <input type="text" value="abcdefghijklmnopqrstuvwxyxz" id="availablechars">
+    <input type="text" value="abcdefghijklmnopqrstuvwxyz" id="availablechars">
     <label for="col">Separator colour:</label>
     <input type="text" value="{r:63,b:67,g:255,a:255}" id="col">
 <p>
@@ -101,7 +101,7 @@ const getcharsfromfont = (img) => {
     }
     // console.log(currentcolour);
     // console.log(fontdata);
-    var out = JSON.stringify(fontdata);
+    var out = JSON.stringify(fontdata).replace(/\{|\}/,'');
     // console.log(out);
     document.querySelector('textarea').value = out;
   }

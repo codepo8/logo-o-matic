@@ -12,6 +12,7 @@
 }
 html, body {
   background: #000;
+  padding: 17px;
 }
 #fonts {
   display: none;
