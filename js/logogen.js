@@ -127,7 +127,9 @@
       out += `</small></li>`;
     }
     nav.innerHTML = out;
-   shuffle();
+    if (window.location.href.indexOf('noshuffle') === -1) {
+      shuffle();
+    }
   }
 
   const shuffle = () => {
