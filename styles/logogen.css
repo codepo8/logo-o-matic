@@ -79,7 +79,7 @@ html, body {
   opacity: 0.5;
   transition: 400ms;;
 }
-#nav form:focus-within{
+#nav form:focus-within, #nav form:hover{
   opacity: 1;
 }
 #nav li {
@@ -119,7 +119,7 @@ html, body {
   flex-direction: row;
   counter-reset:list;
   gap: 10px;
-  height: 40vh;
+  height: 35vh;
   background: #444;
 }
 #nav img {
@@ -201,7 +201,9 @@ button {
   font-size: 1em ;
 }
 .inputs {
+
   flex: 1 1 100%;
+  
   background: #333;
   padding: 10px;
   color: #fff;
@@ -233,6 +235,7 @@ output a {
 #container {
   flex: 1;
   background: #999;
+  min-height: 49vh;
   padding-bottom: 20px;
   border-top: 1px solid white;
   box-shadow: 10px -10px 30px #000;
@@ -462,6 +465,7 @@ aside {
   width: 400px;
   color: #ccc;
   transition: 0.5s;
+  box-shadow: -4px 4px 10px black;
 }
 aside li {
   list-style: none;

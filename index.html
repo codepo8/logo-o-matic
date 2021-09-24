@@ -46,124 +46,124 @@
     </li>
   </ul>
 </div>
-
-  <div id="container">
-  <form class="zoomsafe">
-    <div class="logotext">
-    <label>Logo text (~ for linebreak): <input id="text" value="excellent"></label>
-      <span id="charsbox">chars: <span id="charsavailable"></span></span> 
-    </div>
-    <div class="actions zoomsafe">
-      <ul class="palette inactive" id="c64colours">
-        <li class="transparent row" title="transparent" data-col="000000"></li>
-        <li class="black" title="black" data-col="000000"></li>
-        <li class="brown" title="brown" data-col="433900"></li> 
-        <li class="red" data-col="68372B"></li> 
-        <li class="orange" data-col="6F4F25"></li> 
-        <li class="grey" data-col="6C6C6C"></li> 
-        <li class="lightred" data-col="9A6759"></li> 
-        <li class="lightgrey" data-col="959595"></li> 
-        <li class="yellow" data-col="B8C76F"></li> 
-        <li class="white" data-col="FFFFFF"></li> 
-        <li class="transparent row" title="transparent" data-col="000000"></li>
-        <li class="black" data-col="000000"></li>
-        <li class="blue" data-col="352879"></li> 
-        <li class="darkgrey" data-col="444444"></li> 
-        <li class="purple" data-col="6F3D86"></li> 
-        <li class="lightblue" data-col="6C5EB5"></li> 
-        <li class="green" data-col="588D43"></li> 
-        <li class="cyan" data-col="70A4B2"></li> 
-        <li class="lightgreen" data-col="9AD284"></li> 
-        <li class="white" data-col="FFFFFF"></li> 
-        <li><button type="button" id="colourbutton" title="done with colouring">✔</button></li>
-      </ul>
-      
-    </div>
-  </form>
-  <div class="canvaslayout">
-    <div id="swab"></div>
-    <canvas id="zoom"></canvas>
-    <div>
-      <canvas id="main"></canvas>
-    </div>
-    <canvas id="display" class="zoomsafe"></canvas>
+<div id="container">
+<form class="zoomsafe">
+  <div class="logotext">
+  <label>Logo text (~ for linebreak): <input id="text" value="excellent"></label>
+    <span id="charsbox">chars: <span id="charsavailable"></span></span> 
   </div>
-  <div id="dimensions"></div>
-  <div class="inputs">
-    <ul>
-  <!--  <label>Background: <input type="color" id="colour" value="#000000"></label>
-    <label> Opacity: <input type="range" value="1" min="0" max="1" step="0.01" id="opacity"></label> -->
-    <li class="num"><label for="kerning">Char gap: </label><input id="kerning" type="number" value="2"></li>
-    <li class="num"><label for="spacing">Word gap: </label><input id="spacing" type="number" value="15"></li>
-    <li class="num"><label for="charoffset">Offset: </label><input id="charoffset" type="number" value="0"></li>
-    <li class="radios inactive">
-      <input type="radio" id="r1" name="aligned" checked value="left">
-      <label for="r1">
-        <svg height='2em' width='2em' fill="#ffffff" xmlns="http://www.w3.org/2000/svg" 
-        viewBox="0 0 100 100" x="0px" y="0px" aria-labelledby="titler1" role="img">
-          <title id="titler1">Left</title>
-          <rect x="17.04" y="25.36" width="65.91" height="6"></rect>
-          <rect x="17.04" y="39.79" width="43.87" height="6"></rect>
-          <rect x="17.04" y="54.21" width="65.91" height="6"></rect>
-          <rect x="17.04" y="68.64" width="43.87" height="6"></rect>
-        </svg>
-      </label>
-      <input type="radio" name="aligned" id="r2" value="centre">
-      <label for="r2">
-        <svg height='2em' width='2em' fill="#ffffff" 
-          x="0px" y="0px" viewBox="0 0 16 16"
-          xml:space="preserve" aria-labelledby="titler2" role="img">
-          <title id="titler2">Center</title>>
-          <rect x="2.15" y="8.85" width="11.7" height="1"></rect>
-          <rect x="2.15" y="3.45" width="11.7" height="1"></rect>
-          <rect x="3.95" y="11.55" width="8.1" height="1"></rect>
-          <rect x="3.95" y="6.15" width="8.1" height="1"></rect>
-        </svg>
-      </label>
-      <input type="radio" id="r3" name="aligned" value="right">
-      <label for="r3">
-        <svg height='2em' width='2em' fill="#ffffff" 
-          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" x="0px" y="0px" 
-          aria-labelledby="titler3" role="img">
-          <title id="titler3">Right</title>
-          <rect x="17.04" y="25.36" width="65.91" height="6"></rect>
-          <rect x="39.08" y="39.79" width="43.87" height="6"></rect>
-          <rect x="17.04" y="54.21" width="65.91" height="6"></rect>
-          <rect x="39.08" y="68.64" width="43.87" height="6"></rect>
-        </svg>
-      </label>
-    </li>
-    <!-- <li>
-      <button type="button" class="zoomsafe" id="zoombutton">
-        <svg height='100%' width='100%' fill="#ffffff"
-        viewBox="0 0 100 100" x="0px" y="0px" aria-labelledby="zoomtitle" role="img">
-          <title id="zoomtitle">Zoom</title>
-          <path d="M65.46,58.26c0.4-.54.79-1.1,1.16-1.67a34,34,0,1,0-10,10c0.57-.36,1.13-0.75,1.67-1.16A33.85,33.85,0,0,0,65.46,58.26ZM6.23,38.19A31.92,31.92,0,1,1,38.14,70.1,32,32,0,0,1,6.23,38.19Z"></path>
-          <path d="M42.51,58.64a21,21,0,0,1-4.37.46,20.72,20.72,0,0,1-8.37-1.75,1,1,0,0,0-.8,1.83,22.71,22.71,0,0,0,9.18,1.92,23,23,0,0,0,4.78-.5A1,1,0,0,0,42.51,58.64Z"></path>
-          <path d="M38.15,11.27A26.89,26.89,0,0,0,13.35,27.71a1,1,0,1,0,1.84.78,24.91,24.91,0,1,1-2,9.69,1,1,0,0,0-2,0A26.91,26.91,0,1,0,38.15,11.27Z"></path>
-          <path d="M93.7,83.67L68.06,58c-0.37.57-.76,1.12-1.17,1.66l6.6,6.6-3.6,3.59a1,1,0,1,0,1.41,1.41l3.59-3.59L92.28,85.08a5.07,5.07,0,0,1-7.16,7.17L59.73,66.87c-0.54.41-1.08,0.8-1.65,1.18L83.7,93.67A7.07,7.07,0,0,0,93.7,83.67Z"></path>
-          <path d="M37.56,27.12a1,1,0,0,0-1,1v7.5h-7.5a1,1,0,1,0,0,2h7.5v7.5a1,1,0,0,0,2,0v-7.5h7.5a1,1,0,0,0,0-2h-7.5v-7.5A1,1,0,0,0,37.56,27.12Z"></path>
-        </svg>
-      </button>
-    </li> -->
-    <li>
-      <a id="save" class="zoomsafe" href="" download="">
-        <svg height='100%' width='100%' fill="#ffffff"
-        viewBox="0 0 847 847" x="0px" y="0px" aria-labelledby="savetitle" role="img">
-        <title id="savetitle">Save</title>
-          <g>
-            <path class="fil0" d="M239 328l369 0c11,0 20,-9 20,-20l0 -234 -409 0 0 234c0,11 9,20 20,20zm10 368l349 0 0 34 -349 0 0 -34zm0 -77c116,0 233,0 349,0 0,11 0,23 0,34 -116,0 -233,0 -349,0 0,-11 0,-23 0,-34zm0 -77l349 0 0 34 -349 0 0 -34zm-144 -502c193,0 387,0 581,0l131 122 0 570c0,41 -34,74 -75,74 -212,0 -425,0 -637,0 -41,0 -75,-33 -75,-74l0 -617c0,-41 34,-75 75,-75zm568 34l-11 0 0 234c0,30 -24,54 -54,54l-369 0c-30,0 -54,-25 -54,-54l0 -234 -80 0c-23,0 -41,19 -41,41l0 617c0,22 18,40 41,40l43 0 0 -224c0,-48 40,-88 88,-88l375 0c48,0 87,40 87,88l0 224 44 0c23,0 41,-18 41,-40l0 -556 -110 -102zm-62 420l-375 0c-30,0 -54,24 -54,54l0 224 482 0 0 -224c0,-30 -24,-54 -53,-54zm-131 -399l110 0 0 212 -110 0 0 -212z">
-            </path>
-          </g>
-        </svg>
-      </a>
-  
-    </li>
-  </ul>
+  <div class="actions zoomsafe">
+    <ul class="palette inactive" id="c64colours">
+      <li class="transparent row" title="transparent" data-col="000000"></li>
+      <li class="black" title="black" data-col="000000"></li>
+      <li class="brown" title="brown" data-col="433900"></li> 
+      <li class="red" data-col="68372B"></li> 
+      <li class="orange" data-col="6F4F25"></li> 
+      <li class="grey" data-col="6C6C6C"></li> 
+      <li class="lightred" data-col="9A6759"></li> 
+      <li class="lightgrey" data-col="959595"></li> 
+      <li class="yellow" data-col="B8C76F"></li> 
+      <li class="white" data-col="FFFFFF"></li> 
+      <li class="transparent row" title="transparent" data-col="000000"></li>
+      <li class="black" data-col="000000"></li>
+      <li class="blue" data-col="352879"></li> 
+      <li class="darkgrey" data-col="444444"></li> 
+      <li class="purple" data-col="6F3D86"></li> 
+      <li class="lightblue" data-col="6C5EB5"></li> 
+      <li class="green" data-col="588D43"></li> 
+      <li class="cyan" data-col="70A4B2"></li> 
+      <li class="lightgreen" data-col="9AD284"></li> 
+      <li class="white" data-col="FFFFFF"></li> 
+      <li><button type="button" id="colourbutton" title="done with colouring">✔</button></li>
+    </ul>
+    
   </div>
-  <p class="instructions">Click on a colour in the logo and select from the palette to change it.<br>Double click or click the ✔ to finish changing colours.</p>
-  
+</form>
+<div class="canvaslayout">
+  <div id="swab"></div>
+  <canvas id="zoom"></canvas>
+  <div>
+    <canvas id="main"></canvas>
+  </div>
+  <canvas id="display" class="zoomsafe"></canvas>
 </div>
+<div id="dimensions"></div>
+<div class="inputs">
+  <ul>
+<!--  <label>Background: <input type="color" id="colour" value="#000000"></label>
+  <label> Opacity: <input type="range" value="1" min="0" max="1" step="0.01" id="opacity"></label> -->
+  <li class="num"><label for="kerning">Char gap: </label><input id="kerning" type="number" value="2"></li>
+  <li class="num"><label for="spacing">Word gap: </label><input id="spacing" type="number" value="15"></li>
+  <li class="num"><label for="charoffset">Offset: </label><input id="charoffset" type="number" value="0"></li>
+  <li class="radios inactive">
+    <input type="radio" id="r1" name="aligned" checked value="left">
+    <label for="r1">
+      <svg height='2em' width='2em' fill="#ffffff" xmlns="http://www.w3.org/2000/svg" 
+      viewBox="0 0 100 100" x="0px" y="0px" aria-labelledby="titler1" role="img">
+        <title id="titler1">Left</title>
+        <rect x="17.04" y="25.36" width="65.91" height="6"></rect>
+        <rect x="17.04" y="39.79" width="43.87" height="6"></rect>
+        <rect x="17.04" y="54.21" width="65.91" height="6"></rect>
+        <rect x="17.04" y="68.64" width="43.87" height="6"></rect>
+      </svg>
+    </label>
+    <input type="radio" name="aligned" id="r2" value="centre">
+    <label for="r2">
+      <svg height='2em' width='2em' fill="#ffffff" 
+        x="0px" y="0px" viewBox="0 0 16 16"
+        xml:space="preserve" aria-labelledby="titler2" role="img">
+        <title id="titler2">Center</title>>
+        <rect x="2.15" y="8.85" width="11.7" height="1"></rect>
+        <rect x="2.15" y="3.45" width="11.7" height="1"></rect>
+        <rect x="3.95" y="11.55" width="8.1" height="1"></rect>
+        <rect x="3.95" y="6.15" width="8.1" height="1"></rect>
+      </svg>
+    </label>
+    <input type="radio" id="r3" name="aligned" value="right">
+    <label for="r3">
+      <svg height='2em' width='2em' fill="#ffffff" 
+        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" x="0px" y="0px" 
+        aria-labelledby="titler3" role="img">
+        <title id="titler3">Right</title>
+        <rect x="17.04" y="25.36" width="65.91" height="6"></rect>
+        <rect x="39.08" y="39.79" width="43.87" height="6"></rect>
+        <rect x="17.04" y="54.21" width="65.91" height="6"></rect>
+        <rect x="39.08" y="68.64" width="43.87" height="6"></rect>
+      </svg>
+    </label>
+  </li>
+  <!-- <li>
+    <button type="button" class="zoomsafe" id="zoombutton">
+      <svg height='100%' width='100%' fill="#ffffff"
+      viewBox="0 0 100 100" x="0px" y="0px" aria-labelledby="zoomtitle" role="img">
+        <title id="zoomtitle">Zoom</title>
+        <path d="M65.46,58.26c0.4-.54.79-1.1,1.16-1.67a34,34,0,1,0-10,10c0.57-.36,1.13-0.75,1.67-1.16A33.85,33.85,0,0,0,65.46,58.26ZM6.23,38.19A31.92,31.92,0,1,1,38.14,70.1,32,32,0,0,1,6.23,38.19Z"></path>
+        <path d="M42.51,58.64a21,21,0,0,1-4.37.46,20.72,20.72,0,0,1-8.37-1.75,1,1,0,0,0-.8,1.83,22.71,22.71,0,0,0,9.18,1.92,23,23,0,0,0,4.78-.5A1,1,0,0,0,42.51,58.64Z"></path>
+        <path d="M38.15,11.27A26.89,26.89,0,0,0,13.35,27.71a1,1,0,1,0,1.84.78,24.91,24.91,0,1,1-2,9.69,1,1,0,0,0-2,0A26.91,26.91,0,1,0,38.15,11.27Z"></path>
+        <path d="M93.7,83.67L68.06,58c-0.37.57-.76,1.12-1.17,1.66l6.6,6.6-3.6,3.59a1,1,0,1,0,1.41,1.41l3.59-3.59L92.28,85.08a5.07,5.07,0,0,1-7.16,7.17L59.73,66.87c-0.54.41-1.08,0.8-1.65,1.18L83.7,93.67A7.07,7.07,0,0,0,93.7,83.67Z"></path>
+        <path d="M37.56,27.12a1,1,0,0,0-1,1v7.5h-7.5a1,1,0,1,0,0,2h7.5v7.5a1,1,0,0,0,2,0v-7.5h7.5a1,1,0,0,0,0-2h-7.5v-7.5A1,1,0,0,0,37.56,27.12Z"></path>
+      </svg>
+    </button>
+  </li> -->
+  <li>
+    <a id="save" class="zoomsafe" href="" download="">
+      <svg height='100%' width='100%' fill="#ffffff"
+      viewBox="0 0 847 847" x="0px" y="0px" aria-labelledby="savetitle" role="img">
+      <title id="savetitle">Save</title>
+        <g>
+          <path class="fil0" d="M239 328l369 0c11,0 20,-9 20,-20l0 -234 -409 0 0 234c0,11 9,20 20,20zm10 368l349 0 0 34 -349 0 0 -34zm0 -77c116,0 233,0 349,0 0,11 0,23 0,34 -116,0 -233,0 -349,0 0,-11 0,-23 0,-34zm0 -77l349 0 0 34 -349 0 0 -34zm-144 -502c193,0 387,0 581,0l131 122 0 570c0,41 -34,74 -75,74 -212,0 -425,0 -637,0 -41,0 -75,-33 -75,-74l0 -617c0,-41 34,-75 75,-75zm568 34l-11 0 0 234c0,30 -24,54 -54,54l-369 0c-30,0 -54,-25 -54,-54l0 -234 -80 0c-23,0 -41,19 -41,41l0 617c0,22 18,40 41,40l43 0 0 -224c0,-48 40,-88 88,-88l375 0c48,0 87,40 87,88l0 224 44 0c23,0 41,-18 41,-40l0 -556 -110 -102zm-62 420l-375 0c-30,0 -54,24 -54,54l0 224 482 0 0 -224c0,-30 -24,-54 -53,-54zm-131 -399l110 0 0 212 -110 0 0 -212z">
+          </path>
+        </g>
+      </svg>
+    </a>
+
+  </li>
+</ul>
+</div>
+<p class="instructions">Click on a colour in the logo and select from the palette to change it.<br>Double click or click the ✔ to finish changing colours.</p>
+
+</div>
+
 </section>
 <footer>
   <p>
