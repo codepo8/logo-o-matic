@@ -1,4 +1,15 @@
 var fonts = {
+  "trisomic":{
+    "product":"TrbIntro1",
+    "year":"1991",
+    "productlink":"https://csdb.dk/release/?id=193020",
+    "format":"3 Colour Font",
+    "maker":"Christ",
+    "makerlink":"https://csdb.dk/scener/?id=4724",
+    "logowidth": 232,
+    "logoheight": 53,
+    "height":43,"a":[0,54],"b":[56,54],"c":[112,54],"d":[168,54],"e":[224,54],"f":[280,50],"g":[332,54],"h":[388,54],"i":[444,22],"j":[468,54],"k":[524,54],"l":[580,54],"m":[636,62],"n":[700,54],"o":[756,54],"p":[812,52],"q":[865,62],"r":[929,54],"s":[985,54],"t":[1041,54],"u":[1097,54],"v":[1153,54],"w":[1209,62],"x":[1273,54],"y":[1329,54],"z":[1385,54]
+  },
   "flimbo":{
     "product":"Hexagone II",
     "year":"1992",
