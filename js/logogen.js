@@ -143,6 +143,8 @@
   }
 
   const pickfont = (e) => {
+    e.target.scrollIntoView();
+
     e.preventDefault();
     if (!document.body.classList.contains('zoomed')) {
       let t = e.target;
