@@ -142,47 +142,56 @@
     nav.innerHTML = out;
   }
 
-  const pickfont = (e) => {
-    e.target.scrollIntoView();
+  const getNavTarget = (e) => {
+    let t = e.target;
+    let tg = null;
+    if (t.tagName === 'IMG') {
+      tg = t;
+    }
+    if (t.tagName === 'A' && t.className === 'image'){ 
+        tg = t.querySelector('img');
+    }
+    return tg;
+  }
 
-    e.preventDefault();
-    if (!document.body.classList.contains('zoomed')) {
-      let t = e.target;
-      if(t.tagName === 'IMG' || t.tagName === "A"){
-        if (t.tagName === 'A') { t = t.querySelector('img');}
-        set = fonts[t.id];
-        if(set.nogap) {
-          kerning.value = 0;
-        } else {
-          kerning.value = 2;
-        }
-        let out = 'a-z';
-        let available = Object.keys(set).filter(
-          k => k.length === 1 && !/[a-z]/.test(k)
-        );
-        if (available.indexOf('0') !== -1) { out += ' 0-9' }
-        out += ' ' + available.filter(
-          k => !/[0-9|\^]/.test(k)
-        ).sort().join('');
-        availablecontainer.innerText = out;
-        window.location.hash = 'goto-' + t.id;
-        spacing.disabled = ('^' in set);
-        if ('^' in set) {
-          spacing.parentNode.classList.add('disabled'); 
-        } else {
-          spacing.parentNode.classList.remove('disabled'); 
-        }
-        old.className = '';
-        t.className = 'current';
-        old = t;
-        c64palette.classList.add('inactive');
-        pixelbuffer = [];
-        srcimg.src = 'img/fonts/' + t.id + '.png';
-        srcimg.onload = () => {
-          sanitise();
-          endcolouring();
-        }
+  const pickfont = (e) => {
+    let t = getNavTarget(e);
+    if (t) {
+      t.scrollIntoView();
+      set = fonts[t.id];
+      if(set.nogap) {
+        kerning.value = 0;
+      } else {
+        kerning.value = 2;
       }
+      let out = 'a-z';
+      let available = Object.keys(set).filter(
+        k => k.length === 1 && !/[a-z]/.test(k)
+      );
+      if (available.indexOf('0') !== -1) { out += ' 0-9' }
+      out += ' ' + available.filter(
+        k => !/[0-9|\^]/.test(k)
+      ).sort().join('');
+      availablecontainer.innerText = out;
+      window.location.hash = 'goto-' + t.id;
+      spacing.disabled = ('^' in set);
+      if ('^' in set) {
+        spacing.parentNode.classList.add('disabled'); 
+      } else {
+        spacing.parentNode.classList.remove('disabled'); 
+      }
+      old.className = '';
+      t.className = 'current';
+      old = t;
+      c64palette.classList.add('inactive');
+      pixelbuffer = [];
+      srcimg.src = 'img/fonts/' + t.id + '.png';
+      srcimg.onload = () => {
+        sanitise();
+        endcolouring();
+      }
+      e.preventDefault();
+
     }
   }
 
