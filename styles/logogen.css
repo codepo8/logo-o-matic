@@ -119,7 +119,7 @@ html, body {
   flex-direction: row;
   counter-reset:list;
   gap: 10px;
-  height: 35vh;
+  height: 45vh;
   background: #444;
 }
 #nav img {
@@ -196,7 +196,6 @@ input[type=text] {
   margin: 10px 0;
   width: 400px;
 }
-
 button {
   font-size: 1em ;
 }
@@ -235,7 +234,7 @@ output a {
 #container {
   flex: 1;
   background: #999;
-  min-height: 45vh;
+  min-height: 30vh;
   padding-bottom: 20px;
   border-top: 1px solid white;
   box-shadow: 10px -10px 30px #000;
@@ -488,4 +487,10 @@ aside li {
 aside p:nth-child(odd) {
   margin-top:10px;
   text-align: left;
+}
+@media only screen and (max-device-width: 480px) {
+  .instructions, #swab, #zoom,.actions {
+    display: none;
+  }
+  ;
 }

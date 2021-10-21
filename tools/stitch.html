@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image stitcher</title>
+  <link rel="stylesheet" href="stitch.css">
+</head>
+<body>
+  <div id="container">
+    <div id="tools">
+    <div id="swab"></div>
+    <canvas id="zoom"></canvas>
+    <ul class="palette" id="c64colours">
+      <li class="transparent" title="transparent" data-col="000000"></li>
+      <li class="black" title="black" data-col="000000"></li>
+      <li class="brown" title="brown" data-col="433900"></li> 
+      <li class="red" data-col="68372B"></li> 
+      <li class="orange" data-col="6F4F25"></li> 
+      <li class="grey" data-col="6C6C6C"></li> 
+      <li class="lightred" data-col="9A6759"></li> 
+      <li class="lightgrey" data-col="959595"></li> 
+      <li class="yellow" data-col="B8C76F"></li> 
+      <li class="white" data-col="FFFFFF"></li> 
+      <li class="transparent" title="transparent" data-col="000000"></li>
+      <li class="black" data-col="000000"></li>
+      <li class="blue" data-col="352879"></li> 
+      <li class="darkgrey" data-col="444444"></li> 
+      <li class="purple" data-col="6F3D86"></li> 
+      <li class="lightblue" data-col="6C5EB5"></li> 
+      <li class="green" data-col="588D43"></li> 
+      <li class="cyan" data-col="70A4B2"></li> 
+      <li class="lightgreen" data-col="9AD284"></li> 
+      <li class="white" data-col="FFFFFF"></li> 
+    </ul>
+    <button id="undobutton" class="inactive">Undo</button>
+    <div id="buttons">
+      <div>
+        <input id="getfile" type="file" />
+        <label for="getfile">Load</label></div>
+      <div><a href="" download="C64-recoloured.png" id="savebutton">Save</a></div>
+      <div><a href="#info" id="infobutton">Info</a></div>
+    </div>
+    </div>     
+    <div id="swatches"></div>
+    <div id="replacements"></div>
+    <div id="imagecontainer">
+      <canvas id="main"></canvas>
+    </div>
+    <div id="imagewell"></div>
+  </div>
+<script src="stitch.js"></script>
+</body>
+</html>
