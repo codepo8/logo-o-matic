@@ -8,8 +8,6 @@
 
 (function(){
 
-  // sorry, old browsers…
-  if (!document.querySelector) {return false;}
 /* 
   Grabbing the canvas and all the necessary elements from the DOM. 
   The image with the .current class defines which font is preset by
@@ -98,13 +96,6 @@
     var out = '';
     for (var i in f) {
       let set = fonts[i];
-      // out += `<li>
-      //   <a href="index.html?font=${i}" class="image">
-      //   <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-      //   style="background:url(img/demologos/logos.png);background-position:0 -${window.imgobj[i+'-logo'].start}px"
-      //   alt="${i} ${set.maker} - ${set.product}" 
-      //   height="${window.imgobj[i+'-logo'].height}" 
-      //   width="${window.imgobj[i+'-logo'].width}" id="${i}"></a>`;
       out += `<li>
         <a href="index.html?font=${i}" class="image">
         <img src="img/demologos/${i}-logo.png"
@@ -145,12 +136,8 @@
   const getNavTarget = (e) => {
     let t = e.target;
     let tg = null;
-    if (t.tagName === 'IMG') {
-      tg = t;
-    }
-    if (t.tagName === 'A' && t.className === 'image'){ 
-        tg = t.querySelector('img');
-    }
+    if (t.tagName === 'IMG') { tg = t; }
+    if (t.className === 'image'){ tg = t.querySelector('img'); }
     return tg;
   }
 
@@ -159,19 +146,13 @@
     if (t) {
       t.scrollIntoView();
       set = fonts[t.id];
-      if(set.nogap) {
-        kerning.value = 0;
-      } else {
-        kerning.value = 2;
-      }
+      kerning.value = set.nogap ? 0 : 2;
       let out = 'a-z';
       let available = Object.keys(set).filter(
         k => k.length === 1 && !/[a-z]/.test(k)
       );
       if (available.indexOf('0') !== -1) { out += ' 0-9' }
-      out += ' ' + available.filter(
-        k => !/[0-9|\^]/.test(k)
-      ).sort().join('');
+      out += ' ' + available.filter( k => !/[0-9|\^]/.test(k)).sort().join('');
       availablecontainer.innerText = out;
       window.location.hash = 'goto-' + t.id;
       spacing.disabled = ('^' in set);
@@ -191,7 +172,6 @@
         endcolouring();
       }
       e.preventDefault();
-
     }
   }
 
@@ -346,14 +326,11 @@
         ${c64cols[set.background][2]}
         )`: background;
     ctx.fillRect(0, 0, c.width, c.height);
-    // ctx.fillStyle = 'red';
-    // ctx.fillRect(0, 0, c.width, 5);
     ctx.fillRect(0, c.height - 5, c.width, c.height);
     dimensions.innerText = `Size: ${c.width}${c.width > 320 ? '(!)':''} x ${c.height}${c.height > 200 ? '(!)':''}`;
 
     let xoff = 0;
   
-
     chunks.forEach((s,k) => {
       let centered = (w -  (longest-1) * parseInt(kerning.value, 10) - 10) - fullwidth[k];
       switch (alignment) {
@@ -499,9 +476,9 @@
       if (!big && window.fonts[f].height >= 50) { 
         out[f] = window.fonts[f]; 
       }
-      if (search.length >0) {
-
-        let data = `${f} ${window.fonts[f].product} ${window.fonts[f].year} ${window.fonts[f].maker} ${window.fonts[f].format}`.toLowerCase();
+      if (search.length > 0) {
+        let data = `${f} ${window.fonts[f].product} ${window.fonts[f].year} 
+                    ${window.fonts[f].maker} ${window.fonts[f].format}`.toLowerCase();
         if (data.includes(search)){
           out[f] = window.fonts[f];
         } else {
