@@ -98,7 +98,7 @@
       let set = fonts[i];
       out += `<li>
         <a href="index.html?font=${i}" class="image">
-        <img src="img/demologos/${i}-logo.png"
+        <img src="img/fonts/${i}-logo.png"
         alt="${i} ${set.maker} - ${set.product}" 
         height="${set.logoheight}" 
         width="${set.logowidth}" loading="lazy" id="${i}"></a>`;

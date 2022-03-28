@@ -27,6 +27,7 @@
 <p>
   <textarea></textarea>
 </p>
+<img src="">
 <input id="getfile" type="file" />
 <label for="getfile">Load</label></div>
 </div>
@@ -83,9 +84,9 @@ const getcharsfromfont = (img) => {
     var letterwidth = 0;
     var boundaries = [];
     for (var i = offset; i < width; i++) {
+    
     var currentcolour = pixelcolour(i, startpoint[1]+5);
-  
-    //   console.log(currentcolour);
+      console.log(currentcolour);
       if(isgreen(currentcolour) === -1){
         letterwidth++;
       } else {
