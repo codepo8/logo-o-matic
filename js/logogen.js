@@ -500,6 +500,7 @@
     // [zoombutton, 'click', dozoom],
     [colourbutton, 'click', endcolouring],
     [filterform, 'change', filterfonts],
+    [filterform, 'submit', filterfonts],
     [window, 'load', init],
     [window, 'DOMContentLoaded', createFontMenu],
     [nav, 'focus', toggleeditor],
