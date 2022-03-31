@@ -15,7 +15,7 @@ var fonts = {
 "fatum":{
   "product":"Fatumfont",
   "year":"2022",
-  "productlink":"",
+  "productlink":"https://csdb.dk/release/index.php?id=216173",
   "format":"Multicolour",
   "maker":"Cupid",
   "logowidth": 172,
