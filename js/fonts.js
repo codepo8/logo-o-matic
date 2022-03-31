@@ -15,7 +15,7 @@ var fonts = {
 "fatum":{
   "product":"Fatumfont",
   "year":"2022",
-  "productlink":"https://csdb.dk/release/?id=216022",
+  "productlink":"",
   "format":"Multicolour",
   "maker":"Cupid",
   "logowidth": 172,
@@ -28,7 +28,7 @@ var fonts = {
 "silverbullet":{
   "product":"Silverbulletfont",
   "year":"2022",
-  "productlink":"https://csdb.dk/release/?id=216022",
+  "productlink":"https://csdb.dk/release/?id=216112",
   "format":"Multicolour",
   "maker":"Cupid",
   "logowidth": 160,
@@ -50,7 +50,7 @@ var fonts = {
 "sacredintro":{
   "product":"Sacredfont",
   "year":"2022",
-  "productlink":"https://csdb.dk/release/?id=215834",
+  "productlink":"https://csdb.dk/release/?id=215971",
   "format":"Multicolour",
   "maker":"Cupid",
   "logowidth": 172,
@@ -384,7 +384,7 @@ var fonts = {
   "silco2":{
     "product":"Wet Dreams",
     "year":"1991",
-    "productlink":"https://csdb.dk/release/?id=751",
+    "productlink":"https://csdb.dk/release/?id=5901",
     "format":"Multicolour Font",
     "maker":"Silco",
     "makerlink":"https://csdb.dk/release/?id=5901",
@@ -579,7 +579,7 @@ var fonts = {
   "knut":{
     "product":"Erection Is My Destination",
     "year":"1996",
-    "productlink":"https://csdb.dk/release/?id=534",
+    "productlink":"https://csdb.dk/release/?id=542",
     "format":"3 Colour font","nogap":true,
     "maker":"Knut M Clausen",
     "makerlink":"https://csdb.dk/scener/?id=10522","height":104,"a":[0,63],"b":[65,62],"c":[129,62],"d":[193,62],"e":[257,62],"f":[322,62],"g":[386,62],"h":[450,62],"i":[514,30],"j":[546,62],"k":[610,62],"l":[674,62],"m":[738,62],"n":[802,62],"o":[866,62],"p":[930,62],"q":[994,62],"r":[1058,62],"s":[1122,62],"t":[1186,62],"u":[1250,63],"v":[1315,61],"w":[1378,62],"x":[1442,62],"y":[1506,62],"z":[1570,62],"^":[1634,37],
