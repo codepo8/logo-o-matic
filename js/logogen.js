@@ -99,16 +99,18 @@
       out += `<li>
         <a href="index.html?font=${i}" class="image">
         <img src="img/fonts/${i}-logo.png"
-        alt="${i} ${set.maker} - ${set.product}" 
+        alt="${i} ${set.maker} ${set.product ? '-' + set.product:''}"" 
         height="${set.logoheight}" 
         width="${set.logowidth}" loading="lazy" id="${i}"></a>`;
       out += '<small>Font by ';
       out += (set.makerlink) 
         ? `<a href="${set.makerlink}">${set.maker}</a>`
         : set.maker;
-      out += (set.product)
-        ? ` used in <a href="${set.productlink}">${set.product}</a>` 
-        : set.product;
+      if((set.product)) {
+        out += (set.product)
+          ? ` used in <a href="${set.productlink}">${set.product}</a>` 
+          : set.product;
+      }
       if (set.year) {
         out += ` (${set.year})`;
       }
