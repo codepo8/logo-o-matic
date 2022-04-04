@@ -11,7 +11,18 @@ var fonts = {
     "logoheight": 65,
   },
 */
-
+"sonic": {
+  product:'Sonic',
+  year:'1994',
+  productlink:'https://csdb.dk/release/?id=789',
+  format:'Multicolour Font',
+  maker:['Lenyn','Pubi'],
+  makerlink: ['https://csdb.dk/scener/?id=3901',
+  'https://csdb.dk/scener/?id=1385'],
+  "logowidth": 176,
+  "logoheight": 46,
+  "height":36,"a":[0,40],"b":[41,40],"c":[82,40],"d":[123,40],"e":[164,40],"f":[205,40],"g":[246,40],"h":[287,40],"i":[328,16],"j":[345,40],"k":[386,40],"l":[427,40],"m":[468,64],"n":[533,40],"o":[574,40],"p":[615,40],"q":[656,40],"r":[697,40],"s":[738,40],"t":[779,40],"u":[820,40],"v":[861,40],"w":[902,64],"x":[967,40],"y":[1008,40],"z":[1049,40],".":[1090,16],"!":[1107,16],":":[1124,16]
+},
 "fuckcovid":{
   "year":"2022",
   "format":"Charset",

@@ -96,6 +96,20 @@
     var out = '';
     for (var i in f) {
       let set = fonts[i];
+      let makerstring = '';
+      if(set.maker) {
+        if (typeof set.maker==="object") {
+          set.maker.forEach((m,key) => {
+            makerstring += `<a href="${set.makerlink[key]}">${m}</a>, `;
+          });
+        } else {
+          if(set.makerlink?.length > 1) {
+            makerstring += `<a href="${set.makerlink}">${set.maker}</a>`;
+          } else {
+            makerstring += `${set.maker}`;
+          }
+        }
+      }
       out += `<li>
         <a href="index.html?font=${i}" class="image">
         <img src="img/fonts/${i}-logo.png"
@@ -103,9 +117,7 @@
         height="${set.logoheight}" 
         width="${set.logowidth}" loading="lazy" id="${i}"></a>`;
       out += '<small>Font by ';
-      out += (set.makerlink) 
-        ? `<a href="${set.makerlink}">${set.maker}</a>`
-        : set.maker;
+      out += makerstring 
       if((set.product)) {
         out += (set.product)
           ? ` used in <a href="${set.productlink}">${set.product}</a>` 
