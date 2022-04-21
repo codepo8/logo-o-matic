@@ -96,26 +96,26 @@
     var out = '';
     for (var i in f) {
       let set = fonts[i];
-      let makerstring = '';
       if(set.maker) {
-        if (typeof set.maker==="object") {
-          set.maker.forEach((m,key) => {
-            makerstring += `<a href="${set.makerlink[key]}">${m}</a>, `;
-          });
-        } else {
-          if(set.makerlink?.length > 1) {
-            makerstring += `<a href="${set.makerlink}">${set.maker}</a>`;
-          } else {
-            makerstring += `${set.maker}`;
-          }
-        }
+        let makers = set.maker.split(',');
+        let makerlinks = set.makerlink.split(',');
+        var makerstring = [];
+        makers.forEach((m,key) => {
+            if(makerlinks[key]?.length > 1) {
+              let lnk = makerlinks[key].indexOf('http') === 0 ? makerlinks[key] : 'http://csdb.dk/scener/?id=' + makerlinks[key];
+              makerstring.push(`<a href="${lnk}">${makers[key]}</a>`);
+            } else {
+              makerstring.push(`${makers[key]}`);
+            }
+        });
+        makerstring = makerstring.join(', ');
       }
       out += `<li>
         <a href="index.html?font=${i}" class="image">
         <img src="img/fonts/${i}-logo.png"
         alt="${i} ${set.maker} ${set.product ? '-' + set.product:''}"" 
-        height="${set.logoheight}" 
-        width="${set.logowidth}" loading="lazy" id="${i}"></a>`;
+        height="${set.dimensions.logoheight}" 
+        width="${set.dimensions.logowidth}" loading="lazy" id="${i}"></a>`;
       out += '<small>Font by ';
       out += makerstring 
       if((set.product)) {
@@ -159,7 +159,8 @@
     let t = getNavTarget(e);
     if (t) {
       t.scrollIntoView();
-      set = fonts[t.id];
+      set = fonts[t.id].chars;
+      fonts[t.id].chars.height = fonts[t.id].dimensions.height;
       kerning.value = set.nogap ? 0 : 2;
       let out = 'a-z';
       let available = Object.keys(set).filter(
